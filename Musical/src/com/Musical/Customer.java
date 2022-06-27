@@ -7,5 +7,4 @@ public interface Customer {
 	public void logout();
 	public void userDelete();
 	
-
 }

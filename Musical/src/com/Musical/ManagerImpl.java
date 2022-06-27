@@ -5,8 +5,6 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import com.score5.ScoreVO;
-
 public class ManagerImpl implements Manager{
 
 	String[] arrID = {"GANA11", "JOKER33", "STARBUCKS07"};
