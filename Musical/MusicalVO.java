@@ -89,7 +89,11 @@ public class MusicalVO {
 		this.point = point;
 	}
 	
-	
+	@Override
+	public String toString() {
+		
+		return toString();
+	}
 	
 	
  

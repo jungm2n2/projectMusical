@@ -1,5 +1,8 @@
 package Musical;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
 public class MusicalMain {
 
 	public static void main(String[] args) {
@@ -13,6 +16,36 @@ public class MusicalMain {
 		String[] arrPhone = {"010-5859-3928", "010-4837-2937", "010-3920-4832"};
 		String[] arrPoint = {"10000", "10000", "10000"};
 
+		HashMap<String, MusicalVO> hMap = new HashMap<>();
+		
+		for(int i=0;i<arrID.length;i++) {
+			
+			MusicalVO vo = new MusicalVO();
+			
+			vo.setId(arrID[i]);
+			vo.setPw(arrPW[i]);
+			vo.setName(arrName[i]);
+			vo.setBirth(arrBirth[i]);
+			vo.setGender(arrGender[i]);
+			vo.setMail(arrMail[i]);
+			vo.setPhone(arrPhone[i]);
+			vo.setPoint(arrPoint[i]);
+			
+			hMap.put(arrID[i], vo);
+			
+		}
+		
+		Iterator<String> it = hMap.keySet().iterator();
+		while(it.hasNext()) {
+		
+			System.out.println(it.next());
+			
+			
+		}
+			
+			
+			
 	}
+	
 
 }
