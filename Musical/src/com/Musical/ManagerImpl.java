@@ -5,8 +5,6 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import com.score5.ScoreVO;
-
 public class ManagerImpl implements Manager{
 
 	String[] arrID = {"GANA11", "JOKER33", "STARBUCKS07"};
@@ -17,12 +15,24 @@ public class ManagerImpl implements Manager{
 	String[] arrMail = {"GANA@NAVER.COM", "JOKSS@GMAIL.COM", "STA@NAVER.COM"};
 	String[] arrPhone = {"010-5859-3928", "010-4837-2937", "010-3920-4832"};
 	String[] arrPoint = {"10000", "10000", "10000"};
+	
+	
+	
+	//뮤지컬 데이터 입력.정민
+	String[] arrTitle = {"오페라의 유령", "레미제라블", "캣츠"};
+	String [] arrActor1 = {"아이비,김준현","김소현,주원","옥주현,조권"};
+	String [] arrActor2 = {"옥주현,조권","아이비,김준현","김소현,주원"};
+	String [] arrTime = {"11:00","15:00","19:30"};
+	String [] arrDate = {"7/1(금)","7/2(토)","7/3(일)"};
 
 
 	BufferedReader br = new BufferedReader(
 			new InputStreamReader(System.in));
 
 	HashMap<String, MusicalVO> hMap = new HashMap<>();
+	
+	//
+	HashMap<String, ShowVO> h = new HashMap<>();
 
 	@Override
 	public void userSearch() {	
@@ -73,4 +83,40 @@ public class ManagerImpl implements Manager{
 		
 	}
 
-}
+	
+	//정민
+	@Override
+	public void inputTitle() {
+		
+		
+		for(int i=0;i<arrTitle.length;i++) {
+			
+			ShowVO vo = new ShowVO();
+
+			
+			vo.setTitle(arrTitle[i]);
+			vo.setActor1(arrActor1[i]);
+			vo.setActor2(arrActor2[i]);
+			vo.setTime(arrTime);
+			vo.setDate(arrDate);
+
+			h.put(arrTitle[i], vo);
+
+		}
+		
+		Iterator<String> it = h.keySet().iterator();
+		
+		while(it.hasNext()) {
+			
+			String title = it.next();
+			ShowVO vo = h.get(title);
+	
+			System.out.println(vo.toString());
+		}
+	}
+		
+		
+		
+	}
+
+
