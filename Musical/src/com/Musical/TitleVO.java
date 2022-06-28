@@ -1,6 +1,6 @@
 package com.Musical;
 
-public class ShowVO {
+public class TitleVO {
 	
 	private String title;
 	private String actor1;
@@ -9,15 +9,13 @@ public class ShowVO {
 	private String[] date;
 	
 	
-	public ShowVO() {
-		
-		
+	public TitleVO() {
 		
 	}
 	
 
 
-	public ShowVO(String title, String actor1, String actor2, String[] time, String[] date) {
+	public TitleVO(String title, String actor1, String actor2, String[] time, String[] date) {
 		super();
 		this.title = title;
 		this.actor1 = actor1;
