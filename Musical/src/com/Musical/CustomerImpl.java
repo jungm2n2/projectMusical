@@ -24,7 +24,7 @@ public class CustomerImpl implements Customer{
 	public CustomerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
 		this.customerMap = customerMap;
 		this.titleMap = titleMap;
-		//bt = new BookticketImpl(customerMap, titleMap);
+		
 	}
 
 	@Override
@@ -44,19 +44,37 @@ public class CustomerImpl implements Customer{
 			System.out.println("비밀번호 인증 완료");
 		}
 			
-			System.out.println("수정할 비밀번호?");
+			System.out.println("수정하고싶은 회원정보를 선택하세요");
+			System.out.println("1.비밀번호 \n2.이메일 \n3.핸드폰번호");
+			int num2 = (Integer.parseInt(br.readLine()));
 			
-			vo.setPw(br.readLine());
+			boolean flag = false;
 			
-			System.out.println("수정할 이메일?");
-			vo.setMail(br.readLine());
+			switch (num2) {
+			case 1:
+				System.out.println("수정할 비밀번호?");
+				vo.setPw(br.readLine()); flag = true; break;
+			case 2:
+				System.out.println("수정할 이메일?");
+				vo.setMail(br.readLine()); flag = true; break;
+			case 3:
+				System.out.println("수정할 핸드폰 번호?");
+				vo.setPhone(br.readLine()); flag = true; break;
+			default:
+				flag = false; break;
 			
-			System.out.println("수정할 핸드폰 번호?");
-			vo.setPhone(br.readLine());
+			}
+			
+			if(flag) {
+				customerMap.put(id, vo);
+				System.out.println("수정 완료!");
+			}else {
+				System.out.println("번호를 다시 입력하세요"); 
+			}
 			
 			
-			customerMap.put(id, vo);
-			System.out.println("수정 완료!");
+			
+			
 			
 			
 			
@@ -64,15 +82,24 @@ public class CustomerImpl implements Customer{
 			System.out.println(e.toString());
 		}
 		
-		
-		
 	}
 			
 	
 	@Override
 	public void reservation() {
 		
-		//오빠꺼 불러오기 예매하기
+		BookticketImpl bk = new BookticketImpl(id, titleMap);
+		customerMap.get(id).setPh(bk.ViewMenu());
+	}
+	
+	@Override
+	public void checkTicket() {
+		
+		System.out.println(customerMap.get(id).getPh().toString());
+		
+		
+		
+		
 		
 	}
 
@@ -101,6 +128,9 @@ public class CustomerImpl implements Customer{
 		}
 		
 	}
+	
+	
+	
 
 	@Override
 	public void userDelete() {
@@ -150,16 +180,16 @@ public class CustomerImpl implements Customer{
 			id = id1;
 		while(true){	
 			do {
-			System.out.println("1.내정보수정 2.예매하기 3.예매내역 조회 4.로그아웃 5.회원탈퇴");
+			System.out.println("1.내정보수정 \n2.예매하기 \n3.예매내역 조회 \n4.로그아웃 \n5.회원탈퇴");
 			num = Integer.parseInt(br.readLine());
-			}while(num<1||num>4);
+			}while(num<1||num>5);
 			
 			
 			switch (num) {
 			
 			case(1):userUpdate();break;
 			case(2):reservation();break;
-			case(3):logout();break;
+			case(3):checkTicket();break;
 			case(4):logout();break;
 			case(5):userDelete();break;
 		
@@ -170,4 +200,6 @@ public class CustomerImpl implements Customer{
 			
 		}
 	}
+
+	
 }

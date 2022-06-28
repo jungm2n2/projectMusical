@@ -12,7 +12,6 @@ public class CustomerVO {
 	String point;
 	BookTicketVO ph = null;
 	
-	
 	public CustomerVO() {
 		
 	}
@@ -76,6 +75,15 @@ public class CustomerVO {
 	public void setPoint(String point) {
 		this.point = point;
 	}
+	
+	public BookTicketVO getPh() {
+		return ph;
+	}
+
+	public void setPh(BookTicketVO ph) {
+		this.ph = ph;
+	}
+
 	
 	@Override
 	public String toString() {

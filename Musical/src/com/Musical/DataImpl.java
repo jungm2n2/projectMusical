@@ -32,6 +32,7 @@ public class DataImpl implements Data {
 
 	public DataImpl() {
 		inputTitle();
+		loadData();
 	}
 
 
