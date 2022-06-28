@@ -5,9 +5,21 @@ import java.util.Scanner;
 
 public class CustomerImpl implements Customer{
 	
-	HashMap<String, MusicalVO> hMap = new HashMap<>();
+	HashMap<String, CustomerVO> customerMap = null;
+	HashMap<String, TitleVO> titleMap = null;
+	
+	
+	
 	Scanner sc = new Scanner(System.in);
-	MusicalVO vo = new MusicalVO(); 
+	CustomerVO vo = new CustomerVO(); 
+
+	
+	
+	
+	public CustomerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
+		this.customerMap = customerMap;
+		this.titleMap = titleMap;
+	}
 
 	@Override
 	public void userUpdate() {
@@ -15,10 +27,6 @@ public class CustomerImpl implements Customer{
 		
 		System.out.print("수정하고 싶은 회원의 아이디를 입력하세요");
 		String str = sc.next();
-		
-		
-		
-		
 		
 		
 		
