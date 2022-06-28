@@ -1,5 +1,11 @@
+
 package com.Musical;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 public class DataImpl implements Data {
@@ -19,17 +25,18 @@ public class DataImpl implements Data {
 	String [] arrActor2 = {"¿ÁÁÖÇö,Á¶½Â¿ì",",","±è¼ÒÇö,ÁÖ¿ø"};
 	String [] arrTime = {"11:00","15:00","19:30"};
 	String [] arrDate = {"7/1(±Ý)","7/2(Åä)","7/3(ÀÏ)"};
-	int [] arrCost = {10000, 20000, 30000};
+	int [] arrCost = {10000,20000,30000};
 
 	HashMap<String, CustomerVO> customerMap = new HashMap<>();
 	HashMap<String, TitleVO> titleMap = new HashMap<>();
 
 	public DataImpl() {
 		inputTitle();
-		inputCustomer();
 	}
-	
+
+
 	public void inputCustomer() {	
+
 		for(int i=0;i<arrID.length;i++) {
 
 			CustomerVO vo = new CustomerVO();
@@ -44,10 +51,12 @@ public class DataImpl implements Data {
 			vo.setPoint(arrPoint[i]);
 
 			customerMap.put(arrID[i], vo);
+
 		}
 	}
 
 	//Á¤¹Î
+
 	public void inputTitle() {
 
 
@@ -70,20 +79,52 @@ public class DataImpl implements Data {
 
 	@Override
 	public void saveData() {
-		// TODO Auto-generated method stub
-		
+
+		try {
+			File f = new File("c:\\Musical\\userlist.txt");
+
+			FileOutputStream fos = new FileOutputStream(f);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+			oos.writeObject(customerMap);
+			fos.close();
+			oos.close();
+
+		} catch (Exception e) {
+			System.out.println(e.toString());}
+
 	}
 
 	@Override
 	public void loadData() {
-		// TODO Auto-generated method stub
-		
+
+		try {
+			File f = new File("c:\\Musical\\userlist.txt");
+
+			if(!f.exists()) {				
+				inputCustomer();				
+			}
+			else {
+				FileInputStream fis = new FileInputStream(f);
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				
+				customerMap = (HashMap<String, CustomerVO>)ois.readObject();
+				
+				fis.close();
+				ois.close();
+				
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
 	}
 
 	@Override
 	public void snycData() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public HashMap<String, CustomerVO> getCustomerMap() {
@@ -102,7 +143,7 @@ public class DataImpl implements Data {
 		this.titleMap = titleMap;
 	}
 
-	
+
 
 
 }
