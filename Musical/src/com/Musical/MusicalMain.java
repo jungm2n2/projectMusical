@@ -10,7 +10,7 @@ public class MusicalMain {
 
 	static HashMap<String, CustomerVO> customerMap = di.getCustomerMap();
 	static HashMap<String, TitleVO> titleMap = di.getTitleMap();
-
+	
 	static ManagerImpl implM = new ManagerImpl(customerMap, titleMap);
 	static CustomerImpl implC = new CustomerImpl(customerMap, titleMap);
 
@@ -86,48 +86,50 @@ public class MusicalMain {
 				new InputStreamReader(System.in));
 
 		try {
-			System.out.println("아이디를 입력하세요.");
-			String id = br.readLine();
+		System.out.println("아이디를 입력하세요.");
+		String id = br.readLine();
+		
+		System.out.println("비밀번호를 입력하세요.");
+		String pw = br.readLine();
 
-			System.out.println("비밀번호를 입력하세요.");
-			String pw = br.readLine();
+		System.out.println("비밀번호를 재확인해주세요.");
+		do {
+			String pw2 = br.readLine();
 
-			System.out.println("비밀번호를 재확인해주세요.");
-			do {
-				String pw2 = br.readLine();
+			if(pw.equals(pw2)) {break;
+			}
+			else {
+				System.out.println("비밀번호가 다릅니다.다시입력해주세요.");
+			}
 
-				if(pw.equals(pw2)) {break;
-				}
-				else {
-					System.out.println("비밀번호가 다릅니다.다시입력해주세요.");
-				}
+		}while(true);
 
-			}while(true);
+		System.out.println("이름?");
+		String name = br.readLine();
 
-			System.out.println("이름?");
-			String name = br.readLine();
+		System.out.println("성별? [F/M]");
+		String gender = br.readLine(); 
 
-			System.out.println("성별? [F/M]");
-			String gender = br.readLine(); 
+		System.out.println("생년월일?[yyyy-mm-dd]");
+		String birth = br.readLine();
 
-			System.out.println("생년월일?[yyyy-mm-dd]");
-			String birth = br.readLine();
+		System.out.println("이메일 주소?");
+		String mail = br.readLine();
 
-			System.out.println("이메일 주소?");
-			String mail = br.readLine();
+		System.out.println("핸드폰 번호?[010-xxxx-xxxx]");
+		String phone = br.readLine();
+		
+		CustomerVO vo = new CustomerVO(id, pw, name, birth, gender, mail, phone);
+		
+		customerMap.put(vo.getId(), vo);
 
-			System.out.println("핸드폰 번호?[010-xxxx-xxxx]");
-			String phone = br.readLine();
+	} catch (Exception e) {
 
-			CustomerVO vo = new CustomerVO(id, pw, name, birth, gender, mail, phone);
-
-			customerMap.put(vo.getId(), vo);
-
-		} catch (Exception e) {
-
-			System.out.println(e.toString());     
-		}
-
+		System.out.println(e.toString());     
 	}
+
+
+
+}
 
 }
