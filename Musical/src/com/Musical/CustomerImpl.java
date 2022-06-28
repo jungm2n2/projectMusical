@@ -159,7 +159,7 @@ public class CustomerImpl implements Customer{
 			
 			case(1):userUpdate();break;
 			case(2):reservation();break;
-			case(3):logout();break;
+			case(3):reservation();break;
 			case(4):logout();break;
 			case(5):userDelete();break;
 		

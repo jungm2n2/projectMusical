@@ -25,7 +25,6 @@ public class ManagerImpl implements Manager{
 		case "1" :
 			userSearch(); 
 		case "2" : 
-
 			reservationTicket();
 		case "3" :
 			totalSale();
