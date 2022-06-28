@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 public class DataImpl implements Data {
 
-	String[] arrID = {"GANA11", "JOKER33", "STARBUCKS07"};
-	String[] arrPW = {"11111", "22222", "33333"};
-	String[] arrName = {"김영운", "이정민", "안시연"};
-	String[] arrBirth = {"1988-11-04", "1994-10-22", "1993-08-25"};
-	String[] arrGender = {"M", "F", "F"};
-	String[] arrMail = {"GANA@NAVER.COM", "JOKSS@GMAIL.COM", "STA@NAVER.COM"};
-	String[] arrPhone = {"010-5859-3928", "010-4837-2937", "010-3920-4832"};
-	String[] arrPoint = {"10000", "10000", "10000"};
+	String[] arrID = {"GANA11", "JOKER33", "STARBUCKS07","admin"};
+	String[] arrPW = {"11111", "22222", "33333","1111"};
+	String[] arrName = {"김영운", "이정민", "안시연","관리자"};
+	String[] arrBirth = {"1988-11-04", "1994-10-22", "1993-08-25","1111-11-11"};
+	String[] arrGender = {"M", "F", "F","F"};
+	String[] arrMail = {"GANA@NAVER.COM", "JOKSS@GMAIL.COM", "STA@NAVER.COM","ADMIN@NAVER.COM"};
+	String[] arrPhone = {"010-5859-3928", "010-4837-2937", "010-3920-4832","010-1111-1111"};
+	String[] arrPoint = {"10000", "10000", "10000","0"};
 
 	//뮤지컬 데이터 입력.정민
 	String[] arrTitle = {"오페라의 유령", "레미제라블", "캣츠"};
