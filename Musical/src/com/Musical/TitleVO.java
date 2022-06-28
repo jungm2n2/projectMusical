@@ -7,8 +7,15 @@ public class TitleVO {
 	private String actor2;
 	private String[] time;
 	private String[] date;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> Stashed changes
 	private int cost;
 	
+>>>>>>> ad649ef67fe356a304c6ed016569ed79994b5f67
 	
 	public TitleVO() {
 		

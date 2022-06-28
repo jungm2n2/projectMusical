@@ -13,8 +13,6 @@ public class CustomerVO {
 	
 	public CustomerVO() {
 		
-		
-		
 	}
 	
 	public CustomerVO(String id, String pw, String name, String birth, String gender, String mail, String phone) {

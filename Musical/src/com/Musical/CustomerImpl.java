@@ -17,7 +17,7 @@ public class CustomerImpl implements Customer{
 
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-	
+	int phonenum;
 	int num;
 	
 
@@ -31,14 +31,14 @@ public class CustomerImpl implements Customer{
 		
 		try {
 			
-			System.out.print("수정하고 싶은 회원의 아이디를 입력하세요");
-			id = br.readLine();
+			System.out.print("비밀번호를 입력해주세요");
+			phonenum = Integer.parseInt(br.readLine());
 			
 
-			if(!(searchId(id))){
-				System.out.println("입력하신 아이디가 존재하지 않습니다");
+			//if(){
+				System.out.println("비밀번호가 틀렸습니다");
 				return;
-			}
+		}
 			
 			CustomerVO vo = customerMap.get(id);
 			
@@ -150,7 +150,7 @@ public class CustomerImpl implements Customer{
 		try {
 			
 			do {
-			System.out.println("1.내정보수정 2.예매하기 3.로그아웃 4.회원탈퇴");
+			System.out.println("1.내정보수정 2.예매하기 3.예매내역 조회 4.로그아웃 5.회원탈퇴");
 			num = Integer.parseInt(br.readLine());
 			}while(num<1||num>4);
 			
@@ -160,7 +160,8 @@ public class CustomerImpl implements Customer{
 			case(1):userUpdate();break;
 			case(2):reservation();break;
 			case(3):logout();break;
-			case(4):userDelete();break;
+			case(4):logout();break;
+			case(5):userDelete();break;
 		
 			}
 			

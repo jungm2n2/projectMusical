@@ -36,6 +36,18 @@ public class ManagerImpl implements Manager{
 			System.exit(0);
 			
 		}
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+	
+	}	
+	
+	public ManagerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
+		this.customerMap = customerMap;
+		this.titleMap = titleMap;
+=======
+>>>>>>> ad649ef67fe356a304c6ed016569ed79994b5f67
+>>>>>>> Stashed changes
 	}
 
 	@Override
