@@ -1,6 +1,8 @@
 package com.Musical;
 
-public class payHistoryVO {
+import java.io.Serializable;
+
+public class payHistoryVO implements Serializable {
 
 	String title;
 	String actor;
