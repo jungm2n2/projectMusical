@@ -24,7 +24,6 @@ public class CustomerImpl implements Customer{
 	public CustomerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
 		this.customerMap = customerMap;
 		this.titleMap = titleMap;
-		start();
 	}
 
 	@Override

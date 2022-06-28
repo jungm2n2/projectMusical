@@ -5,17 +5,17 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class MusicalMain {
+	
+	static DataImpl di = new DataImpl();
+
+	static ManagerImpl implM = new ManagerImpl(di.getCustomerMap(), di.getTitleMap());
+	static CustomerImpl implC = new CustomerImpl(di.getCustomerMap(), di.getTitleMap());
 
 
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader(System.in));
-
-		DataImpl di = new DataImpl();
-
-		ManagerImpl implM = new ManagerImpl(di.getCustomerMap(), di.getTitleMap());
-		CustomerImpl implC = new CustomerImpl(di.getCustomerMap(), di.getTitleMap());
 
 		System.out.println("1.로그인 \n2.회원가입 \n3.종료");
 		System.out.println("---------------------------------\n:");
@@ -58,11 +58,11 @@ public class MusicalMain {
 				pw = br.readLine();
 			}else {
 				if(id.equals("admin") && pw.equals("1111")) {
-					ManagerImpl mng = new ManagerImpl();	
+					implM.menu();
 					break;
 				}
 				else {
-				//	CustomerImpl ctm = new CustomerImpl();
+					implC.start();
 				}
 				
 			}				

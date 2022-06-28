@@ -8,16 +8,20 @@ import java.util.Iterator;
 
 public class ManagerImpl implements Manager{
 
-
 	BufferedReader br = new BufferedReader(
 			new InputStreamReader(System.in));
 	
 
 	HashMap<String, CustomerVO> customerMap = null;
-	HashMap<String, TitleVO> titleMap = null;
+	HashMap<String, TitleVO> titleMap = null;	
+	
+	public ManagerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
+		this.customerMap = customerMap;
+		this.titleMap = titleMap;
+	}
 
-	public ManagerImpl() throws IOException {
-
+	public void menu() throws IOException {
+		
 		System.out.println("1.회원조회 \n2.예매현황 \n3.매출조회 \n4.종료\n:");
 		String str = br.readLine();
 
@@ -30,24 +34,17 @@ public class ManagerImpl implements Manager{
 			totalSale(); break;
 		default : 
 			System.exit(0);
+			
 		}
-		
-		
-	}	
-	
-	public ManagerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
-		this.customerMap = customerMap;
-		this.titleMap = titleMap;
 	}
-
 
 	@Override
 	public void userSearch() {	
 		Iterator<String> it = customerMap.keySet().iterator();
 		
-		while(it.hasNext()) {
+		while(it.hasNext()) {			
 			CustomerVO vo = customerMap.get(it.next());
-			System.out.println(it + vo.toString());
+			System.out.println(vo.toString());
 		}
 		
 	
