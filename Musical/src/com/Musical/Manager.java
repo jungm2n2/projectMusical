@@ -7,5 +7,8 @@ public interface Manager {
 	public void totalSale();
 	public void logout();
 	
+	//
+	public void inputTitle();
+	
 
 }
