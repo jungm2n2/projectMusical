@@ -7,5 +7,6 @@ public interface Customer {
 	public void reservation();
 	public void logout();
 	public void userDelete();
+	public void checkTicket();
 	
 }
