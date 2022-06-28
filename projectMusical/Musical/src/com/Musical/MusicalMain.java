@@ -8,8 +8,11 @@ public class MusicalMain {
 
 	static DataImpl di = new DataImpl();
 
-	static ManagerImpl implM = new ManagerImpl(di.getCustomerMap(), di.getTitleMap());
-	static CustomerImpl implC = new CustomerImpl(di.getCustomerMap(), di.getTitleMap());
+	static HashMap<String, CustomerVO> customerMap = di.getCustomerMap();
+	static HashMap<String, TitleVO> titleMap = di.getTitleMap();
+	
+	static ManagerImpl implM = new ManagerImpl(customerMap, titleMap);
+	static CustomerImpl implC = new CustomerImpl(customerMap, titleMap);
 
 	public static void main(String[] args) throws IOException {
 
@@ -118,7 +121,7 @@ public class MusicalMain {
 		
 		CustomerVO vo = new CustomerVO(id, pw, name, birth, gender, mail, phone);
 		
-		di.getCustomerMap().get(vo);
+		customerMap.put(vo.getId(), vo);
 
 	} catch (Exception e) {
 
