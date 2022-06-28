@@ -1,7 +1,5 @@
 package com.Musical;
 
-import org.omg.Messaging.SyncScopeHelper;
-
 public class CustomerVO {
 	
 	String id;
