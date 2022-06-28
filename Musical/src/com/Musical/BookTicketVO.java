@@ -1,7 +1,8 @@
 package com.Musical;
 
-public class BookTicketVO {
+import java.io.Serializable;
 
+public class BookTicketVO implements Serializable {
 	String title;
 	String actor;
 	String date;

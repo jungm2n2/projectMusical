@@ -9,6 +9,7 @@ public class TitleVO {
 	private String[] date;
 	private int cost;
 	
+
 	
 	public TitleVO() {
 		

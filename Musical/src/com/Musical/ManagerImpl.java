@@ -8,46 +8,47 @@ import java.util.Iterator;
 
 public class ManagerImpl implements Manager{
 
+
 	BufferedReader br = new BufferedReader(
 			new InputStreamReader(System.in));
 	
 
 	HashMap<String, CustomerVO> customerMap = null;
-	HashMap<String, TitleVO> titleMap = null;	
+	HashMap<String, TitleVO> titleMap = null;
+
+	public ManagerImpl() throws IOException {
+
+		System.out.println("1.íšŒì›ì¡°íšŒ \n2.ì˜ˆë§¤í˜„í™© \n3.ë§¤ì¶œì¡°íšŒ \n4.ë¡œê·¸ì•„ì›ƒ\n:");
+		String str = br.readLine();
+
+		switch(str) {
+		case "1" :
+			userSearch(); 
+		case "2" : 
+			mm.signUp();
+		case "3" :
+			System.exit(0);
+		}
+			}	
 	
 	public ManagerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
 		this.customerMap = customerMap;
 		this.titleMap = titleMap;
 	}
 
-	public void menu() throws IOException {
-		
-		System.out.println("1.È¸¿øÁ¶È¸ \n2.¿¹¸ÅÇöÈ² \n3.¸ÅÃâÁ¶È¸ \n4.Á¾·á\n:");
-		String str = br.readLine();
 
-		switch(str) {
-		case "1" :
-			userSearch();  break;
-		case "2" : 
-			reservationTicket(); break;
-		case "3" :
-			totalSale(); break;
-		default : 
-			System.exit(0);
-			
-		}
-	}
 
 	@Override
 	public void userSearch() {	
 		Iterator<String> it = customerMap.keySet().iterator();
 		
-		while(it.hasNext()) {			
+		while(it.hasNext()) {
 			CustomerVO vo = customerMap.get(it.next());
-			System.out.println(vo.toString());
+			System.out.println(it + vo.toString());
 		}
 		
-	
+		
+		
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class ManagerImpl implements Manager{
 
 	}
 
-	//Á¤¹Î
+	//ì •ë¯¼
 	@Override
 	public void inputTitle() {
 

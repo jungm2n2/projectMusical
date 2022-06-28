@@ -11,17 +11,19 @@ public class CustomerImpl implements Customer{
 	HashMap<String, TitleVO> titleMap = null;
 	String id;
 	String answer;
-	
+	BookticketImpl bt = null;
 	
 	CustomerVO vo = new CustomerVO(); 
 
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-	int num;
+String changepw;
+int num;
 
 	public CustomerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
 		this.customerMap = customerMap;
 		this.titleMap = titleMap;
+		bt = new BookticketImpl(customerMap, titleMap);
 	}
 
 	@Override
@@ -29,29 +31,31 @@ public class CustomerImpl implements Customer{
 		
 		try {
 			
-			System.out.print("¼öÁ¤ÇÏ°í ½ÍÀº È¸¿øÀÇ ¾ÆÀÌµð¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-			id = br.readLine();
+			System.out.print("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½?? ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
+			changepw = (br.readLine());
 			
-
-			if(!(searchId(id))){
-				System.out.println("ÀÔ·ÂÇÏ½Å ¾ÆÀÌµð°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+			vo = customerMap.get(id);
+			
+			if(!vo.getPw().equals(changepw)){
+				System.out.println("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½?? Æ²ï¿½È½ï¿½ï¿½Ï´ï¿½");
 				return;
-			}
+		}else {
+			System.out.println("ï¿½ï¿½Ð¹ï¿½ï¿½? ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");
+		}
 			
-			CustomerVO vo = customerMap.get(id);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½ï¿½??");
 			
-			System.out.println("ºñ¹Ð¹øÈ£?");
 			vo.setPw(br.readLine());
 			
-			System.out.println("ÀÌ¸ÞÀÏ?");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½?");
 			vo.setMail(br.readLine());
 			
-			System.out.println("ÇÚµåÆù ¹øÈ£?");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½È£?");
 			vo.setPhone(br.readLine());
 			
 			
 			customerMap.put(id, vo);
-			System.out.println("¼öÁ¤ ¿Ï·á!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½!");
 			
 			
 			
@@ -66,8 +70,11 @@ public class CustomerImpl implements Customer{
 	
 	@Override
 	public void reservation() {	
-		//¿Àºü²¨ ºÒ·¯¿À±â ¿¹¸ÅÇÏ±â
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		new BookticketImpl(id, titleMap).ViewMenu();
+	
+
+	
 	
 	}
 
@@ -75,16 +82,16 @@ public class CustomerImpl implements Customer{
 	public void logout() {
 		
 		try {
-			System.out.println("·Î±×¾Æ¿ô ÇÏ½Ã°Ú½À´Ï±î?[Y/N]");
+			System.out.println("ï¿½Î±×¾Æ¿ï¿½ ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?[Y/N]");
 			answer = br.readLine();
 			
 			if(answer.equals("Y") || answer.equals("y")) {
-				System.out.println("·Î±×¾Æ¿ôÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù");
+				System.out.println("ï¿½Î±×¾Æ¿ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½??");
 				System.exit(0);
 			}else if(answer.equals("N") || answer.equals("n")) {
 				return;
 			}else {
-				System.out.println("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä");
+				System.out.println("ï¿½Ù½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 				return;
 			}
 			
@@ -103,17 +110,17 @@ public class CustomerImpl implements Customer{
 		try {
 			
 			
-			System.out.print("»èÁ¦ÇÏ°í ½ÍÀº È¸¿øÀÇ ¾ÆÀÌµð¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+			System.out.print("Å»ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 			id = br.readLine();
 			
 
 			if(!(searchId(id))){
-				System.out.println("ÀÔ·ÂÇÏ½Å ¾ÆÀÌµð°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+				System.out.println("ï¿½Ô·ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½");
 				return;
 			}
 			
 			customerMap.remove(id);
-			System.out.println("È¸¿øÅ»Åð°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù");
+			System.out.println("È¸ï¿½ï¿½Å»ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½??");
 			
 			
 		} catch (Exception e) {
@@ -138,12 +145,14 @@ public class CustomerImpl implements Customer{
 		
 	}
 	
-	public void start() {
+	public void start(String id1) {
 		
 		try {
 			
+			id = id1;
+		while(true){	
 			do {
-			System.out.println("1.³»Á¤º¸¼öÁ¤ 2.¿¹¸ÅÇÏ±â 3.·Î±×¾Æ¿ô 4.È¸¿øÅ»Åð");
+			System.out.println("1.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2.ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ 3.ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ 4.ï¿½Î±×¾Æ¿ï¿½ 5.È¸ï¿½ï¿½Å»ï¿½ï¿½");
 			num = Integer.parseInt(br.readLine());
 			}while(num<1||num>4);
 			
@@ -153,10 +162,11 @@ public class CustomerImpl implements Customer{
 			case(1):userUpdate();break;
 			case(2):reservation();break;
 			case(3):logout();break;
-			case(4):userDelete();break;
+			case(4):logout();break;
+			case(5):userDelete();break;
 		
 			}
-			
+		}
 			
 		} catch (Exception e) {
 			
