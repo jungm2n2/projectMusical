@@ -15,20 +15,25 @@ public class MusicalMain {
 
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader(System.in));
+		int num;
+		while(true) {
+			do {
+				System.out.println("1.로그인 \n2.회원가입 \n3.종료");
+				System.out.println("---------------------------------\n:");
+				num = Integer.parseInt(br.readLine());
+			}while(num<1 || 3<num);
 
-		System.out.println("1.로그인 \n2.회원가입 \n3.종료");
-		System.out.println("---------------------------------\n:");
-		String str = br.readLine();
+			switch(num) {
+			case 1 :
+				login(di.getCustomerMap()); break;
+			case 2 : 
+				signUp(); break;
+			case 3 :
+				di.saveData();
+				System.exit(0);
+			}
 
-		switch(str) {
-		case "1" :
-			login(di.getCustomerMap());
-		case "2" : 
-			signUp();
-		case "3" :
-			System.exit(0);
 		}
-
 	}
 
 	public static void login(HashMap<String, CustomerVO> customerMap) throws IOException {
@@ -65,7 +70,6 @@ public class MusicalMain {
 					implC.start(id);
 					break;
 
-
 				}
 
 			}				
@@ -74,75 +78,53 @@ public class MusicalMain {
 	}
 
 	public static void signUp() {
-		/*		
+
+		BufferedReader br = new BufferedReader(
+				new InputStreamReader(System.in));
+
 		try {
-			Iterator<NaverVO> it = lists.iterator();
+		System.out.println("아이디를 입력하세요.");
+		String id = br.readLine();
+		
+		System.out.println("비밀번호를 입력하세요.");
+		String pw = br.readLine();
 
-	         System.out.println("아이디를 입력하세요.");
-	         String id = sc.next();
-	         exp.inputFormat(id);
-	         vo.setId(id);
+		System.out.println("비밀번호를 재확인해주세요.");
+		do {
+			String pw2 = br.readLine();
 
+			if(pw.equals(pw2)) {break;
+			}
+			else {
+				System.out.println("비밀번호가 다릅니다.다시입력해주세요.");
+			}
 
-	         System.out.println("비밀번호를 입력하세요.");
+		}while(true);
 
-	         String pw = sc.next();
+		System.out.println("이름?");
+		String name = br.readLine();
 
-	         exp.inputFormat(pw);
+		System.out.println("성별? [F/M]");
+		String gender = br.readLine(); 
 
-	         System.out.println("비밀번호를 재확인해주세요.");
+		System.out.println("생년월일?[yyyy-mm-dd]");
+		String birth = br.readLine();
 
-	         do {
-	        	 String pw2 = sc.next();
+		System.out.println("이메일 주소?");
+		String mail = br.readLine();
 
-	        	 if(pw.equals(pw2)) {
+		System.out.println("핸드폰 번호?[010-xxxx-xxxx]");
+		String tel = br.readLine();
 
-	        		 vo.setPw(pw2);
-	        		 break;
-	        	 }
-	        	 else {
-	        		 System.out.println("비밀번호가 다릅니다.다시입력해주세요.");
-	        	 }
+		di.
 
-	        }while(true);
+	} catch (Exception e) {
 
-	         System.out.println("이름?");
-	         String name = sc.next();
-	         exp.nameInputFormat(name);
-	         vo.setName(name);
-
-	         System.out.println("성별? [F/M]");
-		        String gender= sc.next();
-				exp.genderInputFormat(gender);
-		        vo.setGender(gender);
-
-
-		     System.out.println("생년월일?");
-		        String birth = sc.next();
-		        exp.birthInputFormat(birth);
-		        vo.setBirth(birth);
-
-
-		     System.out.println("이메일 주소?");
-		      	String mail = sc.next();
-		      	exp.mailInputFormat(mail);
-		      	vo.setEmail(mail);
-
-
-		     System.out.println("핸드폰 번호?");
-		     	String tel = sc.next();
-
-		     	vo.setTel(tel);
-
-		    	lists.add(vo);
-
-	      } catch (Exception e) {
-
-	         System.out.println(e.toString());     
-	      }
-
-	   }
-		 */
+		System.out.println(e.toString());     
 	}
+
+
+
+}
 
 }
