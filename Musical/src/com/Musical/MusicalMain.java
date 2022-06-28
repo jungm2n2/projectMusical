@@ -20,6 +20,9 @@ public class MusicalMain {
 		
 		impl.userSearch();
 		
+		//
+		impl.inputTitle();
+	
 	
 			
 		
