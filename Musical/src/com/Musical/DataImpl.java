@@ -21,8 +21,8 @@ public class DataImpl implements Data {
 
 	//뮤지컬 데이터 입력.정민
 	String[] arrTitle = {"오페라의 유령", "레미제라블", "캣츠"};
-	String [] arrActor1 = {"아이비,김준현","김소현,주원","옥주현,조권"};
-	String [] arrActor2 = {"옥주현,조승우",",","김소현,주원"};
+	String [] arrActor1 = {"아이비,주원","김소현,김준현","김지연,정성화"};
+	String [] arrActor2 = {"옥주현,조승우","정선아,박효신","최정원,남경주"};
 	String [] arrTime = {"11:00","15:00","19:30"};
 	String [] arrDate = {"7/1(금)","7/2(토)","7/3(일)"};
 	int [] arrCost = {10000,20000,30000};
