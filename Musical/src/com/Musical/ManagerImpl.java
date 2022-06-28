@@ -11,44 +11,46 @@ public class ManagerImpl implements Manager{
 
 	BufferedReader br = new BufferedReader(
 			new InputStreamReader(System.in));
-	
+
 
 	HashMap<String, CustomerVO> customerMap = null;
 	HashMap<String, TitleVO> titleMap = null;
 
 	public ManagerImpl() throws IOException {
 
-		System.out.println("1.íšŒì›ì¡°íšŒ \n2.ì˜ˆë§¤í˜„í™© \n3.ë§¤ì¶œì¡°íšŒ \n4.ë¡œê·¸ì•„ì›ƒ\n:");
+		System.out.println("1.È¸¿øÁ¶È¸ \n2.¿¹¸ÅÇöÈ² \n3.¸ÅÃâÁ¶È¸ \n4.Á¾·á\n:");
 		String str = br.readLine();
 
 		switch(str) {
 		case "1" :
 			userSearch(); 
 		case "2" : 
-			mm.signUp();
+
+			reservationTicket();
 		case "3" :
+			totalSale();
+		default :
 			System.exit(0);
 		}
-			}	
-	
+
+	}	
+
 	public ManagerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
 		this.customerMap = customerMap;
 		this.titleMap = titleMap;
 	}
 
-
-
 	@Override
 	public void userSearch() {	
 		Iterator<String> it = customerMap.keySet().iterator();
-		
+
 		while(it.hasNext()) {
 			CustomerVO vo = customerMap.get(it.next());
-			System.out.println(it + vo.toString());
+			System.out.println(vo.toString());
 		}
-		
-		
-		
+
+
+
 	}
 
 	@Override
@@ -63,13 +65,9 @@ public class ManagerImpl implements Manager{
 
 	}
 
-	@Override
-	public void logout() {
 
 
-	}
-
-	//ì •ë¯¼
+	//Á¤¹Î
 	@Override
 	public void inputTitle() {
 

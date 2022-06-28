@@ -2,8 +2,7 @@ package com.Musical;
 
 import java.io.Serializable;
 
-public class payHistoryVO implements Serializable {
-
+public class BookTicketVO implements Serializable {
 	String title;
 	String actor;
 	String date;
@@ -42,6 +41,12 @@ public class payHistoryVO implements Serializable {
 		this.cost = cost;
 	}
 	
+	@Override
+	public String toString() {
+		String str = String.format("%s %s %s %s %d ", title, actor, date, time, cost);
+		return str;
+	}
 	
 	
 }
+

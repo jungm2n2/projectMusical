@@ -1,148 +1,136 @@
 package com.Musical;
-//ì‹œì—°
+//½Ã¿¬
 import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class MusicalMain {
 
+	static DataImpl di = new DataImpl();
+
+	static HashMap<String, CustomerVO> customerMap = di.getCustomerMap();
+	static HashMap<String, TitleVO> titleMap = di.getTitleMap();
+
+	static ManagerImpl implM = new ManagerImpl(customerMap, titleMap);
+	static CustomerImpl implC = new CustomerImpl(customerMap, titleMap);
 
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader(System.in));
+		int num;
+		while(true) {
 
-		DataImpl di = new DataImpl();
+			do {
+				System.out.println("1.·Î±×ÀÎ \n2.È¸¿ø°¡ÀÔ \n3.Á¾·á");
+				System.out.println("---------------------------------\n:");
+				num = Integer.parseInt(br.readLine());
+			}while(num<1 || 3<num);
 
-		ManagerImpl implM = new ManagerImpl(di.getCustomerMap(), di.getTitleMap());
-		CustomerImpl implC = new CustomerImpl(di.getCustomerMap(), di.getTitleMap());
 
-		System.out.println("1.ë¡œê·¸ì¸ \n2.íšŒì›ê°€ì… \n3.ì¢…ë£Œ");
-		System.out.println("---------------------------------\n:");
-		String str = br.readLine();
+			switch(num) {
+			case 1 :
+				login(di.getCustomerMap()); break;
+			case 2 : 
+				signUp(); break;
+			case 3 :
+				di.saveData();
+				System.exit(0);
+			}
+		}
+	}
+		public static void login(HashMap<String, CustomerVO> customerMap) throws IOException {
+			BufferedReader br = new BufferedReader(
+					new InputStreamReader(System.in));
 
-		switch(str) {
-		case "1" :
-			login(di.getCustomerMap());
-		case "2" : 
-			signUp();
-		case "3" :
-			System.exit(0);
+			String id,pw;
+
+			do{
+				System.out.println("¾ÆÀÌµğ?");
+				id = br.readLine();
+
+				if(!customerMap.containsKey(id)) {
+					System.out.println("Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğ ÀÔ´Ï´Ù.");
+				}else {break;}				
+			}while(true);
+
+
+			System.out.println("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+			pw = br.readLine();
+			CustomerVO vo = new CustomerVO();
+			vo = customerMap.get(id);
+			do{
+				if(!vo.getPw().equals(pw)) {
+					System.out.println("ºñ¹Ğ¹øÈ£¸¦ È®ÀÎ ÇØÁÖ¼¼¿ä");
+					pw = br.readLine();
+				}else {
+					if(id.equals("admin") && pw.equals("1111")) {
+						ManagerImpl mng = new ManagerImpl();	
+						break;
+					}
+					else {
+
+						System.out.println("·Î±×ÀÎ ¼º°ø!");
+						implC.start(id);
+						break;
+
+					}
+
+				}				
+			}while(true);
+
+		}
+
+		public static void signUp() {
+
+			BufferedReader br = new BufferedReader(
+					new InputStreamReader(System.in));
+
+			try {
+				System.out.println("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				String id = br.readLine();
+
+				System.out.println("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+				String pw = br.readLine();
+
+				System.out.println("ºñ¹Ğ¹øÈ£¸¦ ÀçÈ®ÀÎÇØÁÖ¼¼¿ä.");
+				do {
+					String pw2 = br.readLine();
+
+					if(pw.equals(pw2)) {break;
+					}
+					else {
+						System.out.println("ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù.´Ù½ÃÀÔ·ÂÇØÁÖ¼¼¿ä.");
+					}
+
+				}while(true);
+
+				System.out.println("ÀÌ¸§?");
+				String name = br.readLine();
+
+				System.out.println("¼ºº°? [F/M]");
+				String gender = br.readLine(); 
+
+				System.out.println("»ı³â¿ùÀÏ?[yyyy-mm-dd]");
+				String birth = br.readLine();
+
+				System.out.println("ÀÌ¸ŞÀÏ ÁÖ¼Ò?");
+				String mail = br.readLine();
+
+				System.out.println("ÇÚµåÆù ¹øÈ£?[010-xxxx-xxxx]");
+				String phone = br.readLine();
+
+				CustomerVO vo = new CustomerVO(id, pw, name, birth, gender, mail, phone);
+
+				customerMap.put(vo.getId(), vo);
+
+			} catch (Exception e) {
+
+				System.out.println(e.toString());     
+			}
+
+
+
 		}
 
 	}
-
-	public static void login(HashMap<String, CustomerVO> customerMap) throws IOException {
-		BufferedReader br = new BufferedReader(
-				new InputStreamReader(System.in));
-
-		String id,pw;
-
-		do{
-			System.out.println("ì•„ì´ë””?");
-			id = br.readLine();
-
-			if(!customerMap.containsKey(id)) {
-				System.out.println("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë”” ì…ë‹ˆë‹¤.");
-			}else {break;}				
-		}while(true);
-
-
-		System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
-		pw = br.readLine();
-		CustomerVO vo = new CustomerVO();
-		vo = customerMap.get(id);
-		do{
-			if(!vo.getPw().equals(pw)) {
-				System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸ í•´ì£¼ì„¸ìš”");
-				pw = br.readLine();
-			}else {
-				if(id.equals("admin") && pw.equals("1111")) {
-					ManagerImpl mng = new ManagerImpl();	
-					break;
-				}
-				else {
-        					System.out.println("ë¡œê·¸ì¸ ì„±ê³µ!");
-					implC.start(id);
-					break;
-
-				}
-				
-			}				
-		}while(true);
-
-	}
-
-	public static void signUp() {
-		/*		
-		try {
-			Iterator<NaverVO> it = lists.iterator();
-			
-	         System.out.println("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
-	         String id = sc.next();
-	         exp.inputFormat(id);
-	         vo.setId(id);
-		
-	         
-	         System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
-	         
-	         String pw = sc.next();
-	         
-	         exp.inputFormat(pw);
-	         
-	         System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì¬í™•ì¸í•´ì£¼ì„¸ìš”.");
-	         
-	         do {
-	        	 String pw2 = sc.next();
-	         
-	        	 if(pw.equals(pw2)) {
-	        	 
-	        		 vo.setPw(pw2);
-	        		 break;
-	        	 }
-	        	 else {
-	        		 System.out.println("ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤.ë‹¤ì‹œì…ë ¥í•´ì£¼ì„¸ìš”.");
-	        	 }
-	        	 	      	 
-	        }while(true);
-	        
-	         System.out.println("ì´ë¦„?");
-	         String name = sc.next();
-	         exp.nameInputFormat(name);
-	         vo.setName(name);
-	         
-	         System.out.println("ì„±ë³„? [F/M]");
-		        String gender= sc.next();
-				exp.genderInputFormat(gender);
-		        vo.setGender(gender);
-		        
-		     
-		     System.out.println("ìƒë…„ì›”ì¼?");
-		        String birth = sc.next();
-		        exp.birthInputFormat(birth);
-		        vo.setBirth(birth);
-		        
-		        
-		     System.out.println("ì´ë©”ì¼ ì£¼ì†Œ?");
-		      	String mail = sc.next();
-		      	exp.mailInputFormat(mail);
-		      	vo.setEmail(mail);
-		      	
-		      	
-		     System.out.println("í•¸ë“œí° ë²ˆí˜¸?");
-		     	String tel = sc.next();
-		     	
-		     	vo.setTel(tel);
-	         
-		    	lists.add(vo);
-	         
-	      } catch (Exception e) {
-	         
-	         System.out.println(e.toString());     
-	      }
-		
-	   }
-*/
-	}
-
-}
