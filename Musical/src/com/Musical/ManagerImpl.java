@@ -18,15 +18,17 @@ public class ManagerImpl implements Manager{
 
 	public ManagerImpl() throws IOException {
 
-		System.out.println("1.회원조회 \n2.예매현황 \n3.매출조회 \n4.로그아웃\n:");
+		System.out.println("1.회원조회 \n2.예매현황 \n3.매출조회 \n4.종료\n:");
 		String str = br.readLine();
 
 		switch(str) {
 		case "1" :
-			userSearch(); 
+			userSearch();  break;
 		case "2" : 
-			mm.signUp();
+			reservationTicket(); break;
 		case "3" :
+			totalSale(); break;
+		default : 
 			System.exit(0);
 		}
 		
@@ -48,8 +50,7 @@ public class ManagerImpl implements Manager{
 			System.out.println(it + vo.toString());
 		}
 		
-		
-		
+	
 	}
 
 	@Override
