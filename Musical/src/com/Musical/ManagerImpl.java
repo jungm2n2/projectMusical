@@ -18,7 +18,7 @@ public class ManagerImpl implements Manager{
 
 	public ManagerImpl() throws IOException {
 
-		System.out.println("1.íšŒì›ì¡°íšŒ \n2.ì˜ˆë§¤í˜„í™© \n3.ë§¤ì¶œì¡°íšŒ \n4.ë¡œê·¸ì•„ì›ƒ\n:");
+		System.out.println("1.È¸¿øÁ¶È¸ \n2.¿¹¸ÅÇöÈ² \n3.¸ÅÃâÁ¶È¸ \n4.·Î±×¾Æ¿ô\n:");
 		String str = br.readLine();
 
 		switch(str) {
@@ -29,13 +29,14 @@ public class ManagerImpl implements Manager{
 		case "3" :
 			System.exit(0);
 		}
-			}	
+		
+		
+	}	
 	
 	public ManagerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
 		this.customerMap = customerMap;
 		this.titleMap = titleMap;
 	}
-
 
 
 	@Override
@@ -44,7 +45,7 @@ public class ManagerImpl implements Manager{
 		
 		while(it.hasNext()) {
 			CustomerVO vo = customerMap.get(it.next());
-			System.out.println(it + vo.toString());
+			System.out.println(vo.toString());
 		}
 		
 		
@@ -69,7 +70,7 @@ public class ManagerImpl implements Manager{
 
 	}
 
-	//ì •ë¯¼
+	//Á¤¹Î
 	@Override
 	public void inputTitle() {
 

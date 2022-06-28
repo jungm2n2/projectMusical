@@ -1,23 +1,22 @@
 package com.Musical;
-//ì‹œì—°
+//½Ã¿¬
 import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class MusicalMain {
 
+	static DataImpl di = new DataImpl();
+
+	static ManagerImpl implM = new ManagerImpl(di.getCustomerMap(), di.getTitleMap());
+	static CustomerImpl implC = new CustomerImpl(di.getCustomerMap(), di.getTitleMap());
 
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader(System.in));
 
-		DataImpl di = new DataImpl();
-
-		ManagerImpl implM = new ManagerImpl(di.getCustomerMap(), di.getTitleMap());
-		CustomerImpl implC = new CustomerImpl(di.getCustomerMap(), di.getTitleMap());
-
-		System.out.println("1.ë¡œê·¸ì¸ \n2.íšŒì›ê°€ì… \n3.ì¢…ë£Œ");
+		System.out.println("1.·Î±×ÀÎ \n2.È¸¿ø°¡ÀÔ \n3.Á¾·á");
 		System.out.println("---------------------------------\n:");
 		String str = br.readLine();
 
@@ -39,22 +38,22 @@ public class MusicalMain {
 		String id,pw;
 
 		do{
-			System.out.println("ì•„ì´ë””?");
+			System.out.println("¾ÆÀÌµğ?");
 			id = br.readLine();
 
 			if(!customerMap.containsKey(id)) {
-				System.out.println("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë”” ì…ë‹ˆë‹¤.");
+				System.out.println("Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğ ÀÔ´Ï´Ù.");
 			}else {break;}				
 		}while(true);
 
 
-		System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+		System.out.println("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
 		pw = br.readLine();
 		CustomerVO vo = new CustomerVO();
 		vo = customerMap.get(id);
 		do{
 			if(!vo.getPw().equals(pw)) {
-				System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸ í•´ì£¼ì„¸ìš”");
+				System.out.println("ºñ¹Ğ¹øÈ£¸¦ È®ÀÎ ÇØÁÖ¼¼¿ä");
 				pw = br.readLine();
 			}else {
 				if(id.equals("admin") && pw.equals("1111")) {
@@ -62,12 +61,13 @@ public class MusicalMain {
 					break;
 				}
 				else {
-        					System.out.println("ë¡œê·¸ì¸ ì„±ê³µ!");
+					System.out.println("·Î±×ÀÎ ¼º°ø!");
 					implC.start(id);
 					break;
 
+
 				}
-				
+
 			}				
 		}while(true);
 
@@ -77,72 +77,72 @@ public class MusicalMain {
 		/*		
 		try {
 			Iterator<NaverVO> it = lists.iterator();
-			
-	         System.out.println("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+
+	         System.out.println("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
 	         String id = sc.next();
 	         exp.inputFormat(id);
 	         vo.setId(id);
-		
-	         
-	         System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
-	         
+
+
+	         System.out.println("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+
 	         String pw = sc.next();
-	         
+
 	         exp.inputFormat(pw);
-	         
-	         System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì¬í™•ì¸í•´ì£¼ì„¸ìš”.");
-	         
+
+	         System.out.println("ºñ¹Ğ¹øÈ£¸¦ ÀçÈ®ÀÎÇØÁÖ¼¼¿ä.");
+
 	         do {
 	        	 String pw2 = sc.next();
-	         
+
 	        	 if(pw.equals(pw2)) {
-	        	 
+
 	        		 vo.setPw(pw2);
 	        		 break;
 	        	 }
 	        	 else {
-	        		 System.out.println("ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤.ë‹¤ì‹œì…ë ¥í•´ì£¼ì„¸ìš”.");
+	        		 System.out.println("ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù.´Ù½ÃÀÔ·ÂÇØÁÖ¼¼¿ä.");
 	        	 }
-	        	 	      	 
+
 	        }while(true);
-	        
-	         System.out.println("ì´ë¦„?");
+
+	         System.out.println("ÀÌ¸§?");
 	         String name = sc.next();
 	         exp.nameInputFormat(name);
 	         vo.setName(name);
-	         
-	         System.out.println("ì„±ë³„? [F/M]");
+
+	         System.out.println("¼ºº°? [F/M]");
 		        String gender= sc.next();
 				exp.genderInputFormat(gender);
 		        vo.setGender(gender);
-		        
-		     
-		     System.out.println("ìƒë…„ì›”ì¼?");
+
+
+		     System.out.println("»ı³â¿ùÀÏ?");
 		        String birth = sc.next();
 		        exp.birthInputFormat(birth);
 		        vo.setBirth(birth);
-		        
-		        
-		     System.out.println("ì´ë©”ì¼ ì£¼ì†Œ?");
+
+
+		     System.out.println("ÀÌ¸ŞÀÏ ÁÖ¼Ò?");
 		      	String mail = sc.next();
 		      	exp.mailInputFormat(mail);
 		      	vo.setEmail(mail);
-		      	
-		      	
-		     System.out.println("í•¸ë“œí° ë²ˆí˜¸?");
+
+
+		     System.out.println("ÇÚµåÆù ¹øÈ£?");
 		     	String tel = sc.next();
-		     	
+
 		     	vo.setTel(tel);
-	         
+
 		    	lists.add(vo);
-	         
+
 	      } catch (Exception e) {
-	         
+
 	         System.out.println(e.toString());     
 	      }
-		
+
 	   }
-*/
+		 */
 	}
 
 }
