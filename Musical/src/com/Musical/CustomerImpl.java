@@ -17,9 +17,7 @@ public class CustomerImpl implements Customer{
 
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-	
 	int num;
-	
 
 	public CustomerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
 		this.customerMap = customerMap;
@@ -67,15 +65,10 @@ public class CustomerImpl implements Customer{
 			
 	
 	@Override
-	public void reservation() {
-		
+	public void reservation() {	
 		//오빠꺼 불러오기 예매하기
-		
+		new BookticketImpl(id, titleMap).ViewMenu();
 	
-		
-		
-		
-		
 	}
 
 	@Override

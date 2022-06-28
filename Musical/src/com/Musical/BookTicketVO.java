@@ -1,6 +1,6 @@
 package com.Musical;
 
-public class payHistoryVO {
+public class BookTicketVO {
 
 	String title;
 	String actor;
@@ -40,6 +40,11 @@ public class payHistoryVO {
 		this.cost = cost;
 	}
 	
+	@Override
+	public String toString() {
+		String str = String.format("%s %s %s %s %d ", title, actor, date, time, cost);
+		return str;
+	}
 	
 	
 }

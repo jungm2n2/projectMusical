@@ -7,36 +7,35 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class BookticketImpl implements Bookticket{
-
-
+	
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-	HashMap<String, CustomerVO> customerMap = null;
+	String currCustomer = null;
+	String pickTitle = null;
+	BookTicketVO ph = new BookTicketVO();
 	HashMap<String, TitleVO> titleMap = null;
 	
-	
-	ArrayList<String> bookticketInfo = new ArrayList<>();
-
-	
-	
-	public BookticketImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
-		this.customerMap = customerMap;
-		this.titleMap = titleMap;
+	public BookticketImpl(String pCustomer, HashMap<String, TitleVO> pTitleMap) {
+		currCustomer = pCustomer;
+		this.titleMap = pTitleMap;
 	}
 
-	public void ViewMenu(){
+	public BookTicketVO ViewMenu(){
 		//회원정보를 받아와야함.
 		//이 메서드가 예매버튼을 누르거나 예매 요청을 받는 거라고 생각하자.
-
-		String pickTitle = selectMusical();
-		selectActor(pickTitle);
-		selectDate(pickTitle);
-		selectTime(pickTitle);
+		
+		pickTitle = selectMusical();
+		selectActor();
+		selectDate();
+		selectTime();
+		payMoney();
 		
 		System.out.println();
 		System.out.println();
 		System.out.println("나의 예매 내역");
-		bookticketInfo.forEach((info)->{System.out.println(info);});
+		System.out.println(ph.toString());
+		
+		return ph;
 	}
 
 
@@ -58,13 +57,11 @@ public class BookticketImpl implements Bookticket{
 			inputValue = br.readLine();
 			String seletedTitle = arrTitle.get(Integer.parseInt(inputValue) - 1);
 			
-			
-			bookticketInfo.add(seletedTitle);
+			ph.setTitle(seletedTitle);
 			System.out.println(seletedTitle + "을 선택하셨습니다.");
 			
 			return seletedTitle;
 			
-
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -72,25 +69,80 @@ public class BookticketImpl implements Bookticket{
 	}
 	
 	@Override
-	public void selectActor(String pTitle) {
+	public void selectActor() {
 		try {
 			System.out.println("배우 조합을 선택하세요.");
 
-			System.out.println("1. " + titleMap.get(pTitle).getActor1());
-			System.out.println("2. " + titleMap.get(pTitle).getActor2());
+			System.out.println("1. " + titleMap.get(pickTitle).getActor1());
+			System.out.println("2. " + titleMap.get(pickTitle).getActor2());
 
-			
 			String inputValue;
 			inputValue = br.readLine();
 			if(inputValue.equals("1")) {
-				bookticketInfo.add(titleMap.get(pTitle).getActor1());
+				ph.setActor(titleMap.get(pickTitle).getActor1());
 			}
 			else {
-				bookticketInfo.add(titleMap.get(pTitle).getActor2());
+				ph.setActor(titleMap.get(pickTitle).getActor2());
 			}
-
-			System.out.println(bookticketInfo.get(bookticketInfo.size() - 1) + "을 선택하셨습니다.");
+			System.out.println(ph.getActor() + "을 선택하셨습니다.");
 			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	
+	public void selectDate() {
+		try {
+			System.out.println("날짜를 선택하세요.");
+
+			int titleIdx = 1;
+
+			for (String strKey : titleMap.get(pickTitle).getDate()) {
+				System.out.println(titleIdx++ + ". " + strKey);
+			}
+			
+			String inputValue;
+			inputValue = br.readLine();
+			String seletedDate = titleMap.get(pickTitle).getDate()[Integer.parseInt(inputValue) - 1];
+			
+			System.out.println(seletedDate + "을 선택하셨습니다.");
+			ph.setDate(seletedDate);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	@Override
+	public void selectTime() {
+		try {
+			System.out.println("시간을 선택하세요.");
+
+			int titleIdx = 1;
+			
+			for (String strKey : titleMap.get(pickTitle).getTime()) {
+				System.out.println(titleIdx++ + ". " + strKey);
+			}
+			
+			String inputValue;
+			inputValue = br.readLine();
+			String seletedTime = titleMap.get(pickTitle).getTime()[Integer.parseInt(inputValue) - 1];
+			
+			System.out.println(seletedTime + "을 선택하셨습니다.");
+			
+			ph.setTime(seletedTime);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	@Override
+	public void payMoney() {
+		try {
+			ph.setCost(titleMap.get(pickTitle).getCost());
+			System.out.println("가격은 " + ph.getCost() + " 원 입니다.");
+			System.out.println("결제 됐습니다.");
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -98,52 +150,8 @@ public class BookticketImpl implements Bookticket{
 	}
 
 	
-	public void selectDate(String pTitle) {
-		try {
-			System.out.println("날짜를 선택하세요.");
-
-			int titleIdx = 1;
-
-			for (String strKey : titleMap.get(pTitle).getDate()) {
-				System.out.println(titleIdx++ + ". " + strKey);
-			}
-			
-			String inputValue;
-			inputValue = br.readLine();
-			String seletedDate = titleMap.get(pTitle).getDate()[Integer.parseInt(inputValue) - 1];
-			
-			System.out.println(seletedDate + "을 선택하셨습니다.");
-			bookticketInfo.add(seletedDate);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-
-	@Override
-	public void selectTime(String pTitle) {
-		try {
-			System.out.println("시간을 선택하세요.");
-
-			int titleIdx = 1;
-			
-			for (String strKey : titleMap.get(pTitle).getTime()) {
-				System.out.println(titleIdx++ + ". " + strKey);
-			}
-			
-			String inputValue;
-			inputValue = br.readLine();
-			String seletedTime = titleMap.get(pTitle).getTime()[Integer.parseInt(inputValue) - 1];
-			
-			System.out.println(seletedTime + "을 선택하셨습니다.");
-			
-			
-			bookticketInfo.add(seletedTime);
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-
+	
+	//현재는 미구현 상태
 	@Override
 	public void selectSeat(String pTitle) {
 		try {
