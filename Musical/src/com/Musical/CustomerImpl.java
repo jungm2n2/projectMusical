@@ -17,8 +17,9 @@ public class CustomerImpl implements Customer{
 
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-String changepw;
-int num;
+	String changepw;
+	int num;
+	
 
 	public CustomerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
 		this.customerMap = customerMap;
@@ -31,31 +32,31 @@ int num;
 		
 		try {
 			
-			System.out.print("��й�ȣ��?? �Է����ּ���");
+			System.out.print("비밀번호를 입력해주세요");
 			changepw = (br.readLine());
 			
 			vo = customerMap.get(id);
 			
 			if(!vo.getPw().equals(changepw)){
-				System.out.println("��й�ȣ��?? Ʋ�Ƚ��ϴ�");
+				System.out.println("비밀번호가 틀렸습니다");
 				return;
 		}else {
-			System.out.println("��й��? ���� �Ϸ�");
+			System.out.println("비밀번호 인증 완료");
 		}
 			
-			System.out.println("������ ��й��??");
+			System.out.println("수정할 비밀번호?");
 			
 			vo.setPw(br.readLine());
 			
-			System.out.println("������ �̸���?");
+			System.out.println("수정할 이메일?");
 			vo.setMail(br.readLine());
 			
-			System.out.println("������ �ڵ��� ��ȣ?");
+			System.out.println("수정할 핸드폰 번호?");
 			vo.setPhone(br.readLine());
 			
 			
 			customerMap.put(id, vo);
-			System.out.println("���� �Ϸ�!");
+			System.out.println("수정 완료!");
 			
 			
 			
@@ -69,29 +70,31 @@ int num;
 			
 	
 	@Override
-	public void reservation() {	
-		//������ �ҷ����� �����ϱ�
-		new BookticketImpl(id, titleMap).ViewMenu();
+	public void reservation() {
+		
+		//오빠꺼 불러오기 예매하기
+		
 	
-
 	
-	
+		
+		
+		
 	}
 
 	@Override
 	public void logout() {
 		
 		try {
-			System.out.println("�α׾ƿ� �Ͻðڽ��ϱ�?[Y/N]");
+			System.out.println("로그아웃 하시겠습니까?[Y/N]");
 			answer = br.readLine();
 			
 			if(answer.equals("Y") || answer.equals("y")) {
-				System.out.println("�α׾ƿ��� �Ϸ�Ǿ����ϴ�??");
+				System.out.println("로그아웃이 완료되었습니다");
 				System.exit(0);
 			}else if(answer.equals("N") || answer.equals("n")) {
 				return;
 			}else {
-				System.out.println("�ٽ� �Է����ּ���");
+				System.out.println("다시 입력해주세요");
 				return;
 			}
 			
@@ -110,17 +113,17 @@ int num;
 		try {
 			
 			
-			System.out.print("Ż���ϰ� ���� ȸ���� ���̵� �Է��ϼ���");
+			System.out.print("탈퇴하고 싶은 회원의 아이디를 입력하세요");
 			id = br.readLine();
 			
 
 			if(!(searchId(id))){
-				System.out.println("�Է��Ͻ� ���̵� �������� �ʽ��ϴ�");
+				System.out.println("입력하신 아이디가 존재하지 않습니다");
 				return;
 			}
 			
 			customerMap.remove(id);
-			System.out.println("ȸ��Ż�� �Ϸ�Ǿ����ϴ�??");
+			System.out.println("회원탈퇴가 완료되었습니다");
 			
 			
 		} catch (Exception e) {
@@ -152,7 +155,7 @@ int num;
 			id = id1;
 		while(true){	
 			do {
-			System.out.println("1.���������� 2.�����ϱ� 3.���ų��� ��ȸ 4.�α׾ƿ� 5.ȸ��Ż��");
+			System.out.println("1.내정보수정 2.예매하기 3.예매내역 조회 4.로그아웃 5.회원탈퇴");
 			num = Integer.parseInt(br.readLine());
 			}while(num<1||num>4);
 			
@@ -171,14 +174,5 @@ int num;
 		} catch (Exception e) {
 			
 		}
-		
-		
 	}
-
-
-
-
-
-	
-	
 }
