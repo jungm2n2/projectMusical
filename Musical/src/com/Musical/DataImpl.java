@@ -19,7 +19,7 @@ public class DataImpl implements Data {
 	String [] arrActor2 = {"옥주현,조권","아이비,김준현","김소현,주원"};
 	String [] arrTime = {"11:00","15:00","19:30"};
 	String [] arrDate = {"7/1(금)","7/2(토)","7/3(일)"};
-
+	int [] arrCost = {10000,20000,30000};
 
 	HashMap<String, CustomerVO> customerMap = new HashMap<>();
 	HashMap<String, TitleVO> titleMap = new HashMap<>();
@@ -66,6 +66,7 @@ public class DataImpl implements Data {
 			vo.setActor2(arrActor2[i]);
 			vo.setTime(arrTime);
 			vo.setDate(arrDate);
+			vo.setCost(arrCost[i]);
 
 			titleMap.put(arrTitle[i], vo);
 
