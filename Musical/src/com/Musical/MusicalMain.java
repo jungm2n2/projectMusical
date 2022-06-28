@@ -13,8 +13,10 @@ public class MusicalMain {
 		
 		ManagerImpl implM = new ManagerImpl(di.getCustomerMap(), di.getTitleMap());
 		CustomerImpl implC = new CustomerImpl(di.getCustomerMap(), di.getTitleMap());
-		
+		BookticketImpl implB = new BookticketImpl(di.getCustomerMap(), di.getTitleMap());
 			
+		implB.ViewMenu();
+		
 	}
 	
 
