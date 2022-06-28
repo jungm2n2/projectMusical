@@ -43,7 +43,7 @@ public class BookTicketVO implements Serializable {
 	
 	@Override
 	public String toString() {
-		String str = String.format("%s %s %s %s %d ", title, actor, date, time, cost);
+		String str = String.format("%-12s %-10s %-8s %5s %7d",title, actor, date, time, cost);
 		return str;
 	}
 	
