@@ -66,7 +66,7 @@ public class MusicalMain {
 					pw = br.readLine();
 				}else {
 					if(id.equals("admin") && pw.equals("1111")) {
-						ManagerImpl mng = new ManagerImpl();	
+						implM.menu();
 						break;
 					}
 					else {

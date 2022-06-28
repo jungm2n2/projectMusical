@@ -79,11 +79,9 @@ public class CustomerImpl implements Customer{
 	@Override
 	public void checkTicket() {
 		
+		System.out.println(customerMap.get(id).getPh().toString());
 		
-		
-		
-		
-		
+
 	}
 
 	@Override
