@@ -1,5 +1,7 @@
 package com.Musical;
 
+import java.util.ArrayList;
+
 public class CustomerVO {
 	
 	String id;
@@ -11,7 +13,12 @@ public class CustomerVO {
 	String phone;
 	String point;
 	BookTicketVO ph = null;
+	//이 부분을 배열로 할것인지 리스트로 할것인지
 	
+	//BookTicketVO[] ph = null;
+	//ArrayList<BookticketVO> ph = null;
+
+
 	
 	public CustomerVO() {
 		
@@ -88,6 +95,15 @@ public class CustomerVO {
 	@Override
 	public String toString() {
 		String str = String.format("%-12s %-4s %-5s %2s %5s",id,name,birth,gender,phone);
+		
+		return str;
+	}
+	public String printTicket() {
+		System.out.printf("%-12s %-10s %-8s %5s %7s","제목","배우","날짜","시간","결제금액");
+		int idx = 1;
+		for (BookticketVO details : ph) {
+			System.out.println(idx++ + ph.toString());
+		}
 		
 		return str;
 	}
