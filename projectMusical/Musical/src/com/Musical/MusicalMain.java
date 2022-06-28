@@ -114,9 +114,11 @@ public class MusicalMain {
 		String mail = br.readLine();
 
 		System.out.println("핸드폰 번호?[010-xxxx-xxxx]");
-		String tel = br.readLine();
-
-		di.
+		String phone = br.readLine();
+		
+		CustomerVO vo = new CustomerVO(id, pw, name, birth, gender, mail, phone);
+		
+		di.getCustomerMap().get(vo);
 
 	} catch (Exception e) {
 
