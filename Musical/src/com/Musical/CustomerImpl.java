@@ -24,7 +24,7 @@ public class CustomerImpl implements Customer{
 	public CustomerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
 		this.customerMap = customerMap;
 		this.titleMap = titleMap;
-		bt = new BookticketImpl(customerMap, titleMap);
+		//bt = new BookticketImpl(customerMap, titleMap);
 	}
 
 	@Override
@@ -73,11 +73,6 @@ public class CustomerImpl implements Customer{
 	public void reservation() {
 		
 		//오빠꺼 불러오기 예매하기
-		
-	
-	
-		
-		
 		
 	}
 
@@ -174,14 +169,5 @@ public class CustomerImpl implements Customer{
 		} catch (Exception e) {
 			
 		}
-		
-		
 	}
-
-
-
-
-
-	
-	
 }

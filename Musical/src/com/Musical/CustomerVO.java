@@ -10,6 +10,8 @@ public class CustomerVO {
 	String mail;
 	String phone;
 	String point;
+	BookTicketVO ph = null;
+	
 	
 	public CustomerVO() {
 		
@@ -23,18 +25,6 @@ public class CustomerVO {
 		this.gender = gender;
 		this.mail = mail;
 		this.phone = phone;
-	}
-	
-	public CustomerVO(String id, String pw, String name, String birth, String gender, String mail, String phone,
-			String point) {
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.birth = birth;
-		this.gender = gender;
-		this.mail = mail;
-		this.phone = phone;
-		this.point = point;
 	}
 
 
@@ -93,7 +83,4 @@ public class CustomerVO {
 		
 		return str;
 	}
-	
-	
- 
 }

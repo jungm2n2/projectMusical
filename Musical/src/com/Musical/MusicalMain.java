@@ -36,6 +36,20 @@ public class MusicalMain {
 				System.exit(0);
 			}
 
+		ManagerImpl implM = new ManagerImpl(di.getCustomerMap(), di.getTitleMap());
+		CustomerImpl implC = new CustomerImpl(di.getCustomerMap(), di.getTitleMap());
+
+		System.out.println("1.로그인 \n2.회원가입 \n3.종료");
+		System.out.println("---------------------------------\n:");
+		String str = br.readLine();
+
+		switch(str) {
+		case "1" :
+			login(di.getCustomerMap());
+		case "2" : 
+			signUp();
+		case "3" :
+			System.exit(0);
 		}
 	}
 
@@ -69,6 +83,7 @@ public class MusicalMain {
 					break;
 				}
 				else {
+
 					System.out.println("로그인 성공!");
 					implC.start(id);
 					break;
