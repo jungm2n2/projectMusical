@@ -62,7 +62,9 @@ public class MusicalMain {
 					break;
 				}
 				else {
-					implC.start();
+					System.out.println("로그인 성공!");
+					implC.start(id);
+					break;
 				}
 				
 			}				
