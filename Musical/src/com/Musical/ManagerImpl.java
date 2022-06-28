@@ -18,14 +18,13 @@ public class ManagerImpl implements Manager{
 
 	public ManagerImpl() throws IOException {
 
-		System.out.println("1.íšŒì›ì¡°íšŒ \n2.ì˜ˆë§¤í˜„í™© \n3.ë§¤ì¶œì¡°íšŒ \n4.ë¡œê·¸ì•„ì›ƒ\n:");
+		System.out.println("1.È¸¿øÁ¶È¸ \n2.¿¹¸ÅÇöÈ² \n3.¸ÅÃâÁ¶È¸ \n4.·Î±×¾Æ¿ô\n:");
 		String str = br.readLine();
 
 		switch(str) {
 		case "1" :
 			userSearch(); 
 		case "2" : 
-			mm.signUp();
 		case "3" :
 			System.exit(0);
 		}
@@ -69,7 +68,7 @@ public class ManagerImpl implements Manager{
 
 	}
 
-	//ì •ë¯¼
+	//Á¤¹Î
 	@Override
 	public void inputTitle() {
 
