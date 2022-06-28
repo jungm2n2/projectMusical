@@ -32,8 +32,8 @@ public class DataImpl implements Data {
 
 	public DataImpl() {
 		inputTitle();
+		loadData();
 	}
-
 
 	public void inputCustomer() {	
 
@@ -104,7 +104,7 @@ public class DataImpl implements Data {
 			if(!f.exists()) {				
 				inputCustomer();				
 			}
-			else {
+			else {				
 				FileInputStream fis = new FileInputStream(f);
 				ObjectInputStream ois = new ObjectInputStream(fis);
 				

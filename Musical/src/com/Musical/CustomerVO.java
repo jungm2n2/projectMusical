@@ -77,6 +77,14 @@ public class CustomerVO {
 		this.point = point;
 	}
 	
+	public BookTicketVO getPh() {
+		return ph;
+	}
+
+	public void setPh(BookTicketVO ph) {
+		this.ph = ph;
+	}
+
 	@Override
 	public String toString() {
 		String str = String.format("%-12s %-4s %-5s %2s %5s",id,name,birth,gender,phone);

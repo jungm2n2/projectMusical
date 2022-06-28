@@ -35,6 +35,7 @@ public class MusicalMain {
 				signUp(); break;
 			case 3 :
 				di.saveData();
+				System.out.println("종료되었습니다.");
 				System.exit(0);
 			}
 		}
@@ -73,9 +74,7 @@ public class MusicalMain {
 						System.out.println("로그인 성공!");
 						implC.start(id);
 						break;
-
 					}
-
 				}				
 			}while(true);
 

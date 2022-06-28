@@ -72,7 +72,17 @@ public class CustomerImpl implements Customer{
 	@Override
 	public void reservation() {
 		
-		//오빠꺼 불러오기 예매하기
+		BookticketImpl bk = new BookticketImpl(id, titleMap);
+		customerMap.get(id).setPh(bk.ViewMenu());
+	}
+	
+	@Override
+	public void checkTicket() {
+		
+		
+		
+		
+		
 		
 	}
 
@@ -101,6 +111,9 @@ public class CustomerImpl implements Customer{
 		}
 		
 	}
+	
+	
+	
 
 	@Override
 	public void userDelete() {
@@ -159,7 +172,7 @@ public class CustomerImpl implements Customer{
 			
 			case(1):userUpdate();break;
 			case(2):reservation();break;
-			case(3):reservation();break;
+			case(3):checkTicket();break;
 			case(4):logout();break;
 			case(5):userDelete();break;
 		
@@ -170,4 +183,6 @@ public class CustomerImpl implements Customer{
 			
 		}
 	}
+
+	
 }
