@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class MusicalMain {
-
+	
 	static DataImpl di = new DataImpl();
 
 	static HashMap<String, CustomerVO> customerMap = di.getCustomerMap();
@@ -84,12 +84,15 @@ public class MusicalMain {
 
 	public static void signUp() {
 
+		SignUpException exp = new SignUpException();
+
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader(System.in));
 
 		try {
 			System.out.println("아이디를 입력하세요.");
 			String id = br.readLine();
+			exp.inputFormat(id);
 
 			System.out.println("비밀번호를 입력하세요.");
 			String pw = br.readLine();
@@ -107,19 +110,23 @@ public class MusicalMain {
 			}while(true);
 
 			System.out.println("이름?");
-			String name = br.readLine();
+			String name = br.readLine();		
 
 			System.out.println("성별? [F/M]");
 			String gender = br.readLine(); 
+			exp.genderInputFormat(gender);
 
 			System.out.println("생년월일?[yyyy-mm-dd]");
 			String birth = br.readLine();
+			
 
 			System.out.println("이메일 주소?");
 			String mail = br.readLine();
+			exp.mailInputFormat(mail);
 
 			System.out.println("핸드폰 번호?[010-xxxx-xxxx]");
 			String phone = br.readLine();
+			exp.telInputFormat(phone);
 
 			CustomerVO vo = new CustomerVO(id, pw, name, birth, gender, mail, phone);
 

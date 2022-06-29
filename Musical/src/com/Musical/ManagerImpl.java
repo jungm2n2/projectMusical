@@ -48,7 +48,6 @@ public class ManagerImpl implements Manager{
 			}
 		}
 
-
 	}
 
 	@Override
@@ -60,7 +59,6 @@ public class ManagerImpl implements Manager{
 			CustomerVO vo = customerMap.get(it.next());
 			System.out.println(vo.toString());
 		}
-
 
 	}
 
@@ -78,5 +76,3 @@ public class ManagerImpl implements Manager{
 
 
 }
-
-
