@@ -3,7 +3,7 @@ package com.Musical;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CustomerVO implements Serializable{
+public class CustomerVO extends VO implements Serializable{
 	
 	String id;
 	String pw;
