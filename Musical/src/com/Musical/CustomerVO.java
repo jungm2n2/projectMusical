@@ -17,7 +17,6 @@ public class CustomerVO implements Serializable{
 
 	public CustomerVO() {
 		ph = new ArrayList<>();
-		
 	}
 	
 	public CustomerVO(String id, String pw, String name, String birth, String gender, String mail, String phone) {
@@ -92,15 +91,16 @@ public class CustomerVO implements Serializable{
 	@Override
 	public String toString() {
 		String str = String.format("%-12s %-4s %-5s %2s %5s",id,name,birth,gender,phone);
-		
 		return str;
 	}
 	public String printTicket() { 
-		String str = String.format("%-12s %-10s %-8s %5s %7s","제목","배우","날짜","시간","결제금액");
+		System.out.println(name + "님의 예매내역입니다.");
+		String str = String.format("%12s %23s %15s %15s %12s %9s","제목","배우","날짜","시간","좌석번호","결제금액");
+		System.out.println(str);
 		int idx = 1;
 		
 		for (BookticketVO details : ph) {
-			System.out.println(idx++ + ph.toString());
+			System.out.println((idx++) + ". "+ details.toString());
 		}
 		
 		return str;
