@@ -1,6 +1,5 @@
 package com.Musical;
 
-//성별,이메일
 public class SignUpException {
 
 	public void inputFormat(String str) throws Exception {
@@ -27,13 +26,6 @@ public class SignUpException {
 
 	}
 
-	public void idcheckFormat (String str) {
-
-
-	}
-
-
-
 	public void nameInputFormat(String str) throws Exception {
 
 		if(str.length()<2 || 6<str.length())
@@ -49,7 +41,8 @@ public class SignUpException {
 			throw new Exception("M과 F로만 입력해주세요.");
 		}	
 	}
-
+     
+	//[yyyy-mm-dd] 이형태로 입력할 수 있게 예외처리하기 : 정민
 	public void birthInputFormat(String str) throws Exception {
 
 		int birth = Integer.parseInt(str);
@@ -91,7 +84,7 @@ public class SignUpException {
 		}
 
 	}
-
+	//[010-xxxx-xxxx] 이형태로 입력할 수 있게 예외처리하기 : 정민
 	public void telInputFormat(String str) throws Exception {
 
 		for(int i=0;i<str.length();i++) {
