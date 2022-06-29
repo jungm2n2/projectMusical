@@ -10,42 +10,38 @@ public class BookticketImpl implements Bookticket{
 
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-	String currCustomer = null;
-	String pickTitle = null;
-	BookticketVO ph = new BookticketVO();
+	String curCustomer = null;
+	String selectedTitle = null;
+	BookticketVO paymentHistory = new BookticketVO();
 	HashMap<String, TitleVO> titleMap = null;
 
 	public BookticketImpl(String pCustomer, HashMap<String, TitleVO> pTitleMap) {
-		currCustomer = pCustomer;
+		curCustomer = pCustomer;
 		this.titleMap = pTitleMap;
 	}
 
-	public BookticketVO ViewMenu(){
-		//회원정보를 받아와야함.
-		//이 메서드가 예매버튼을 누르거나 예매 요청을 받는 거라고 생각하자.
-
+	public BookticketVO enterBookticket(){
 		try {
-			pickTitle = selectMusical();
+			selectMusical();
 			selectActor();
 			selectDate();
 			selectTime();
 			selectSeat();
-			payMoney();
+			payment();
 		} catch (Exception e) {
 			//TODO: handle exception
 		}
 
 		System.out.println();
-		System.out.println();
 		System.out.println("나의 예매 내역");
-		System.out.println(ph.toString());
+		System.out.println(paymentHistory.toString());
 
-		return ph;
+		return paymentHistory;
 	}
 
 
 	@Override
-	public String selectMusical() {
+	public void selectMusical() {
 		ArrayList<String> arrTitle = new ArrayList<>();
 		System.out.println("===================================================================");
 		System.out.println("                        <작품을 선택하세요>");
@@ -60,10 +56,9 @@ public class BookticketImpl implements Bookticket{
 
 		String selectedTitle = arrTitle.get(Integer.parseInt(inputSelect()) - 1);
 
-		ph.setTitle(selectedTitle);
+		paymentHistory.setTitle(selectedTitle);
 		System.out.println(selectedTitle + "을 선택하셨습니다.");
-
-		return selectedTitle;
+		this.selectedTitle = selectedTitle;
 	}
 
 	String inputSelect(){
@@ -83,26 +78,26 @@ public class BookticketImpl implements Bookticket{
 		System.out.println("                     <배우 조합을 선택하세요>");
 		System.out.println("===================================================================");
 
-		System.out.println("1. " + titleMap.get(pickTitle).getActor1());
-		System.out.println("2. " + titleMap.get(pickTitle).getActor2());
+		System.out.println("1. " + titleMap.get(selectedTitle).getActor1());
+		System.out.println("2. " + titleMap.get(selectedTitle).getActor2());
 
 		if(inputSelect().equals("1")) {
-			ph.setActor(titleMap.get(pickTitle).getActor1());
+			paymentHistory.setActor(titleMap.get(selectedTitle).getActor1());
 		}
 		else {
-			ph.setActor(titleMap.get(pickTitle).getActor2());
+			paymentHistory.setActor(titleMap.get(selectedTitle).getActor2());
 		}
-		System.out.println(ph.getActor() + "을 선택하셨습니다.");
+		System.out.println(paymentHistory.getActor() + "을 선택하셨습니다.");
 	}
 
 
 	public void selectDate() {
-		select("날짜", titleMap.get(pickTitle).getDate());
+		select("날짜", titleMap.get(selectedTitle).getDate());
 	}
 
 	@Override
 	public void selectTime() {
-		select("시간", titleMap.get(pickTitle).getTime());
+		select("시간", titleMap.get(selectedTitle).getTime());
 
 	}
 
@@ -122,25 +117,25 @@ public class BookticketImpl implements Bookticket{
 		System.out.println(selected + "을 선택하셨습니다.");
 
 		if(pStr.equals("날짜")){
-			ph.setDate(selected);
+			paymentHistory.setDate(selected);
 		}
 		else {
-			ph.setTime(selected);
+			paymentHistory.setTime(selected);
 		}
 	}
 
 	@Override
-	public void payMoney() {
-		ph.setCost(titleMap.get(pickTitle).getCost());
-		System.out.println("가격은 " + ph.getCost() + " 원 입니다.");
+	public void payment() {
+		paymentHistory.setCost(titleMap.get(selectedTitle).getCost());
+		System.out.println("가격은 " + paymentHistory.getCost() + " 원 입니다.");
 		System.out.println("결제 됐습니다.");
-		titleMap.get(pickTitle).setTotalCost(ph.getCost());
+		titleMap.get(selectedTitle).setTotalCost(paymentHistory.getCost());
 	}
 
 	//현재는 미구현 상태
 	@Override
 	public void selectSeat() {
-		String[] seat = titleMap.get(pickTitle).getStateSeat();
+		String[] seat = titleMap.get(selectedTitle).getStateSeat();
 		System.out.println("===================================================================");
 		System.out.println("                      <좌석을 선택하세요>");
 		System.out.println("===================================================================");
@@ -162,7 +157,7 @@ public class BookticketImpl implements Bookticket{
 		seat[Integer.valueOf(selected) - 1] = "■";
 
 		System.out.println(selected + "번을 선택하셨습니다.");
-		ph.setMySeat(selected);
+		paymentHistory.setMySeat(selected);
 	}
 
 	void seatDraw(String[] pSeat){
