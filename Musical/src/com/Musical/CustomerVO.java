@@ -13,13 +13,11 @@ public class CustomerVO {
 	String phone;
 	String point;
 	BookTicketVO ph = null;
-	//ÀÌ ºÎºĞÀ» ¹è¿­·Î ÇÒ°ÍÀÎÁö ¸®½ºÆ®·Î ÇÒ°ÍÀÎÁö
+	//ì´ ë¶€ë¶„ì„ ë°°ì—´ë¡œ í• ê²ƒì¸ì§€ ë¦¬ìŠ¤íŠ¸ë¡œ í• ê²ƒì¸ì§€
 	
-	//BookTicketVO[] ph = null;
+  	//BookTicketVO[] ph = null;
 	//ArrayList<BookticketVO> ph = null;
 
-
-	
 	public CustomerVO() {
 		
 	}
@@ -99,7 +97,7 @@ public class CustomerVO {
 		return str;
 	}
 	public String printTicket() {
-		System.out.printf("%-12s %-10s %-8s %5s %7s","Á¦¸ñ","¹è¿ì","³¯Â¥","½Ã°£","°áÁ¦±İ¾×");
+		System.out.printf("%-12s %-10s %-8s %5s %7s","ì œëª©","ë°°ìš°","ë‚ ì§œ","ì‹œê°„","ê²°ì œê¸ˆì•¡");
 		int idx = 1;
 		for (BookticketVO details : ph) {
 			System.out.println(idx++ + ph.toString());
