@@ -13,10 +13,8 @@ public class ManagerImpl implements Manager{
 	BufferedReader br = new BufferedReader(
 			new InputStreamReader(System.in));
 
-
 	HashMap<String, CustomerVO> customerMap = null;
 	HashMap<String, TitleVO> titleMap = null;
-
 
 
 	public ManagerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
@@ -48,7 +46,6 @@ public class ManagerImpl implements Manager{
 				System.out.println(e.toString());
 			}
 		}
-
 	}
 
 	@Override
@@ -60,7 +57,6 @@ public class ManagerImpl implements Manager{
 			CustomerVO vo = customerMap.get(it.next());
 			System.out.println(vo.toString());
 		}
-
 	}
 
 	@Override
@@ -95,9 +91,5 @@ public class ManagerImpl implements Manager{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		
 	}
-
-
 }

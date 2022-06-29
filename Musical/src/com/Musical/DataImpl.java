@@ -29,6 +29,9 @@ public class DataImpl implements Data {
 
 	HashMap<String, CustomerVO> customerMap = new HashMap<>();
 	HashMap<String, TitleVO> titleMap = new HashMap<>();
+	
+	private final String F_USER_LIST = "userData.txt";
+	private final String F_TITLE_LIST = "titleData.txt";
 
 	public DataImpl() {
 		loadData();
@@ -50,7 +53,6 @@ public class DataImpl implements Data {
 			vo.setPoint(arrPoint[i]);
 
 			customerMap.put(arrID[i], vo);
-
 		}
 	}
 
@@ -61,13 +63,15 @@ public class DataImpl implements Data {
 
 			TitleVO vo = new TitleVO();
 
-
 			vo.setTitle(arrTitle[i]);
 			vo.setActor1(arrActor1[i]);
 			vo.setActor2(arrActor2[i]);
 			vo.setTime(arrTime);
 			vo.setDate(arrDate);
 			vo.setCost(arrCost[i]);
+			
+			new TitleVO();
+			
 
 			titleMap.put(arrTitle[i], vo);
 		}
@@ -98,8 +102,8 @@ public class DataImpl implements Data {
 	@Override
 	public void loadData() {
 
-		load1("userlist.txt");
-		load1("titlelist.txt");
+		loadFile(F_USER_LIST);
+		loadFile(F_TITLE_LIST);
 		//		try {
 		//			File f = new File("c:\\Musical\\userlist.txt");
 		//
@@ -122,39 +126,33 @@ public class DataImpl implements Data {
 		//		}
 	}
 
-	void load1(String path) {
+	void loadFile(String path) {
 
 		try {
 			File f = new File("c:\\Musical\\" + path);
-
+			
+			if(!f.getParentFile().exists()) {
+				f.getParentFile().mkdirs();	
+			}
+			
 			if(!f.exists()) {
-
 				inputCustomer();
 				inputTitle();
-
-			} else if(path.equals("userlist.txt")) {			
-
-				FileInputStream fis = new FileInputStream(f);
-				ObjectInputStream ois = new ObjectInputStream(fis);
-
-				customerMap = (HashMap<String, CustomerVO>)ois.readObject();
-
-				fis.close();
-				ois.close();
-
-			} else if(path.equals("titlelist.txt")) {
-				if(!f.exists()) {
-					inputTitle();
-					f.getParentFile().mkdirs();	
-				}
-				FileInputStream fis = new FileInputStream(f);
-				ObjectInputStream ois = new ObjectInputStream(fis);
-
-				titleMap = (HashMap<String, TitleVO>)ois.readObject();
-
-				fis.close();
-				ois.close();
+				return;
 			}
+
+			FileInputStream fis = new FileInputStream(f);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			
+			if(path.equals(F_USER_LIST)) {
+				customerMap = (HashMap<String, CustomerVO>)ois.readObject();
+			}
+			else {
+				titleMap = (HashMap<String, TitleVO>)ois.readObject();
+			}
+
+			fis.close();
+			ois.close();
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

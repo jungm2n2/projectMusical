@@ -1,34 +1,39 @@
 package com.Musical;
+
 //시연
 import java.io.*;
 import java.util.HashMap;
 
+
 public class MusicalMain {
-
-	static DataImpl di = new DataImpl();
-
-	static HashMap<String, CustomerVO> customerMap = di.getCustomerMap();
-	static HashMap<String, TitleVO> titleMap = di.getTitleMap();
-
-	static ManagerImpl implM = new ManagerImpl(customerMap, titleMap);
-	static CustomerImpl implC = new CustomerImpl(customerMap, titleMap); 
+	static BufferedReader br = new BufferedReader(
+			new InputStreamReader(System.in));
 
 	public static void main(String[] args) throws IOException {
 
-		BufferedReader br = new BufferedReader(
-				new InputStreamReader(System.in));
+		DataImpl di = new DataImpl();
+
+		HashMap<String, CustomerVO> customerMap = di.getCustomerMap();
+		HashMap<String, TitleVO> titleMap = di.getTitleMap();
+
+		ManagerImpl implM = new ManagerImpl(customerMap, titleMap);
+		CustomerImpl implC = new CustomerImpl(customerMap, titleMap); 
+
+
 		int num;
+
+		MusicalMain mm = new MusicalMain();
 		System.out.println("===================================================================");
 		System.out.println("=  =====  ==  ====  ===      ===    ====     ======  =====  =======\n"
-				         + "=   ===   ==  ====  ==  ====  ===  ====  ===  ====    ====  =======\n"
-				         + "=  =   =  ==  ====  ==  ====  ===  ===  =========  ==  ===  =======\n"
-					     + "=  == ==  ==  ====  ===  ========  ===  ========  ====  ==  =======\n"
-				         + "=  =====  ==  ====  =======  ====  ===  ========        ==  =======\n"
-				         + "=  =====  ==  ====  ==  ====  ===  ===  ========  ====  ==  =======\n"
-					     + "=  =====  ==   ==   ==  ====  ===  ====  ===  ==  ====  ==  =======\n"
-					     + "=  =====  ===      ====      ===    ====     ===  ====  ==        =\n");
+				+ "=   ===   ==  ====  ==  ====  ===  ====  ===  ====    ====  =======\n"
+				+ "=  =   =  ==  ====  ==  ====  ===  ===  =========  ==  ===  =======\n"
+				+ "=  == ==  ==  ====  ===  ========  ===  ========  ====  ==  =======\n"
+				+ "=  =====  ==  ====  =======  ====  ===  ========        ==  =======\n"
+				+ "=  =====  ==  ====  ==  ====  ===  ===  ========  ====  ==  =======\n"
+				+ "=  =====  ==   ==   ==  ====  ===  ====  ===  ==  ====  ==  =======\n"
+				+ "=  =====  ===      ====      ===    ====     ===  ====  ==        =\n");
 		System.out.println("===================================================================");
-		
+
 		while(true) {
 
 			do {
@@ -43,9 +48,9 @@ public class MusicalMain {
 
 			switch(num) {
 			case 1 :
-				login(di.getCustomerMap()); break;
+				mm.login(customerMap, implM, implC); break;
 			case 2 : 
-				signUp(); break;
+				mm.signUp(customerMap); break;
 			case 3 :
 				di.saveData();
 				System.out.println("종료되었습니다.");
@@ -53,7 +58,7 @@ public class MusicalMain {
 			}
 		}
 	}
-	public static void login(HashMap<String, CustomerVO> customerMap) throws IOException {
+	public void login(HashMap<String, CustomerVO> customerMap, ManagerImpl implM, CustomerImpl implC) throws IOException {
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader(System.in));
 
@@ -68,15 +73,12 @@ public class MusicalMain {
 			}else {break;}				
 		}while(true);
 
-
 		System.out.println("비밀번호를 입력하세요.");
 
 		do{
 			pw = br.readLine();
-			CustomerVO vo = new CustomerVO();
-			vo = customerMap.get(id);
 			//do{
-			if(!vo.getPw().equals(pw)) {
+			if(!customerMap.get(id).getPw().equals(pw)) {
 				System.out.println("비밀번호를 확인 해주세요");
 				//pw = br.readLine();
 			}else {
@@ -86,7 +88,7 @@ public class MusicalMain {
 				}
 				else {
 					System.out.println("로그인 성공!");
-					implC.start(id);
+					implC.succesLogIn(id);
 					break;
 				}
 			}				
@@ -94,12 +96,10 @@ public class MusicalMain {
 
 	}
 
-	public static void signUp() {
+	public void signUp(HashMap<String, CustomerVO> customerMap) {
 
 		SignUpException exp = new SignUpException();
 
-		BufferedReader br = new BufferedReader(
-				new InputStreamReader(System.in));
 
 		CustomerVO vo = new CustomerVO();
 
@@ -202,5 +202,4 @@ public class MusicalMain {
 		customerMap.put(vo.getId(), vo);
 
 	}
-
 }
