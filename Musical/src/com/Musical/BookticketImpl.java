@@ -15,8 +15,6 @@ public class BookticketImpl implements Bookticket{
 	BookticketVO ph = new BookticketVO();
 	HashMap<String, TitleVO> titleMap = null;
 
-
-
 	public BookticketImpl(String pCustomer, HashMap<String, TitleVO> pTitleMap) {
 		currCustomer = pCustomer;
 		this.titleMap = pTitleMap;
@@ -28,12 +26,10 @@ public class BookticketImpl implements Bookticket{
 
 		try {
 			pickTitle = selectMusical();
-			//			selectActor();
-			//			selectDate();
-			//			selectTime();
+			selectActor();
+			selectDate();
+			selectTime();
 			selectSeat();
-
-
 			payMoney();
 		} catch (Exception e) {
 			//TODO: handle exception
@@ -132,30 +128,34 @@ public class BookticketImpl implements Bookticket{
 		ph.setCost(titleMap.get(pickTitle).getCost());
 		System.out.println("가격은 " + ph.getCost() + " 원 입니다.");
 		System.out.println("결제 됐습니다.");
+		titleMap.get(pickTitle).setTotalCost(ph.getCost());
 	}
 
 	//현재는 미구현 상태
 	@Override
 	public void selectSeat() {
 		String[] seat = titleMap.get(pickTitle).getStateSeat();
-		
 		seatDraw(seat);
+		String selected;
+		while(true) {
+			System.out.println("좌석을 선택하세요.");
+			selected = inputSelect();
+			
+			if(seat[Integer.valueOf(selected) - 1] == "■") {
+				System.out.println("선택할 수 없는 좌석입니다.");
+			}
+			else {
+				break;
+			}
+		}
 		
-		System.out.println("좌석을 선택하세요.");
-		String selected = inputSelect();
+		
 		seat[Integer.valueOf(selected) - 1] = "■";
-		
+
 		System.out.println(selected + "번을 선택하셨습니다.");
-		
-//		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-//		System.out.printf("| %s | %s | %s |\n", seat[0], seat[1], seat[2]);
-//		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-//		System.out.printf("| %s | %s | %s |\n", seat[3], seat[4], seat[5]);
-//		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-//		System.out.printf("| %s | %s | %s |\n", seat[6], seat[7], seat[8]);
-//		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		ph.setMySeat(selected);
 	}
-	
+
 	void seatDraw(String[] pSeat){
 		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		System.out.printf("| %s | %s | %s |\n", pSeat[0], pSeat[1], pSeat[2]);
@@ -165,5 +165,5 @@ public class BookticketImpl implements Bookticket{
 		System.out.printf("| %s | %s | %s |\n", pSeat[6], pSeat[7], pSeat[8]);
 		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 	}
-	
+
 }

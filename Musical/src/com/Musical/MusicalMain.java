@@ -18,11 +18,25 @@ public class MusicalMain {
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader(System.in));
 		int num;
+		System.out.println("===================================================================");
+		System.out.println("=  =====  ==  ====  ===      ===    ====     ======  =====  =======\n"
+				         + "=   ===   ==  ====  ==  ====  ===  ====  ===  ====    ====  =======\n"
+				         + "=  =   =  ==  ====  ==  ====  ===  ===  =========  ==  ===  =======\n"
+					     + "=  == ==  ==  ====  ===  ========  ===  ========  ====  ==  =======\n"
+				         + "=  =====  ==  ====  =======  ====  ===  ========        ==  =======\n"
+				         + "=  =====  ==  ====  ==  ====  ===  ===  ========  ====  ==  =======\n"
+					     + "=  =====  ==   ==   ==  ====  ===  ====  ===  ==  ====  ==  =======\n"
+					     + "=  =====  ===      ====      ===    ====     ===  ====  ==        =\n");
+		System.out.println("===================================================================");
+		
 		while(true) {
 
 			do {
-				System.out.println("1.로그인 \n2.회원가입 \n3.종료");
-				System.out.println("---------------------------------\n:");
+				System.out.println(" ____________ \t\t ______________ \t   ____________ ");
+				System.out.println("||1.로그인  || \t\t||2.회원가입  || \t  ||3.종료    ||");
+				System.out.println("||__________||\t\t||____________||\t  ||__________||");
+				System.out.println("|/__________\\|\t\t|/____________\\|\t  |/__________\\|");
+				System.out.println("===================================================================");
 				num = Integer.parseInt(br.readLine());
 			}while(num<1 || 3<num);
 
@@ -145,7 +159,7 @@ public class MusicalMain {
 			try {
 				System.out.println("생년월일?[yyyy-mm-dd]");
 				String birth = br.readLine();
-				//exp.birthInputFormat(birth); 미구현상태
+				exp.birthInputFormat(birth); // 미구현상태(완료)
 				vo.setBirth(birth);
 				break;
 
@@ -159,7 +173,7 @@ public class MusicalMain {
 			try {
 				System.out.println("이메일 주소?");
 				String mail = br.readLine();
-				//exp.mailInputFormat(mail); 아직 구현이 안되어있음
+				exp.mailInputFormat(mail); //아직 구현이 안되어있음(완료)
 				vo.setMail(mail);
 				break;
 
@@ -182,6 +196,7 @@ public class MusicalMain {
 			}
 		}
 
+		System.out.println("회원가입 성공 !");
 		customerMap.put(vo.getId(), vo);
 
 	}
