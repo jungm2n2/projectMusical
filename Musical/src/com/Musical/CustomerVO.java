@@ -1,8 +1,9 @@
 package com.Musical;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CustomerVO {
+public class CustomerVO implements Serializable{
 	
 	String id;
 	String pw;
@@ -15,6 +16,7 @@ public class CustomerVO {
 	ArrayList<BookticketVO> ph = null;
 
 	public CustomerVO() {
+		ph = new ArrayList<>();
 		
 	}
 	
@@ -26,6 +28,7 @@ public class CustomerVO {
 		this.gender = gender;
 		this.mail = mail;
 		this.phone = phone;
+		ph = new ArrayList<>();
 	}
 
 
