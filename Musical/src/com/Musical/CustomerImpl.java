@@ -144,7 +144,6 @@ public class CustomerImpl implements Customer{
          if(yn.equals("Y") || yn.equals("y")) {
         	 customerMap.remove(id);
              System.out.println("회원탈퇴가 완료되었습니다");
-        	 System.exit(0);
          }else {
         	 System.out.println("다시 입력해주세요");
          }
@@ -194,7 +193,7 @@ public class CustomerImpl implements Customer{
          case(2):reservation();break;
          case(3):checkTicket();break;
          case(4):logout();return;
-         case(5):userDelete();break;
+         case(5):userDelete();return;
       
          }
       }
