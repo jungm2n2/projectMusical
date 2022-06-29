@@ -40,10 +40,17 @@ public class BookticketVO implements Serializable {
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
+	public String getMySeat() {
+		return mySeat;
+	}
+	public void setMySeat(String mySeat) {
+		this.mySeat = mySeat;
+	}
+
 	
 	@Override
 	public String toString() {
-		String str = String.format("%-12s %-10s %-8s %5s %5s %7d\n",title, actor, date, time, mySeat, cost);
+		String str = String.format("%-12s %-10s %-8s %5s %7s %7d",title, actor, date, time, mySeat, cost);
 		return str;
 	}
 }

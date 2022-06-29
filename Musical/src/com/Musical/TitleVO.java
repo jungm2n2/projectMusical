@@ -13,7 +13,6 @@ public class TitleVO {
 	private int cost;
 	private int totalCost;
 	
-	
 	public TitleVO() {
 		curReservationNumber = 0;
 		maxReservationNumber = 9;
@@ -106,12 +105,21 @@ public class TitleVO {
 	public void setStateSeat(String[] stateSeat) {
 		this.stateSeat = stateSeat;
 	}
+	
+	public int getTotalCost() {
+		return totalCost;
+	}
+
+	public void setTotalCost(int totalCost) {
+		this.totalCost += totalCost;
+	}
 
 	@Override
 	public String toString() {
-		String str = String.format("%-12s %-4s %-5s %2s %5s %5s %5s %5s %5s %d",title,actor1,actor2,
-				time[0],time[1],time[2],date[0],date[1],date[2],cost);
+		String str = String.format("%-12s %-4s %-5s %2s %5s %5s %5s %5s %5s %d %d",title,actor1,actor2,
+				time[0],time[1],time[2],date[0],date[1],date[2],cost, totalCost);
 		
 		return str;
 	}
+
 }
