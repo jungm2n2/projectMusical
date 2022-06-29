@@ -72,52 +72,70 @@ public class SignUpException {
 
 
 	
-
+//이메일 예외처리 완료 (정민)
 	public void mailInputFormat (String str) throws Exception {
 		
 		int su1=0;
 		int su2=0;
+		int num = str.indexOf("@");
+		int num1 = str.indexOf(".");
+		int num3=0;
+		int eng=0;
+	
 
 		
 		for(int i=0;i<str.length();i++) {
 			if(str.charAt(i)=='@') {
 				su1++;
-				break;
-			}
-		}	
-		
-		for(int j=0;j<str.length();j++) {
-			if(str.charAt(j)=='.') {
+			}else if(str.charAt(i)=='.') {
 				su2++;
-				break;
 			}
 		}	
 		
-		if (su1==0 && su2==0)	
+		if (su1==0 || su2==0)	
 			
 			throw new Exception("잘못된 이메일 형식입니다.");
-		}
-/*
-		int num = 0;
-		int eng = 0;
 		
-		for(int i=0;i<str.length();i++) {
+	
+		for(int i=0;i<=num;i++) {
 			if('0'<=str.charAt(i) && str.charAt(i)<='9') {
-				num++;
+				num3++;
 			}else if((str.charAt(i)>='a' && 'z' >= str.charAt(i)) ||
-					(str.charAt(i)>='A' && 'Z' >= str.charAt(i))) {
+					(str.charAt(i)>='A' && 'Z' >= str.charAt(i)))  {
 				eng++;
 			}
 		}
 
-		if(num ==0 || eng==0) {
-			throw new Exception("잘못된 이메일 형식입니다.");
+		if(num3 ==0 || eng==0) {
+			throw new Exception("영문자와 숫자를 혼용해주세요.");
 		}
+		
+		
+		for(int i=num+1;i<num1;i++) {
+			
+			if((str.charAt(i)>='a' && 'z' >= str.charAt(i)) ||
+					(str.charAt(i)>='A' && 'Z' >= str.charAt(i))){
+				
+				throw new Exception ("영문자를 입력해주세요");
+			
+			}
+			
+		}
+			
+		for(int i=num1+1;i<str.length();i++) {
+			if((str.charAt(i)>='a' && 'z' >= str.charAt(i)) ||
+					(str.charAt(i)>='A' && 'Z' >= str.charAt(i))) {
+				
+				throw new Exception ("영문자를 입력해주세요");
+			
+		}
+			
+			
 
 }	
 	}
 	
-*/	
+	
 	//[010-xxxx-xxxx] 이형태로 입력할 수 있게 예외처리하기 : 정민 (완료)
 	public void telInputFormat(String str) throws Exception {
 		

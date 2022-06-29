@@ -145,7 +145,7 @@ public class MusicalMain {
 			try {
 				System.out.println("생년월일?[yyyy-mm-dd]");
 				String birth = br.readLine();
-				//exp.birthInputFormat(birth); 미구현상태
+				exp.birthInputFormat(birth); // 미구현상태(완료)
 				vo.setBirth(birth);
 				break;
 
@@ -159,7 +159,7 @@ public class MusicalMain {
 			try {
 				System.out.println("이메일 주소?");
 				String mail = br.readLine();
-				//exp.mailInputFormat(mail); 아직 구현이 안되어있음
+				exp.mailInputFormat(mail); //아직 구현이 안되어있음(완료)
 				vo.setMail(mail);
 				break;
 

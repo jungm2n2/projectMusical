@@ -12,7 +12,7 @@ public class CustomerImpl implements Customer{
    String id;
    String answer;
    BookticketImpl bt = null;
-   
+   SignUpException se = new SignUpException();
    CustomerVO vo = new CustomerVO(); 
 
    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -53,12 +53,15 @@ public class CustomerImpl implements Customer{
          switch (num2) {
          case 1:
             System.out.println("수정할 비밀번호?");
-            vo.setPw(br.readLine()); flag = true; break;
+            vo.setPw(br.readLine());flag = true; break;
          case 2:
             System.out.println("수정할 이메일?");
-            vo.setMail(br.readLine()); flag = true; break;
+            vo.setMail(br.readLine());
+            se.mailInputFormat(vo.getMail());
+            flag = true; break;
          case 3:
             System.out.println("수정할 핸드폰 번호?");
+            se.telInputFormat(vo.getPhone());
             vo.setPhone(br.readLine()); flag = true; break;
          default:
             flag = false; break;
