@@ -1,6 +1,8 @@
 package com.Musical;
 
-public class TitleVO {
+import java.io.Serializable;
+
+public class TitleVO extends VO implements Serializable{
 	
 	private String title;
 	private String actor1;
