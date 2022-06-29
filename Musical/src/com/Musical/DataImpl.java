@@ -35,7 +35,6 @@ public class DataImpl implements Data {
 		loadData();
 	}
 
-
 	public void inputCustomer() {	
 
 		for(int i=0;i<arrID.length;i++) {
@@ -105,7 +104,7 @@ public class DataImpl implements Data {
 			if(!f.exists()) {				
 				inputCustomer();				
 			}
-			else {
+			else {				
 				FileInputStream fis = new FileInputStream(f);
 				ObjectInputStream ois = new ObjectInputStream(fis);
 				
