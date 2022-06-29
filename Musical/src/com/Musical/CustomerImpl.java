@@ -112,7 +112,7 @@ public class CustomerImpl implements Customer{
          
          if(answer.equals("Y") || answer.equals("y")) {
             System.out.println("로그아웃이 완료되었습니다");
-            System.exit(0);
+            
          }else if(answer.equals("N") || answer.equals("n")) {
             return;
          }else {
@@ -193,7 +193,7 @@ public class CustomerImpl implements Customer{
          case(1):userUpdate();break;
          case(2):reservation();break;
          case(3):checkTicket();break;
-         case(4):logout();break;
+         case(4):logout();return;
          case(5):userDelete();break;
       
          }

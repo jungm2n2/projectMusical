@@ -6,8 +6,4 @@ public interface Manager {
 	public void reservationTicket();
 	public void totalSale();
 	
-	//
-	public void inputTitle();
-	
-
 }
