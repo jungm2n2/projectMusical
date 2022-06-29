@@ -14,7 +14,6 @@ public class CustomerImpl implements Customer{
 	String curCustomer;
 	SignUpException se = new SignUpException();
 
-
 	public CustomerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
 		this.customerMap = customerMap;
 		this.titleMap = titleMap;
@@ -134,7 +133,7 @@ public class CustomerImpl implements Customer{
 
 	@Override
 	public void reserveMusical() {
-		BookticketImpl bk = new BookticketImpl(curCustomer, titleMap);
+		BookticketImpl bk = new BookticketImpl(titleMap);
 		customerMap.get(curCustomer).getPh().add(bk.enterBookticket());
 	}
 

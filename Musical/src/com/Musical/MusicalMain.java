@@ -4,25 +4,21 @@ package com.Musical;
 import java.io.*;
 import java.util.HashMap;
 
-
 public class MusicalMain {
 	static BufferedReader br = new BufferedReader(
 			new InputStreamReader(System.in));
 
 	public static void main(String[] args) throws IOException {
 
-		DataImpl di = new DataImpl();
+		DataImpl database = new DataImpl();
 
-		HashMap<String, CustomerVO> customerMap = di.getCustomerMap();
-		HashMap<String, TitleVO> titleMap = di.getTitleMap();
+		HashMap<String, CustomerVO> customerMap = database.getcustomerDB();
+		HashMap<String, TitleVO> titleMap = database.gettitleDB();
 
-		ManagerImpl implM = new ManagerImpl(customerMap, titleMap);
-		CustomerImpl implC = new CustomerImpl(customerMap, titleMap); 
-
-
-		int num;
-
-		MusicalMain mm = new MusicalMain();
+		ManagerImpl manager = new ManagerImpl(customerMap, titleMap);
+		CustomerImpl customer = new CustomerImpl(customerMap, titleMap); 
+		MusicalMain mainObject = new MusicalMain();
+		
 		System.out.println("===================================================================");
 		System.out.println("=  =====  ==  ====  ===      ===    ====     ======  =====  =======\n"
 				+ "=   ===   ==  ====  ==  ====  ===  ====  ===  ====    ====  =======\n"
@@ -33,7 +29,7 @@ public class MusicalMain {
 				+ "=  =====  ==   ==   ==  ====  ===  ====  ===  ==  ====  ==  =======\n"
 				+ "=  =====  ===      ====      ===    ====     ===  ====  ==        =\n");
 		System.out.println("===================================================================");
-
+		int num;
 		while(true) {
 
 			do {
@@ -48,11 +44,11 @@ public class MusicalMain {
 
 			switch(num) {
 			case 1 :
-				mm.login(customerMap, implM, implC); break;
+				mainObject.login(customerMap, manager, customer); break;
 			case 2 : 
-				mm.signUp(customerMap); break;
+				mainObject.signUp(customerMap); break;
 			case 3 :
-				di.saveData();
+				database.saveData();
 				System.out.println("종료되었습니다.");
 				System.exit(0);
 			}

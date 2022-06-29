@@ -9,7 +9,6 @@ import java.util.Iterator;
 
 public class ManagerImpl implements Manager{
 
-
 	BufferedReader br = new BufferedReader(
 			new InputStreamReader(System.in));
 
@@ -33,9 +32,9 @@ public class ManagerImpl implements Manager{
 
 				switch(num) {
 				case 1 :
-					userSearch(); break;
+					searchCustomer(); break;
 				case 2 : 
-					reservationTicket(); break;
+					reserveTicket(); break;
 				case 3 :
 					totalSale(); break;
 				default :
@@ -49,7 +48,7 @@ public class ManagerImpl implements Manager{
 	}
 
 	@Override
-	public void userSearch() {	
+	public void searchCustomer() {	
 
 		Iterator<String> it = customerMap.keySet().iterator();
 
@@ -60,7 +59,7 @@ public class ManagerImpl implements Manager{
 	}
 
 	@Override
-	public void reservationTicket() {
+	public void reserveTicket() {
 		
 		for (String strKey : customerMap.keySet()) {
 			
@@ -86,7 +85,7 @@ public class ManagerImpl implements Manager{
 			
 			TitleVO tv = titleMap.get(arrTitle.get(Integer.parseInt(inputNumber) - 1));
 			
-			System.out.println(tv.getTitle() + "의 총 매출은 " + tv.getTotalCost() + "원 입니다.");
+			System.out.println(tv.getTitle() + "의 총 매출은 " + tv.getTotalSales() + "원 입니다.");
 			
 		} catch (Exception e) {
 			// TODO: handle exception

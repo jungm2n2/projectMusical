@@ -21,14 +21,14 @@ public class DataImpl implements Data {
 
 	//뮤지컬 데이터 입력.정민
 	String[] arrTitle = {"오페라의 유령", "레미제라블", "캣츠"};
-	String [] arrActor1 = {"아이비,주원","김소현,김준현","김지연,정성화"};
-	String [] arrActor2 = {"옥주현,조승우","정선아,박효신","최정원,남경주"};
+	String [] arrActorCombi1 = {"아이비,주원","김소현,김준현","김지연,정성화"};
+	String [] arrActorCombi2 = {"옥주현,조승우","정선아,박효신","최정원,남경주"};
 	String [] arrTime = {"11:00","15:00","19:30"};
 	String [] arrDate = {"7/1(금)","7/2(토)","7/3(일)"};
 	int [] arrCost = {10000,20000,30000};
 
-	HashMap<String, CustomerVO> customerMap = new HashMap<>();
-	HashMap<String, TitleVO> titleMap = new HashMap<>();
+	HashMap<String, CustomerVO> customerDB = new HashMap<>();
+	HashMap<String, TitleVO> titleDB = new HashMap<>();
 	
 	private final String F_USER_LIST = "userData.txt";
 	private final String F_TITLE_LIST = "titleData.txt";
@@ -52,7 +52,7 @@ public class DataImpl implements Data {
 			vo.setPhone(arrPhone[i]);
 			vo.setPoint(arrPoint[i]);
 
-			customerMap.put(arrID[i], vo);
+			customerDB.put(arrID[i], vo);
 		}
 	}
 
@@ -64,8 +64,8 @@ public class DataImpl implements Data {
 			TitleVO vo = new TitleVO();
 
 			vo.setTitle(arrTitle[i]);
-			vo.setActor1(arrActor1[i]);
-			vo.setActor2(arrActor2[i]);
+			vo.setActorCombi1(arrActorCombi1[i]);
+			vo.setActorCombi2(arrActorCombi2[i]);
 			vo.setTime(arrTime);
 			vo.setDate(arrDate);
 			vo.setCost(arrCost[i]);
@@ -73,7 +73,7 @@ public class DataImpl implements Data {
 			new TitleVO();
 			
 
-			titleMap.put(arrTitle[i], vo);
+			titleDB.put(arrTitle[i], vo);
 		}
 	}
 
@@ -90,7 +90,7 @@ public class DataImpl implements Data {
 			FileOutputStream fos = new FileOutputStream(f);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-			oos.writeObject(customerMap);
+			oos.writeObject(customerDB);
 			fos.close();
 			oos.close();
 
@@ -114,7 +114,7 @@ public class DataImpl implements Data {
 		//				FileInputStream fis = new FileInputStream(f);
 		//				ObjectInputStream ois = new ObjectInputStream(fis);
 		//				
-		//				customerMap = (HashMap<String, CustomerVO>)ois.readObject();
+		//				customerDB = (HashMap<String, CustomerVO>)ois.readObject();
 		//				
 		//				fis.close();
 		//				ois.close();
@@ -145,10 +145,10 @@ public class DataImpl implements Data {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			
 			if(path.equals(F_USER_LIST)) {
-				customerMap = (HashMap<String, CustomerVO>)ois.readObject();
+				customerDB = (HashMap<String, CustomerVO>)ois.readObject();
 			}
 			else {
-				titleMap = (HashMap<String, TitleVO>)ois.readObject();
+				titleDB = (HashMap<String, TitleVO>)ois.readObject();
 			}
 
 			fis.close();
@@ -158,26 +158,20 @@ public class DataImpl implements Data {
 		}
 	}
 
-	@Override
-	public void snycData() {
-		// TODO Auto-generated method stub
-
+	public HashMap<String, CustomerVO> getcustomerDB() {
+		return customerDB;
 	}
 
-	public HashMap<String, CustomerVO> getCustomerMap() {
-		return customerMap;
+	public void setcustomerDB(HashMap<String, CustomerVO> customerDB) {
+		this.customerDB = customerDB;
 	}
 
-	public void setCustomerMap(HashMap<String, CustomerVO> customerMap) {
-		this.customerMap = customerMap;
+	public HashMap<String, TitleVO> gettitleDB() {
+		return titleDB;
 	}
 
-	public HashMap<String, TitleVO> getTitleMap() {
-		return titleMap;
-	}
-
-	public void setTitleMap(HashMap<String, TitleVO> titleMap) {
-		this.titleMap = titleMap;
+	public void settitleDB(HashMap<String, TitleVO> titleDB) {
+		this.titleDB = titleDB;
 	}
 
 
