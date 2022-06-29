@@ -82,7 +82,11 @@ public class DataImpl implements Data {
 
 		try {
 			File f = new File("c:\\Musical\\userlist.txt");
-
+			
+			if(!f.getParentFile().exists()) {
+				f.getParentFile().mkdirs();				
+			}
+			
 			FileOutputStream fos = new FileOutputStream(f);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 

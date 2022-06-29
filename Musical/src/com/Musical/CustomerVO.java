@@ -1,8 +1,9 @@
 package com.Musical;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CustomerVO {
+public class CustomerVO implements Serializable{
 	
 	String id;
 	String pw;
