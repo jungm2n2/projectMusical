@@ -12,11 +12,7 @@ public class CustomerVO {
 	String mail;
 	String phone;
 	String point;
-	BookTicketVO ph = null;
-	//이 부분을 배열로 할것인지 리스트로 할것인지
-	
-  	//BookTicketVO[] ph = null;
-	//ArrayList<BookticketVO> ph = null;
+	ArrayList<BookticketVO> ph = null;
 
 	public CustomerVO() {
 		
@@ -81,12 +77,12 @@ public class CustomerVO {
 	public void setPoint(String point) {
 		this.point = point;
 	}
-	
-	public BookTicketVO getPh() {
+
+	public ArrayList<BookticketVO> getPh() {
 		return ph;
 	}
 
-	public void setPh(BookTicketVO ph) {
+	public void setPh(ArrayList<BookticketVO> ph) {
 		this.ph = ph;
 	}
 
@@ -97,8 +93,9 @@ public class CustomerVO {
 		return str;
 	}
 	public String printTicket() {
-		System.out.printf("%-12s %-10s %-8s %5s %7s","제목","배우","날짜","시간","결제금액");
+		String str = String.format("%-12s %-10s %-8s %5s %7s","����","���","��¥","�ð�","�����ݾ�");
 		int idx = 1;
+		
 		for (BookticketVO details : ph) {
 			System.out.println(idx++ + ph.toString());
 		}
