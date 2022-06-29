@@ -77,17 +77,6 @@ public class ManagerImpl implements Manager{
 	}
 
 
-
-	//Á¤¹Î
-	@Override
-	public void inputTitle() {
-
-
-
-	}
-
-
-
 }
 
 
