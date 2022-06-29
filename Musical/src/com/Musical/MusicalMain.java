@@ -11,7 +11,7 @@ public class MusicalMain {
 	static HashMap<String, TitleVO> titleMap = di.getTitleMap();
 
 	static ManagerImpl implM = new ManagerImpl(customerMap, titleMap);
-	static CustomerImpl implC = new CustomerImpl(customerMap, titleMap);
+	static CustomerImpl implC = new CustomerImpl(customerMap, titleMap); 
 
 	public static void main(String[] args) throws IOException {
 

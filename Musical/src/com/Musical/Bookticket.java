@@ -7,5 +7,5 @@ public interface Bookticket {
 	public void selectDate();
 	public void selectTime();
 	public void payMoney();
-	public void selectSeat(String pTitle);
+	public void selectSeat();
 }
