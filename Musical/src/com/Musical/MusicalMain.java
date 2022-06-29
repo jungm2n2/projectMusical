@@ -196,7 +196,7 @@ public class MusicalMain {
 			}
 		}
 		System.out.println("===================================================================");
-		System.out.println("회원가입 성공 !");
+		System.out.println("                          회원가입 성공 !");
 		System.out.println("===================================================================");
 
 		customerMap.put(vo.getId(), vo);
