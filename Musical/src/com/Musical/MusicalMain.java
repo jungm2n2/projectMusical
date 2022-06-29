@@ -120,38 +120,59 @@ public class MusicalMain {
 		} catch (Exception e) {
 			System.out.println(e.toString());     
 		}
-		
-		try {
+			try {
 			System.out.println("이름?");
 			String name = br.readLine();
 			vo.setName(name);
-
-			System.out.println("성별? [F/M]");
-			String gender = br.readLine(); 
-			exp.genderInputFormat(gender);
-			vo.setGender(gender);
-
+		
+			while(true) {
+				System.out.println("성별? [F/M]");
+				String gender = br.readLine(); 
+				exp.genderInputFormat(gender);
+				vo.setGender(gender);
+				break;
+			}
+			} catch (Exception e) {
+				System.out.println(e.toString());     
+			}
+			
+			try {
+			while(true) {
 			System.out.println("생년월일?[yyyy-mm-dd]");
 			String birth = br.readLine();
-			exp.birthInputFormat(birth);
+			//exp.birthInputFormat(birth); 미구현상태
 			vo.setBirth(birth);
-
+			break;
+			}
+			} catch (Exception e) {
+				System.out.println(e.toString());     
+			}
+			
+			try {
+			while(true) {
 			System.out.println("이메일 주소?");
 			String mail = br.readLine();
-			exp.mailInputFormat(mail);
+			//exp.mailInputFormat(mail); 아직 구현이 안되어있음
 			vo.setMail(mail);
-
+			break;
+			}
+			} catch (Exception e) {
+				System.out.println(e.toString());     
+			}
+			
+			try {
+			while(true) {
 			System.out.println("핸드폰 번호?[010-xxxx-xxxx]");
 			String phone = br.readLine();
 			exp.telInputFormat(phone);
 			vo.setPhone(phone);
+			break;
+			}
+			} catch (Exception e) {
+				System.out.println(e.toString());     
+			}
 
 			customerMap.put(vo.getId(), vo);
-
-		} catch (Exception e) {
-
-			System.out.println(e.toString());     
-		}
 
 	}
 
