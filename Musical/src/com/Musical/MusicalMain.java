@@ -196,6 +196,7 @@ public class MusicalMain {
 			}
 		}
 
+		System.out.println("회원가입 성공 !");
 		customerMap.put(vo.getId(), vo);
 
 	}
