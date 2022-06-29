@@ -15,6 +15,7 @@ public class CustomerVO {
 	ArrayList<BookticketVO> ph = null;
 
 	public CustomerVO() {
+		ph = new ArrayList<>();
 		
 	}
 	
@@ -26,6 +27,7 @@ public class CustomerVO {
 		this.gender = gender;
 		this.mail = mail;
 		this.phone = phone;
+		ph = new ArrayList<>();
 	}
 
 

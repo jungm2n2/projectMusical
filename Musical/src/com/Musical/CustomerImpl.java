@@ -138,14 +138,12 @@ public class CustomerImpl implements Customer{
       try {
          
          
-         System.out.print("탈퇴하고 싶은 회원의 아이디를 입력하세요");
-         id = br.readLine();
+         System.out.print("탈퇴하시겠습니까?");
+         String yn = br.readLine();
+         
+        // if(yn.equals("Y")||)
          
 
-         if(!(searchId(id))){
-            System.out.println("입력하신 아이디가 존재하지 않습니다");
-            return;
-         }
          
          customerMap.remove(id);
          System.out.println("회원탈퇴가 완료되었습니다");
@@ -197,7 +195,7 @@ public class CustomerImpl implements Customer{
       }
          
       } catch (Exception e) {
-         
+         System.out.println(e.toString());
       }
    }
 
