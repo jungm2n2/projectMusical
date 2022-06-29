@@ -22,13 +22,6 @@ public class BookticketImpl implements Bookticket{
 		this.titleMap = pTitleMap;
 	}
 
-	public static void main(String[] args) {
-		DataImpl di = new DataImpl();
-		BookticketImpl ss = new BookticketImpl("GANA11", di.getTitleMap());
-		ss.selectSeat();
-
-	}
-
 	public BookticketVO ViewMenu(){
 		//회원정보를 받아와야함.
 		//이 메서드가 예매버튼을 누르거나 예매 요청을 받는 거라고 생각하자.
