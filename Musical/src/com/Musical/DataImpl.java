@@ -8,8 +8,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
+
+
 public class DataImpl implements Data {
 
+	private final String F_USER_LIST = "userData.txt";
+	private final String F_TITLE_LIST = "titleData.txt";
+	
 	String[] arrID = {"GANA11", "JOKER33", "STARBUCKS07","admin"};
 	String[] arrPW = {"11111", "22222", "33333","1111"};
 	String[] arrName = {"김영운", "이정민", "안시연","관리자"};
@@ -21,14 +26,15 @@ public class DataImpl implements Data {
 
 	//뮤지컬 데이터 입력.정민
 	String[] arrTitle = {"오페라의 유령", "레미제라블", "캣츠"};
-	String [] arrActor1 = {"아이비,주원","김소현,김준현","김지연,정성화"};
-	String [] arrActor2 = {"옥주현,조승우","정선아,박효신","최정원,남경주"};
+	String [] arrActorPairs1 = {"아이비,주원","김소현,김준현","김지연,정성화"};
+	String [] arrActorPairs2 = {"옥주현,조승우","정선아,박효신","최정원,남경주"};
 	String [] arrTime = {"11:00","15:00","19:30"};
 	String [] arrDate = {"7/1(금)","7/2(토)","7/3(일)"};
 	int [] arrCost = {10000,20000,30000};
-
-	HashMap<String, CustomerVO> customerMap = new HashMap<>();
-	HashMap<String, TitleVO> titleMap = new HashMap<>();
+	
+	
+	HashMap<String, CustomerVO> customerDB = new HashMap<>();
+	HashMap<String, TitleVO> titleDB = new HashMap<>();
 
 	public DataImpl() {
 		loadData();
@@ -49,11 +55,9 @@ public class DataImpl implements Data {
 			vo.setPhone(arrPhone[i]);
 			vo.setPoint(arrPoint[i]);
 
-			customerMap.put(arrID[i], vo);
-
+			customerDB.put(arrID[i], vo);
 		}
 	}
-
 	//정민
 
 	public void inputTitle() {
@@ -61,23 +65,21 @@ public class DataImpl implements Data {
 
 			TitleVO vo = new TitleVO();
 
-
 			vo.setTitle(arrTitle[i]);
-			vo.setActor1(arrActor1[i]);
-			vo.setActor2(arrActor2[i]);
+			vo.setActorPairs1(arrActorPairs1[i]);
+			vo.setActorPairs2(arrActorPairs2[i]);
 			vo.setTime(arrTime);
 			vo.setDate(arrDate);
 			vo.setCost(arrCost[i]);
-
-			titleMap.put(arrTitle[i], vo);
+			
+			titleDB.put(arrTitle[i], vo);
 		}
 	}
 
 	@Override
 	public void saveData() {
-
 		try {
-			File f = new File("c:\\Musical\\userlist.txt");
+			File f = new File("c:\\Musical\\" + F_USER_LIST);
 
 			if(!f.getParentFile().exists()) {
 				f.getParentFile().mkdirs();				
@@ -86,20 +88,38 @@ public class DataImpl implements Data {
 			FileOutputStream fos = new FileOutputStream(f);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-			oos.writeObject(customerMap);
+			oos.writeObject(customerDB);
 			fos.close();
 			oos.close();
 
 		} catch (Exception e) {
 			System.out.println(e.toString());}
+	}
+	
+	public void saveTitle() {
+		try {
+			File f = new File("c:\\Musical\\" + F_TITLE_LIST);
 
+			if(!f.getParentFile().exists()) {
+				f.getParentFile().mkdirs();				
+			}
+
+			FileOutputStream fos = new FileOutputStream(f);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+			oos.writeObject(titleDB);
+			fos.close();
+			oos.close();
+
+		} catch (Exception e) {
+			System.out.println(e.toString());}
 	}
 
 	@Override
 	public void loadData() {
 
-		load1("userlist.txt");
-		load1("titlelist.txt");
+		loadFile(F_USER_LIST);
+		loadFile(F_TITLE_LIST);
 		//		try {
 		//			File f = new File("c:\\Musical\\userlist.txt");
 		//
@@ -110,7 +130,7 @@ public class DataImpl implements Data {
 		//				FileInputStream fis = new FileInputStream(f);
 		//				ObjectInputStream ois = new ObjectInputStream(fis);
 		//				
-		//				customerMap = (HashMap<String, CustomerVO>)ois.readObject();
+		//				customerDB = (HashMap<String, CustomerVO>)ois.readObject();
 		//				
 		//				fis.close();
 		//				ois.close();
@@ -122,64 +142,55 @@ public class DataImpl implements Data {
 		//		}
 	}
 
-	void load1(String path) {
+	void loadFile(String path) {
 
 		try {
 			File f = new File("c:\\Musical\\" + path);
-
-			if(!f.exists()) {
-
-				inputCustomer();
-				inputTitle();
-
-			} else if(path.equals("userlist.txt")) {			
-
-				FileInputStream fis = new FileInputStream(f);
-				ObjectInputStream ois = new ObjectInputStream(fis);
-
-				customerMap = (HashMap<String, CustomerVO>)ois.readObject();
-
-				fis.close();
-				ois.close();
-
-			} else if(path.equals("titlelist.txt")) {
-				if(!f.exists()) {
-					inputTitle();
-					f.getParentFile().mkdirs();	
-				}
-				FileInputStream fis = new FileInputStream(f);
-				ObjectInputStream ois = new ObjectInputStream(fis);
-
-				titleMap = (HashMap<String, TitleVO>)ois.readObject();
-
-				fis.close();
-				ois.close();
+			
+			if(!f.getParentFile().exists()) {
+				f.getParentFile().mkdirs();	
 			}
+			
+			if(path.equals(F_USER_LIST) && !f.exists()) {
+				inputCustomer();
+				return;
+			}
+			else if(path.equals(F_TITLE_LIST) && !f.exists()) {
+				inputTitle();
+				return;
+			}
+
+			FileInputStream fis = new FileInputStream(f);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			
+			if(path.equals(F_USER_LIST)) {
+				customerDB = (HashMap<String, CustomerVO>)ois.readObject();
+			}
+			else {
+				titleDB = (HashMap<String, TitleVO>)ois.readObject();
+			}
+
+			fis.close();
+			ois.close();
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 	}
 
-	@Override
-	public void snycData() {
-		// TODO Auto-generated method stub
-
+	public HashMap<String, CustomerVO> getcustomerDB() {
+		return customerDB;
 	}
 
-	public HashMap<String, CustomerVO> getCustomerMap() {
-		return customerMap;
+	public void setcustomerDB(HashMap<String, CustomerVO> customerDB) {
+		this.customerDB = customerDB;
 	}
 
-	public void setCustomerMap(HashMap<String, CustomerVO> customerMap) {
-		this.customerMap = customerMap;
+	public HashMap<String, TitleVO> gettitleDB() {
+		return titleDB;
 	}
 
-	public HashMap<String, TitleVO> getTitleMap() {
-		return titleMap;
-	}
-
-	public void setTitleMap(HashMap<String, TitleVO> titleMap) {
-		this.titleMap = titleMap;
+	public void settitleDB(HashMap<String, TitleVO> titleDB) {
+		this.titleDB = titleDB;
 	}
 
 

@@ -2,38 +2,40 @@ package com.Musical;
 
 import java.io.Serializable;
 
-public class TitleVO extends VO implements Serializable{
+public class TitleVO implements Serializable{
 	
 	private String title;
-	private String actor1;
-	private String actor2;
-	private String[] time;
+	private String actorPairs1;
+	private String actorPairs2;
 	private String[] date;
-	private int curReservationNumber;
-	private int maxReservationNumber;
-	private String[] stateSeat;
+	private String[] time;
+	private int curReservationsNumber;
+	private int maxReservationsNumber;
+	private String[] stateOfSeat;
 	private int cost;
-	private int totalCost;
+	private int totalSales;
 	
 	public TitleVO() {
-		curReservationNumber = 0;
-		maxReservationNumber = 9;
-		stateSeat = new String[9];
-		for (int i = 0; i < maxReservationNumber; i++) {
-			stateSeat[i] = String.valueOf(i + 1);
-		}
-		
-		
+		defaultSetting();
 	}
 	
-	public TitleVO(String title, String actor1, String actor2, String[] time, String[] date, int cost) {
-		super();
+	public TitleVO(String title, String actorPairs1, String actorPairs2, String[] date, String[] time, int cost) {
 		this.title = title;
-		this.actor1 = actor1;
-		this.actor2 = actor2;
-		this.time = time;
+		this.actorPairs1 = actorPairs1;
+		this.actorPairs2 = actorPairs2;
 		this.date = date;
+		this.time = time;
 		this.cost = cost;
+		defaultSetting();
+	}
+	
+	public void defaultSetting(){
+		curReservationsNumber = 0;
+		maxReservationsNumber = 9;
+		stateOfSeat = new String[9];
+		for (int i = 0; i < maxReservationsNumber; i++) {
+			stateOfSeat[i] = String.valueOf(i + 1);
+		}
 	}
 
 	public String getTitle() {
@@ -44,20 +46,21 @@ public class TitleVO extends VO implements Serializable{
 		this.title = title;
 	}
 
-	public String getActor1() {
-		return actor1;
+
+	public String getActorPairs1() {
+		return actorPairs1;
 	}
 
-	public void setActor1(String actor1) {
-		this.actor1 = actor1;
+	public void setActorPairs1(String actorPairs1) {
+		this.actorPairs1 = actorPairs1;
 	}
 
-	public String getActor2() {
-		return actor2;
+	public String getActorPairs2() {
+		return actorPairs2;
 	}
 
-	public void setActor2(String actor2) {
-		this.actor2 = actor2;
+	public void setActorPairs2(String actorPairs2) {
+		this.actorPairs2 = actorPairs2;
 	}
 
 	public String[] getTime() {
@@ -84,44 +87,44 @@ public class TitleVO extends VO implements Serializable{
 		this.cost = cost;
 	}
 
-	public int getCurReservationNumber() {
-		return curReservationNumber;
+	public int getCurReservationsNumber() {
+		return curReservationsNumber;
 	}
 
-	public void setCurReservationNumber(int curReservationNumber) {
-		this.curReservationNumber = curReservationNumber;
+	public void setCurReservationsNumber(int curReservationNumber) {
+		this.curReservationsNumber = curReservationNumber;
 	}
 
-	public int getMaxReservationNumber() {
-		return maxReservationNumber;
+	public int getMaxReservationsNumber() {
+		return maxReservationsNumber;
 	}
 
-	public void setMaxReservationNumber(int maxReservationNumber) {
-		this.maxReservationNumber = maxReservationNumber;
+	public void setMaxReservationsNumber(int maxReservationNumber) {
+		this.maxReservationsNumber = maxReservationNumber;
 	}
 
-	public String[] getStateSeat() {
-		return stateSeat;
+	public String[] getStateOfSeat() {
+		return stateOfSeat;
 	}
 
-	public void setStateSeat(String[] stateSeat) {
-		this.stateSeat = stateSeat;
+	public void setStateOfSeat(String[] stateSeat) {
+		this.stateOfSeat = stateSeat;
 	}
 	
-	public int getTotalCost() {
-		return totalCost;
+	public int getTotalSales() {
+		return totalSales;
 	}
 
-	public void setTotalCost(int totalCost) {
-		this.totalCost += totalCost;
+	public void setTotalSales(int totalSales) {
+		this.totalSales += totalSales;
 	}
 
 	@Override
 	public String toString() {
-		String str = String.format("%-12s %-4s %-5s %2s %5s %5s %5s %5s %5s %d %d",title,actor1,actor2,
-				time[0],time[1],time[2],date[0],date[1],date[2],cost, totalCost);
+		String str = String.format("%-12s %-4s %-5s %2s %5s %5s %5s %5s %5s %d %d",title,actorPairs1,actorPairs2,
+				time[0],time[1],time[2],date[0],date[1],date[2],cost, totalSales);
 		
-		return str;
+		return null;
 	}
 
 }

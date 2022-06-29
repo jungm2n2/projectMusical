@@ -1,34 +1,54 @@
 package com.Musical;
+
 //시연
 import java.io.*;
 import java.util.HashMap;
 
+
+/*
+ -수정 필요
+1. 현재 뮤지컬의 데이터 구조는 하나의 작품에서, 날짜,배우,시간 을 모두 다르게 선택해도 실제로는 하나의 뮤지컬로 판단해서 좌석이 겹치게 나옴
+ 	1-1. 뮤지컬의 데이터구조는 하나의 뮤지컬이 배우+날짜+시간 을 여러개 들고 있는 구조로 바꿔야 할듯
+2. TitleVO의 toString()오버라이딩 메서드를 쓰는 부분이 한 군데도 없는 것 같다. 확인 후 없다면 삭제 혹은 수정.
+
+
+ -수정 완료
+1. 변수명과 메서드명 수정
+ 1-1. 내 기준에서(영운) 최대한 가독성 좋도록 했지만.. 부족하고 어색한 부분도 있고, 전부 고치지는 못함.
+2. 회원가입을 새로하면 종료 시 해당 데이터도 저장됨.(단. 제대로 종료버튼으로 종료했을 시)
+3. 관리자 로그인 후 종료버튼 누르면 종료가 되어서 다시 메인 메뉴로 돌아오게 만듬.
+	1-1. 출력은 "종료되었습니다" 로 나와서 지우고 메뉴 이름을 "메인으로" 로 바꿈
+4. 관리자 메뉴에서 "뮤지컬 추가"를 만듬. 다만 아직 수정필요사항에서 1번을 수정하지 않아서 날짜,배우,시간,좌석 등의 문제가 있음.
+	
+*/
+
+
 public class MusicalMain {
-
-	static DataImpl di = new DataImpl();
-
-	static HashMap<String, CustomerVO> customerMap = di.getCustomerMap();
-	static HashMap<String, TitleVO> titleMap = di.getTitleMap();
-
-	static ManagerImpl implM = new ManagerImpl(customerMap, titleMap);
-	static CustomerImpl implC = new CustomerImpl(customerMap, titleMap); 
+	static BufferedReader br = new BufferedReader(
+			new InputStreamReader(System.in));
 
 	public static void main(String[] args) throws IOException {
 
-		BufferedReader br = new BufferedReader(
-				new InputStreamReader(System.in));
-		int num;
+		DataImpl database = new DataImpl();
+
+		HashMap<String, CustomerVO> customerMap = database.getcustomerDB();
+		HashMap<String, TitleVO> titleMap = database.gettitleDB();
+
+		ManagerImpl manager = new ManagerImpl(customerMap, titleMap);
+		CustomerImpl customer = new CustomerImpl(customerMap, titleMap); 
+		MusicalMain mainObject = new MusicalMain();
+		
 		System.out.println("===================================================================");
 		System.out.println("=  =====  ==  ====  ===      ===    ====     ======  =====  =======\n"
-				         + "=   ===   ==  ====  ==  ====  ===  ====  ===  ====    ====  =======\n"
-				         + "=  =   =  ==  ====  ==  ====  ===  ===  =========  ==  ===  =======\n"
-					     + "=  == ==  ==  ====  ===  ========  ===  ========  ====  ==  =======\n"
-				         + "=  =====  ==  ====  =======  ====  ===  ========        ==  =======\n"
-				         + "=  =====  ==  ====  ==  ====  ===  ===  ========  ====  ==  =======\n"
-					     + "=  =====  ==   ==   ==  ====  ===  ====  ===  ==  ====  ==  =======\n"
-					     + "=  =====  ===      ====      ===    ====     ===  ====  ==        =\n");
+				+ "=   ===   ==  ====  ==  ====  ===  ====  ===  ====    ====  =======\n"
+				+ "=  =   =  ==  ====  ==  ====  ===  ===  =========  ==  ===  =======\n"
+				+ "=  == ==  ==  ====  ===  ========  ===  ========  ====  ==  =======\n"
+				+ "=  =====  ==  ====  =======  ====  ===  ========        ==  =======\n"
+				+ "=  =====  ==  ====  ==  ====  ===  ===  ========  ====  ==  =======\n"
+				+ "=  =====  ==   ==   ==  ====  ===  ====  ===  ==  ====  ==  =======\n"
+				+ "=  =====  ===      ====      ===    ====     ===  ====  ==        =\n");
 		System.out.println("===================================================================");
-		
+		int num;
 		while(true) {
 
 			do {
@@ -43,17 +63,18 @@ public class MusicalMain {
 
 			switch(num) {
 			case 1 :
-				login(di.getCustomerMap()); break;
+				mainObject.login(customerMap, manager, customer); break;
 			case 2 : 
-				signUp(); break;
+				mainObject.signUp(customerMap); break;
 			case 3 :
-				di.saveData();
+				database.saveData();
+				database.saveTitle();
 				System.out.println("종료되었습니다.");
 				System.exit(0);
 			}
 		}
 	}
-	public static void login(HashMap<String, CustomerVO> customerMap) throws IOException {
+	public void login(HashMap<String, CustomerVO> customerMap, ManagerImpl manager, CustomerImpl customer) throws IOException {
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader(System.in));
 
@@ -68,25 +89,22 @@ public class MusicalMain {
 			}else {break;}				
 		}while(true);
 
-
 		System.out.println("비밀번호를 입력하세요.");
 
 		do{
 			pw = br.readLine();
-			CustomerVO vo = new CustomerVO();
-			vo = customerMap.get(id);
 			//do{
-			if(!vo.getPw().equals(pw)) {
+			if(!customerMap.get(id).getPw().equals(pw)) {
 				System.out.println("비밀번호를 확인 해주세요");
 				//pw = br.readLine();
 			}else {
 				if(id.equals("admin") && pw.equals("1111")) {
-					implM.menu();
+					manager.menu();
 					break;
 				}
 				else {
 					System.out.println("로그인 성공!");
-					implC.start(id);
+					customer.succesLogIn(id);
 					break;
 				}
 			}				
@@ -94,12 +112,10 @@ public class MusicalMain {
 
 	}
 
-	public static void signUp() {
+	public void signUp(HashMap<String, CustomerVO> customerMap) {
 
 		SignUpException exp = new SignUpException();
 
-		BufferedReader br = new BufferedReader(
-				new InputStreamReader(System.in));
 
 		CustomerVO vo = new CustomerVO();
 
@@ -202,5 +218,4 @@ public class MusicalMain {
 		customerMap.put(vo.getId(), vo);
 
 	}
-
 }

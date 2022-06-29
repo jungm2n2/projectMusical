@@ -3,7 +3,7 @@ package com.Musical;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CustomerVO extends VO implements Serializable{
+public class CustomerVO implements Serializable{
 	
 	String id;
 	String pw;
@@ -13,10 +13,10 @@ public class CustomerVO extends VO implements Serializable{
 	String mail;
 	String phone;
 	String point;
-	ArrayList<BookticketVO> ph = null;
+	ArrayList<BookticketVO> paymentHistoy = null;
 
 	public CustomerVO() {
-		ph = new ArrayList<>();
+		paymentHistoy = new ArrayList<>();
 	}
 	
 	public CustomerVO(String id, String pw, String name, String birth, String gender, String mail, String phone) {
@@ -27,9 +27,8 @@ public class CustomerVO extends VO implements Serializable{
 		this.gender = gender;
 		this.mail = mail;
 		this.phone = phone;
-		ph = new ArrayList<>();
+		paymentHistoy = new ArrayList<>();
 	}
-
 
 	public String getId() {
 		return id;
@@ -79,13 +78,11 @@ public class CustomerVO extends VO implements Serializable{
 	public void setPoint(String point) {
 		this.point = point;
 	}
-
 	public ArrayList<BookticketVO> getPh() {
-		return ph;
+		return paymentHistoy;
 	}
-
-	public void setPh(ArrayList<BookticketVO> ph) {
-		this.ph = ph;
+	public void setPh(ArrayList<BookticketVO> pPaymentHistoy) {
+		this.paymentHistoy = pPaymentHistoy;
 	}
 
 	@Override
@@ -99,7 +96,7 @@ public class CustomerVO extends VO implements Serializable{
 		System.out.println(str);
 		int idx = 1;
 		
-		for (BookticketVO details : ph) {
+		for (BookticketVO details : paymentHistoy) {
 			System.out.println((idx++) + ". "+ details.toString());
 		}
 		
