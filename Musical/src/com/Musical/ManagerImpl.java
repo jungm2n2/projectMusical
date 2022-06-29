@@ -3,6 +3,7 @@ package com.Musical;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -64,14 +65,38 @@ public class ManagerImpl implements Manager{
 
 	@Override
 	public void reservationTicket() {
-
-
+		
+		for (String strKey : customerMap.keySet()) {
+			
+			if(customerMap.get(strKey).getPh().size() > 0) {
+				customerMap.get(strKey).printTicket();
+			}
+		}
 	}
 
 	@Override
 	public void totalSale() {
-
-
+		
+		try {
+			System.out.println("매출을 볼 뮤지컬을 선택해주세요.");
+			
+			ArrayList<String> arrTitle = new ArrayList<>();
+			int idx = 1;
+			for (String strKey : titleMap.keySet()) {
+				System.out.println(idx++ + ". " + strKey);
+				arrTitle.add(strKey);
+			}
+			String inputNumber = br.readLine();
+			
+			TitleVO tv = titleMap.get(arrTitle.get(Integer.parseInt(inputNumber) - 1));
+			
+			System.out.println(tv.getTitle() + "의 총 매출은 " + tv.getTotalCost() + "원 입니다.");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
 	}
 
 
