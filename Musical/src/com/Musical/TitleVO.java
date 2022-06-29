@@ -5,10 +5,10 @@ import java.io.Serializable;
 public class TitleVO implements Serializable{
 	
 	private String title;
-	private String actorCombi1;
-	private String actorCombi2;
-	private String[] time;
+	private String actorPairs1;
+	private String actorPairs2;
 	private String[] date;
+	private String[] time;
 	private int curReservationsNumber;
 	private int maxReservationsNumber;
 	private String[] stateOfSeat;
@@ -16,22 +16,26 @@ public class TitleVO implements Serializable{
 	private int totalSales;
 	
 	public TitleVO() {
+		defaultSetting();
+	}
+	
+	public TitleVO(String title, String actorPairs1, String actorPairs2, String[] date, String[] time, int cost) {
+		this.title = title;
+		this.actorPairs1 = actorPairs1;
+		this.actorPairs2 = actorPairs2;
+		this.date = date;
+		this.time = time;
+		this.cost = cost;
+		defaultSetting();
+	}
+	
+	public void defaultSetting(){
 		curReservationsNumber = 0;
 		maxReservationsNumber = 9;
 		stateOfSeat = new String[9];
 		for (int i = 0; i < maxReservationsNumber; i++) {
 			stateOfSeat[i] = String.valueOf(i + 1);
 		}
-	}
-	
-	public TitleVO(String title, String actor1, String actor2, String[] time, String[] date, int cost) {
-		super();
-		this.title = title;
-		this.actorCombi1 = actor1;
-		this.actorCombi2 = actor2;
-		this.time = time;
-		this.date = date;
-		this.cost = cost;
 	}
 
 	public String getTitle() {
@@ -43,20 +47,20 @@ public class TitleVO implements Serializable{
 	}
 
 
-	public String getActorCombi1() {
-		return actorCombi1;
+	public String getActorPairs1() {
+		return actorPairs1;
 	}
 
-	public void setActorCombi1(String actorCombi1) {
-		this.actorCombi1 = actorCombi1;
+	public void setActorPairs1(String actorPairs1) {
+		this.actorPairs1 = actorPairs1;
 	}
 
-	public String getActorCombi2() {
-		return actorCombi2;
+	public String getActorPairs2() {
+		return actorPairs2;
 	}
 
-	public void setActorCombi2(String actorCombi2) {
-		this.actorCombi2 = actorCombi2;
+	public void setActorPairs2(String actorPairs2) {
+		this.actorPairs2 = actorPairs2;
 	}
 
 	public String[] getTime() {
@@ -117,10 +121,10 @@ public class TitleVO implements Serializable{
 
 	@Override
 	public String toString() {
-		String str = String.format("%-12s %-4s %-5s %2s %5s %5s %5s %5s %5s %d %d",title,actorCombi1,actorCombi2,
+		String str = String.format("%-12s %-4s %-5s %2s %5s %5s %5s %5s %5s %d %d",title,actorPairs1,actorPairs2,
 				time[0],time[1],time[2],date[0],date[1],date[2],cost, totalSales);
 		
-		return str;
+		return null;
 	}
 
 }

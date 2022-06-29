@@ -26,9 +26,9 @@ public class ManagerImpl implements Manager{
 		while(true) {
 			try {
 				do {
-					System.out.println("1.회원조회 \n2.예매현황 \n3.매출조회 \n4.종료\n:");
+					System.out.println("1.회원조회 \n2.예매현황 \n3.매출조회 \n4.뮤지컬 추가 \n5.메인으로\n:");
 					num =Integer.parseInt(br.readLine());
-				}while(num<1 || 4<num);
+				}while(num<1 || 5<num);
 
 				switch(num) {
 				case 1 :
@@ -37,9 +37,12 @@ public class ManagerImpl implements Manager{
 					reserveTicket(); break;
 				case 3 :
 					totalSale(); break;
+				case 4:
+					addMusical(); break;
 				default :
-					System.out.println("종료되었습니다.");
-					System.exit(0);
+//					System.out.println("종료되었습니다.");
+//					메인으로 가기로 바꿔서 주석처리
+					return;
 				}
 			} catch (Exception e) {
 				System.out.println(e.toString());
@@ -87,6 +90,49 @@ public class ManagerImpl implements Manager{
 			
 			System.out.println(tv.getTitle() + "의 총 매출은 " + tv.getTotalSales() + "원 입니다.");
 			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	@Override
+	public void addMusical() {
+		try {
+			
+			String musicalTitle = null;
+			String actorPairs1 = null;
+			String actorPairs2 = null;
+			
+			
+			System.out.println("추가할 뮤지컬의 이름을 입력하세요.");
+			musicalTitle = br.readLine();
+			
+			System.out.println("배우 조합1 을 입력하세요. [이정민,시연]");
+			actorPairs1 = br.readLine();
+			
+			System.out.println("배우 조합2 를 입력하세요. [정민,안시연]");
+			actorPairs2 = br.readLine();
+			
+			
+//			임시로 데이터 가져와서 넣어줘서 생선만 해줌
+			String [] arrTime = {"11:00","15:00","19:30"};
+			String [] arrDate = {"7/1(금)","7/2(토)","7/3(일)"};
+			int [] arrCost = {10000,20000,30000};
+			
+		
+			TitleVO vo = new TitleVO(musicalTitle, actorPairs1, actorPairs2, arrDate, arrTime, arrCost[2]);
+			
+			titleMap.put(vo.getTitle(), vo);
+			
+//			이 아래는 원래라면 추가해야하는데 구조를 바꿔야 할 것 같아서 일단 보류
+//			System.out.println("날짜1 을 입력하세요.");
+//			System.out.println("날짜2 을 입력하세요.");
+//			System.out.println("날짜3 을 입력하세요.");
+//			
+//			System.out.println("시간1 을 입력하세요.");
+//			System.out.println("시간2 을 입력하세요.");
+//			System.out.println("시간3 을 입력하세요.");
+//			System.out.println("티켓 가격을 입력하세요.");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

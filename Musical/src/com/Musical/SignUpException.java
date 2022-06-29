@@ -173,12 +173,9 @@ public class SignUpException {
 				throw new Exception("잘못된 번호입니다.");
 				
 			}
-		
-		
 		}
-
-
-
 	}
-
+	
+	
+	
 }

@@ -39,11 +39,11 @@ public class CustomerImpl implements Customer{
 
 				switch (selectMenu) {
 
-				case(1):updateUserInfo();break;
+				case(1):updateCustomerInfo();break;
 				case(2):reserveMusical();break;
 				case(3):reserveHistory();break;
 				case(4):logout();return;
-				case(5):deleteUserInfo();return;
+				case(5):deleteCustomerInfo();return;
             
 				}
 			}
@@ -56,7 +56,7 @@ public class CustomerImpl implements Customer{
 	
 
 	@Override
-	public void updateUserInfo() {
+	public void updateCustomerInfo() {
 
 		try {
 
@@ -160,7 +160,7 @@ public class CustomerImpl implements Customer{
 	}
 
 	@Override
-	public void deleteUserInfo() {
+	public void deleteCustomerInfo() {
 		try {
 
 			System.out.print("Å»ÅðÇÏ½Ã°Ú½À´Ï±î?[Y/N]");

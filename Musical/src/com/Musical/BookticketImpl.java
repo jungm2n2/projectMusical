@@ -64,14 +64,14 @@ public class BookticketImpl implements Bookticket{
 		System.out.println("                     <배우 조합을 선택하세요>");
 		System.out.println("===================================================================");
 
-		System.out.println("1. " + titleMap.get(selectedTitle).getActorCombi1());
-		System.out.println("2. " + titleMap.get(selectedTitle).getActorCombi2());
+		System.out.println("1. " + titleMap.get(selectedTitle).getActorPairs1());
+		System.out.println("2. " + titleMap.get(selectedTitle).getActorPairs2());
 
 		if(inputSelect().equals("1")) {
-			paymentHistory.setActor(titleMap.get(selectedTitle).getActorCombi1());
+			paymentHistory.setActor(titleMap.get(selectedTitle).getActorPairs1());
 		}
 		else {
-			paymentHistory.setActor(titleMap.get(selectedTitle).getActorCombi2());
+			paymentHistory.setActor(titleMap.get(selectedTitle).getActorPairs2());
 		}
 		System.out.println(paymentHistory.getActor() + "을 선택하셨습니다.");
 	}
