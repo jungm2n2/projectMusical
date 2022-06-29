@@ -138,15 +138,19 @@ public class CustomerImpl implements Customer{
       try {
          
          
-         System.out.print("탈퇴하시겠습니까?");
+         System.out.print("탈퇴하시겠습니까?[Y/N]");
          String yn = br.readLine();
          
-        // if(yn.equals("Y")||)
+         if(yn.equals("Y") || yn.equals("y")) {
+        	 customerMap.remove(id);
+             System.out.println("회원탈퇴가 완료되었습니다");
+         }else {
+        	 System.out.println("다시 입력해주세요");
+         }
          
 
          
-         customerMap.remove(id);
-         System.out.println("회원탈퇴가 완료되었습니다");
+         
          
          
       } catch (Exception e) {
@@ -189,7 +193,7 @@ public class CustomerImpl implements Customer{
          case(2):reservation();break;
          case(3):checkTicket();break;
          case(4):logout();return;
-         case(5):userDelete();break;
+         case(5):userDelete();return;
       
          }
       }
