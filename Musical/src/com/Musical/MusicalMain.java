@@ -118,7 +118,7 @@ public class MusicalMain {
 
 			System.out.println("积斥岿老?[yyyy-mm-dd]");
 			String birth = br.readLine();
-			
+			exp.birthInputFormat(birth);
 
 			System.out.println("捞皋老 林家?");
 			String mail = br.readLine();

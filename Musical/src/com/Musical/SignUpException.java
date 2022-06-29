@@ -42,34 +42,65 @@ public class SignUpException {
 		}	
 	}
      
-	//[yyyy-mm-dd] 이형태로 입력할 수 있게 예외처리하기 : 정민
+	//[yyyy-mm-dd] 이형태로 입력할 수 있게 예외처리하기 : 정민 (완료)
 	public void birthInputFormat(String str) throws Exception {
 
-		int birth = Integer.parseInt(str);
+		boolean flag = false;
+		
+		if(str.charAt(4)=='-' && str.charAt(7)=='-')
+			flag = true;
+		if(!flag)
+			throw new Exception("잘못된 생년월일 형식입니다");
 
-		if(str.length()>6) {
-			throw new Exception("주민등록번호 앞자리 형태로 입력해주세요");	
-		}
-		if(birth<000101 || 991231< birth) {
-			throw new Exception("유효하지 않은 범위입니다.");
+	
+			int year =Integer.parseInt(str.substring(0, 4));
+		
+			if(year<0 || 2021<year) 
+				throw new Exception("잘못된 년도입니다.");
+			
+			int month =  Integer.parseInt(str.substring(5,7));
+			if(month<00 || month>12) 
+				throw new Exception("잘못된 월입니다.");
+			
+			int day = Integer.parseInt(str.substring(8,10));
+			if(day<00 || day>31) {
+				throw new Exception("잘못된 일입니다.");
+			
+			}
+
 		}
 
-	}
+
+	
 
 	public void mailInputFormat (String str) throws Exception {
+		
+		int su1=0;
+		int su2=0;
 
-		boolean flag = false;
+		
 		for(int i=0;i<str.length();i++) {
-			if(str.charAt(i)=='@' && str.charAt(i)=='.') {
-				flag = true;
+			if(str.charAt(i)=='@') {
+				su1++;
 				break;
-			}		
-		}
-		if(!flag) {
+			}
+		}	
+		
+		for(int j=0;j<str.length();j++) {
+			if(str.charAt(j)=='.') {
+				su2++;
+				break;
+			}
+		}	
+		
+		if (su1==0 && su2==0)	
+			
 			throw new Exception("잘못된 이메일 형식입니다.");
 		}
-
-		int num = 0,eng = 0;
+/*
+		int num = 0;
+		int eng = 0;
+		
 		for(int i=0;i<str.length();i++) {
 			if('0'<=str.charAt(i) && str.charAt(i)<='9') {
 				num++;
@@ -83,18 +114,50 @@ public class SignUpException {
 			throw new Exception("잘못된 이메일 형식입니다.");
 		}
 
+}	
 	}
-	//[010-xxxx-xxxx] 이형태로 입력할 수 있게 예외처리하기 : 정민
+	
+*/	
+	//[010-xxxx-xxxx] 이형태로 입력할 수 있게 예외처리하기 : 정민 (완료)
 	public void telInputFormat(String str) throws Exception {
+		
+		boolean flag = false;
+	
+			if(str.charAt(3)=='-' && str.charAt(8)=='-') {
+				flag = true;
+			}		
+		
+		if(!flag) {
+			throw new Exception("잘못된 핸드폰 번호 형식입니다.");
+		}
+		
+		
+		String number = str.substring(0,3);
+		if (!number.equals("010"))
+			throw new Exception("잘못된 번호입니다.");
 
-		for(int i=0;i<str.length();i++) {
-			if(!(0<=str.charAt(i) && str.charAt(i)<=9)) {
+		for(int i=4;i<8;i++) {
+			if(!('0'<=str.charAt(i) && str.charAt(i)<='9')) {
 				throw new Exception("잘못된 번호입니다.");
 			}
-			if(str.length()>11) {
+			
+		}
+		
+		for(int j=9;j<13;j++) {
+			
+			if(!('0'<=str.charAt(j) && str.charAt(j)<='9')) {
+				
 				throw new Exception("잘못된 번호입니다.");
+				
 			}
-
+		
+		if(str.length()>14)	{
+			
+			throw new Exception("잘못된 번호입니다.");
+		
+			
+			
+		}
 		}
 
 
