@@ -32,11 +32,11 @@ public class MusicalMain {
 		while(true) {
 
 			do {
-				System.out.println(" ____________ \t\t ______________ \t   ____________ ");
-				System.out.println("||1.로그인  || \t\t||2.회원가입  || \t  ||3.종료    ||");
-				System.out.println("||__________||\t\t||____________||\t  ||__________||");
-				System.out.println("|/__________\\|\t\t|/____________\\|\t  |/__________\\|");
-				System.out.println("===================================================================");
+				System.out.println(" ==================================================================");
+				System.out.println("ㅣ           ㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡ       ㅣ");                                                  
+				System.out.println("ㅣ          ㅣ1.로그인ㅣ      ㅣ2.회원가입ㅣ      ㅣ3.종료ㅣ      ㅣ");
+				System.out.println("ㅣ           ㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡ       ㅣ");
+				System.out.println(" ==================================================================");
 				num = Integer.parseInt(br.readLine());
 			}while(num<1 || 3<num);
 
