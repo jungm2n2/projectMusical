@@ -7,8 +7,8 @@ public class BookticketVO implements Serializable {
 	String actor;
 	String date;
 	String time;
+	String mySeat;
 	int cost;
-	
 	
 	public String getTitle() {
 		return title;
@@ -43,10 +43,8 @@ public class BookticketVO implements Serializable {
 	
 	@Override
 	public String toString() {
-		String str = String.format("%-12s %-10s %-8s %5s %7d",title, actor, date, time, cost);
+		String str = String.format("%-12s %-10s %-8s %5s %5s %7d\n",title, actor, date, time, mySeat, cost);
 		return str;
 	}
-	
-	
 }
 

@@ -7,14 +7,16 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class BookticketImpl implements Bookticket{
-	
+
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 	String currCustomer = null;
 	String pickTitle = null;
 	BookticketVO ph = new BookticketVO();
 	HashMap<String, TitleVO> titleMap = null;
-	
+
+
+
 	public BookticketImpl(String pCustomer, HashMap<String, TitleVO> pTitleMap) {
 		currCustomer = pCustomer;
 		this.titleMap = pTitleMap;
@@ -23,74 +25,77 @@ public class BookticketImpl implements Bookticket{
 	public BookticketVO ViewMenu(){
 		//회원정보를 받아와야함.
 		//이 메서드가 예매버튼을 누르거나 예매 요청을 받는 거라고 생각하자.
-		
+
 		try {
 			pickTitle = selectMusical();
-			selectActor();
-			selectDate();
-			selectTime();
+			//			selectActor();
+			//			selectDate();
+			//			selectTime();
+			selectSeat();
+
+
 			payMoney();
 		} catch (Exception e) {
 			//TODO: handle exception
 		}
-		
+
 		System.out.println();
 		System.out.println();
 		System.out.println("나의 예매 내역");
 		System.out.println(ph.toString());
-		
+
 		return ph;
 	}
 
 
 	@Override
 	public String selectMusical() {
-			ArrayList<String> arrTitle = new ArrayList<>();
-			System.out.println("작품을 선택하세요.");
+		ArrayList<String> arrTitle = new ArrayList<>();
+		System.out.println("작품을 선택하세요.");
 
-			int titleIdx = 1;
+		int titleIdx = 1;
 
-			for (String strKey : titleMap.keySet()) {
-				System.out.println(titleIdx++ + ". " + strKey);
-				arrTitle.add(strKey);
-			}
-			
-			String seletedTitle = arrTitle.get(Integer.parseInt(inputSelect()) - 1);
-			
-			ph.setTitle(seletedTitle);
-			System.out.println(seletedTitle + "을 선택하셨습니다.");
-			
-			return seletedTitle;
+		for (String strKey : titleMap.keySet()) {
+			System.out.println(titleIdx++ + ". " + strKey);
+			arrTitle.add(strKey);
+		}
+
+		String selectedTitle = arrTitle.get(Integer.parseInt(inputSelect()) - 1);
+
+		ph.setTitle(selectedTitle);
+		System.out.println(selectedTitle + "을 선택하셨습니다.");
+
+		return selectedTitle;
 	}
 
 	String inputSelect(){
 		try {
 			String inputValue = br.readLine();
 			return inputValue;
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return "";
 	}
-	
+
 	@Override
 	public void selectActor() {
-			System.out.println("배우 조합을 선택하세요.");
+		System.out.println("배우 조합을 선택하세요.");
 
-			System.out.println("1. " + titleMap.get(pickTitle).getActor1());
-			System.out.println("2. " + titleMap.get(pickTitle).getActor2());
+		System.out.println("1. " + titleMap.get(pickTitle).getActor1());
+		System.out.println("2. " + titleMap.get(pickTitle).getActor2());
 
-			if(inputSelect().equals("1")) {
-				ph.setActor(titleMap.get(pickTitle).getActor1());
-			}
-			else {
-				ph.setActor(titleMap.get(pickTitle).getActor2());
-			}
-			System.out.println(ph.getActor() + "을 선택하셨습니다.");
+		if(inputSelect().equals("1")) {
+			ph.setActor(titleMap.get(pickTitle).getActor1());
+		}
+		else {
+			ph.setActor(titleMap.get(pickTitle).getActor2());
+		}
+		System.out.println(ph.getActor() + "을 선택하셨습니다.");
 	}
 
-	
+
 	public void selectDate() {
 		select("날짜", titleMap.get(pickTitle).getDate());
 	}
@@ -102,53 +107,63 @@ public class BookticketImpl implements Bookticket{
 	}
 
 	public void select(String pStr, String[] pArr){
-			System.out.println(pStr + "을(를) 선택하세요.");
+		System.out.println(pStr + "을(를) 선택하세요.");
 
-			int titleIdx = 1;
+		int titleIdx = 1;
 
-			for (String strKey : pArr) {
-				System.out.println(titleIdx++ + ". " + strKey);
-			}
+		for (String strKey : pArr) {
+			System.out.println(titleIdx++ + ". " + strKey);
+		}
 
-			String seleted = pArr[Integer.parseInt(inputSelect()) - 1];
-			
-			System.out.println(seleted + "을 선택하셨습니다.");
+		String selected = pArr[Integer.parseInt(inputSelect()) - 1];
 
-			if(pStr.equals("날짜")){
-				ph.setDate(seleted);
-			}
-			else {
-				ph.setTime(seleted);
-			}
-	
+		System.out.println(selected + "을 선택하셨습니다.");
+
+		if(pStr.equals("날짜")){
+			ph.setDate(selected);
+		}
+		else {
+			ph.setTime(selected);
+		}
 	}
-	
+
 	@Override
 	public void payMoney() {
-			ph.setCost(titleMap.get(pickTitle).getCost());
-			System.out.println("가격은 " + ph.getCost() + " 원 입니다.");
-			System.out.println("결제 됐습니다.");
+		ph.setCost(titleMap.get(pickTitle).getCost());
+		System.out.println("가격은 " + ph.getCost() + " 원 입니다.");
+		System.out.println("결제 됐습니다.");
 	}
 
 	//현재는 미구현 상태
 	@Override
-	public void selectSeat(String pTitle) {
-			ArrayList<String> arrTitle = new ArrayList<>();
-			System.out.println("보고싶은 작품을 선택하세요.");
-
-			int titleIdx = 1;
-
-			for (String strKey : titleMap.keySet()) {
-				System.out.println(titleIdx++ + ". " + strKey);
-				arrTitle.add(strKey);
-			}
-			
-			String inputValue = inputSelect();
-			String seletedTitle = arrTitle.get(Integer.parseInt(inputValue) - 1);
-			
-			System.out.println(seletedTitle + "을 선택하셨습니다.");
-			
+	public void selectSeat() {
+		String[] seat = titleMap.get(pickTitle).getStateSeat();
+		
+		seatDraw(seat);
+		
+		System.out.println("좌석을 선택하세요.");
+		String selected = inputSelect();
+		seat[Integer.valueOf(selected) - 1] = "■";
+		
+		System.out.println(selected + "번을 선택하셨습니다.");
+		
+//		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+//		System.out.printf("| %s | %s | %s |\n", seat[0], seat[1], seat[2]);
+//		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+//		System.out.printf("| %s | %s | %s |\n", seat[3], seat[4], seat[5]);
+//		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+//		System.out.printf("| %s | %s | %s |\n", seat[6], seat[7], seat[8]);
+//		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 	}
 	
-
+	void seatDraw(String[] pSeat){
+		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.printf("| %s | %s | %s |\n", pSeat[0], pSeat[1], pSeat[2]);
+		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.printf("| %s | %s | %s |\n", pSeat[3], pSeat[4], pSeat[5]);
+		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.printf("| %s | %s | %s |\n", pSeat[6], pSeat[7], pSeat[8]);
+		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+	}
+	
 }
