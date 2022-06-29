@@ -89,7 +89,7 @@ public class CustomerImpl implements Customer{
 	public void reservation() {
 
 		BookticketImpl bk = new BookticketImpl(id, titleMap);
-		customerMap.get(id).setPh(bk.ViewMenu());
+		customerMap.get(id).getPh().add(bk.ViewMenu());
 	}
 
 	@Override

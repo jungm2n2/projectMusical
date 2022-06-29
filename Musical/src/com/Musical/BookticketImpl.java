@@ -12,7 +12,7 @@ public class BookticketImpl implements Bookticket{
 
 	String currCustomer = null;
 	String pickTitle = null;
-	BookTicketVO ph = new BookTicketVO();
+	BookticketVO ph = new BookticketVO();
 	HashMap<String, TitleVO> titleMap = null;
 	
 	public BookticketImpl(String pCustomer, HashMap<String, TitleVO> pTitleMap) {
@@ -20,7 +20,7 @@ public class BookticketImpl implements Bookticket{
 		this.titleMap = pTitleMap;
 	}
 
-	public BookTicketVO ViewMenu(){
+	public BookticketVO ViewMenu(){
 		//회원정보를 받아와야함.
 		//이 메서드가 예매버튼을 누르거나 예매 요청을 받는 거라고 생각하자.
 		
@@ -64,8 +64,14 @@ public class BookticketImpl implements Bookticket{
 	}
 
 	String inputSelect(){
-		String inputValue = br.readLine();
-		return inputValue;
+		try {
+			String inputValue = br.readLine();
+			return inputValue;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "";
 	}
 	
 	@Override
@@ -108,7 +114,13 @@ public class BookticketImpl implements Bookticket{
 			
 			System.out.println(seleted + "을 선택하셨습니다.");
 
-			return pStr.equals("날짜") ? ph.setData(seleted) : ph.setTime(seleted);
+			if(pStr.equals("날짜")){
+				ph.setDate(seleted);
+			}
+			else {
+				ph.setTime(seleted);
+			}
+	
 	}
 	
 	@Override
@@ -131,8 +143,7 @@ public class BookticketImpl implements Bookticket{
 				arrTitle.add(strKey);
 			}
 			
-			String inputValue;
-			inputValue = br.readLine();
+			String inputValue = inputSelect();
 			String seletedTitle = arrTitle.get(Integer.parseInt(inputValue) - 1);
 			
 			System.out.println(seletedTitle + "을 선택하셨습니다.");
