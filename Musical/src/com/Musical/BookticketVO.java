@@ -7,7 +7,7 @@ public class BookticketVO implements Serializable {
 	String actor;
 	String date;
 	String time;
-	String mySeat;
+	String seat;
 	int cost;
 	
 	public String getTitle() {
@@ -40,17 +40,16 @@ public class BookticketVO implements Serializable {
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
-	public String getMySeat() {
-		return mySeat;
+	public String getSeat() {
+		return seat;
 	}
-	public void setMySeat(String mySeat) {
-		this.mySeat = mySeat;
+	public void setSeat(String seat) {
+		this.seat = seat;
 	}
-
 	
 	@Override
 	public String toString() {
-		String str = String.format("%-12s %-10s %-8s %5s %7s %7d",title, actor, date, time, mySeat, cost);
+		String str = String.format("%-12s %-10s %-8s %5s %7s %7d",title, actor, date, time, seat, cost);
 		return str;
 	}
 }
