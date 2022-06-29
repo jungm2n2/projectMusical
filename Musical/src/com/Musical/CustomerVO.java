@@ -93,7 +93,7 @@ public class CustomerVO {
 		return str;
 	}
 	public String printTicket() {
-		String str = String.format("%-12s %-10s %-8s %5s %7s","ì œëª©","ë°°ìš°","ë‚ ì§œ","ì‹œê°„","ê²°ì œê¸ˆì•¡");
+		String str = String.format("%-12s %-10s %-8s %5s %7s","Á¦¸ñ","¹è¿ì","³¯Â¥","½Ã°£","°áÁ¦±Ý¾×");
 		int idx = 1;
 		
 		for (BookticketVO details : ph) {
