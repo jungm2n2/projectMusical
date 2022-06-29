@@ -2,7 +2,6 @@ package com.Musical;
 //시연
 import java.io.*;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class MusicalMain {
 	
@@ -88,12 +87,23 @@ public class MusicalMain {
 
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader(System.in));
+		
+		CustomerVO vo = new CustomerVO();
+		
+		while(true) {
+			try {
+				System.out.println("아이디를 입력하세요.");
+				String id = br.readLine();
+				exp.inputFormat(id);
+				break;
+
+			} catch (Exception e) {
+
+				System.out.println(e.toString());     
+			}
+		}
 
 		try {
-			System.out.println("아이디를 입력하세요.");
-			String id = br.readLine();
-			exp.inputFormat(id);
-
 			System.out.println("비밀번호를 입력하세요.");
 			String pw = br.readLine();
 
@@ -128,16 +138,12 @@ public class MusicalMain {
 			String phone = br.readLine();
 			exp.telInputFormat(phone);
 
-			CustomerVO vo = new CustomerVO(id, pw, name, birth, gender, mail, phone);
-
 			customerMap.put(vo.getId(), vo);
 
 		} catch (Exception e) {
 
 			System.out.println(e.toString());     
 		}
-
-
 
 	}
 
