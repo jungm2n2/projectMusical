@@ -47,7 +47,9 @@ public class BookticketImpl implements Bookticket{
 	@Override
 	public String selectMusical() {
 		ArrayList<String> arrTitle = new ArrayList<>();
-		System.out.println("작품을 선택하세요.");
+		System.out.println("===================================================================");
+		System.out.println("                        <작품을 선택하세요>");
+		System.out.println("===================================================================");
 
 		int titleIdx = 1;
 
@@ -77,7 +79,9 @@ public class BookticketImpl implements Bookticket{
 
 	@Override
 	public void selectActor() {
-		System.out.println("배우 조합을 선택하세요.");
+		System.out.println("===================================================================");
+		System.out.println("                     <배우 조합을 선택하세요>");
+		System.out.println("===================================================================");
 
 		System.out.println("1. " + titleMap.get(pickTitle).getActor1());
 		System.out.println("2. " + titleMap.get(pickTitle).getActor2());
@@ -103,7 +107,9 @@ public class BookticketImpl implements Bookticket{
 	}
 
 	public void select(String pStr, String[] pArr){
-		System.out.println(pStr + "을(를) 선택하세요.");
+		System.out.println("===================================================================");
+		System.out.println("                     <"+pStr + "을(를) 선택하세요>");
+		System.out.println("===================================================================");
 
 		int titleIdx = 1;
 
@@ -135,10 +141,13 @@ public class BookticketImpl implements Bookticket{
 	@Override
 	public void selectSeat() {
 		String[] seat = titleMap.get(pickTitle).getStateSeat();
+		System.out.println("===================================================================");
+		System.out.println("                      <좌석을 선택하세요>");
+		System.out.println("===================================================================");
 		seatDraw(seat);
 		String selected;
 		while(true) {
-			System.out.println("좌석을 선택하세요.");
+			
 			selected = inputSelect();
 			
 			if(seat[Integer.valueOf(selected) - 1] == "■") {
@@ -157,13 +166,13 @@ public class BookticketImpl implements Bookticket{
 	}
 
 	void seatDraw(String[] pSeat){
-		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.println(" ㅡㅡㅡㅡㅡㅡ");
 		System.out.printf("| %s | %s | %s |\n", pSeat[0], pSeat[1], pSeat[2]);
-		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.println(" ㅡㅡㅡㅡㅡㅡ");
 		System.out.printf("| %s | %s | %s |\n", pSeat[3], pSeat[4], pSeat[5]);
-		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.println(" ㅡㅡㅡㅡㅡㅡ");
 		System.out.printf("| %s | %s | %s |\n", pSeat[6], pSeat[7], pSeat[8]);
-		System.out.println(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.println(" ㅡㅡㅡㅡㅡㅡ");
 	}
 
 }
