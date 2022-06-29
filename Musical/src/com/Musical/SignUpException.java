@@ -115,7 +115,7 @@ public class SignUpException {
 			
 			if((str.charAt(i)>='a' && 'z' >= str.charAt(i)) ||
 					(str.charAt(i)>='A' && 'Z' >= str.charAt(i))){
-				
+			}else {
 				throw new Exception ("영문자를 입력해주세요");
 			
 			}
@@ -125,7 +125,7 @@ public class SignUpException {
 		for(int i=num1+1;i<str.length();i++) {
 			if((str.charAt(i)>='a' && 'z' >= str.charAt(i)) ||
 					(str.charAt(i)>='A' && 'Z' >= str.charAt(i))) {
-				
+			}else {	
 				throw new Exception ("영문자를 입력해주세요");
 			
 		}
@@ -139,6 +139,12 @@ public class SignUpException {
 	//[010-xxxx-xxxx] 이형태로 입력할 수 있게 예외처리하기 : 정민 (완료)
 	public void telInputFormat(String str) throws Exception {
 		
+		if(str.length()!=13)	{
+			
+			throw new Exception("잘못된 번호입니다.");
+		
+		}
+		
 		boolean flag = false;
 	
 			if(str.charAt(3)=='-' && str.charAt(8)=='-') {
@@ -148,7 +154,6 @@ public class SignUpException {
 		if(!flag) {
 			throw new Exception("잘못된 핸드폰 번호 형식입니다.");
 		}
-		
 		
 		String number = str.substring(0,3);
 		if (!number.equals("010"))
@@ -169,13 +174,7 @@ public class SignUpException {
 				
 			}
 		
-		if(str.length()>14)	{
-			
-			throw new Exception("잘못된 번호입니다.");
 		
-			
-			
-		}
 		}
 
 

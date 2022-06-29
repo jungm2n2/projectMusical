@@ -32,11 +32,11 @@ public class MusicalMain {
 		while(true) {
 
 			do {
-				System.out.println(" ____________ \t\t ______________ \t   ____________ ");
-				System.out.println("||1.로그인  || \t\t||2.회원가입  || \t  ||3.종료    ||");
-				System.out.println("||__________||\t\t||____________||\t  ||__________||");
-				System.out.println("|/__________\\|\t\t|/____________\\|\t  |/__________\\|");
-				System.out.println("===================================================================");
+				System.out.println(" ==================================================================");
+				System.out.println("ㅣ           ㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡ       ㅣ");                                                  
+				System.out.println("ㅣ          ㅣ1.로그인ㅣ      ㅣ2.회원가입ㅣ      ㅣ3.종료ㅣ      ㅣ");
+				System.out.println("ㅣ           ㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡ       ㅣ");
+				System.out.println(" ==================================================================");
 				num = Integer.parseInt(br.readLine());
 			}while(num<1 || 3<num);
 
@@ -159,7 +159,7 @@ public class MusicalMain {
 			try {
 				System.out.println("생년월일?[yyyy-mm-dd]");
 				String birth = br.readLine();
-				exp.birthInputFormat(birth); // 미구현상태(완료)
+				exp.birthInputFormat(birth);
 				vo.setBirth(birth);
 				break;
 
@@ -173,7 +173,7 @@ public class MusicalMain {
 			try {
 				System.out.println("이메일 주소?");
 				String mail = br.readLine();
-				exp.mailInputFormat(mail); //아직 구현이 안되어있음(완료)
+				exp.mailInputFormat(mail);
 				vo.setMail(mail);
 				break;
 
@@ -195,8 +195,10 @@ public class MusicalMain {
 				System.out.println(e.toString());     
 			}
 		}
+		System.out.println("===================================================================");
+		System.out.println("                          회원가입 성공 !");
+		System.out.println("===================================================================");
 
-		System.out.println("회원가입 성공 !");
 		customerMap.put(vo.getId(), vo);
 
 	}

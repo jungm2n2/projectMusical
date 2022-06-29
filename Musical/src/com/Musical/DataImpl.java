@@ -31,7 +31,6 @@ public class DataImpl implements Data {
 	HashMap<String, TitleVO> titleMap = new HashMap<>();
 
 	public DataImpl() {
-		inputTitle();
 		loadData();
 	}
 
@@ -79,11 +78,11 @@ public class DataImpl implements Data {
 
 		try {
 			File f = new File("c:\\Musical\\userlist.txt");
-			
+
 			if(!f.getParentFile().exists()) {
 				f.getParentFile().mkdirs();				
 			}
-			
+
 			FileOutputStream fos = new FileOutputStream(f);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 
@@ -99,27 +98,66 @@ public class DataImpl implements Data {
 	@Override
 	public void loadData() {
 
-		try {
-			File f = new File("c:\\Musical\\userlist.txt");
+		load1("userlist.txt");
+		load1("titlelist.txt");
+		//		try {
+		//			File f = new File("c:\\Musical\\userlist.txt");
+		//
+		//			if(!f.exists()) {				
+		//				inputCustomer();				
+		//			}
+		//			else {				
+		//				FileInputStream fis = new FileInputStream(f);
+		//				ObjectInputStream ois = new ObjectInputStream(fis);
+		//				
+		//				customerMap = (HashMap<String, CustomerVO>)ois.readObject();
+		//				
+		//				fis.close();
+		//				ois.close();
+		//				
+		//			}
+		//
+		//		} catch (Exception e) {
+		//			System.out.println(e.toString());
+		//		}
+	}
 
-			if(!f.exists()) {				
-				inputCustomer();				
-			}
-			else {				
+	void load1(String path) {
+
+		try {
+			File f = new File("c:\\Musical\\" + path);
+
+			if(!f.exists()) {
+
+				inputCustomer();
+				inputTitle();
+
+			} else if(path.equals("userlist.txt")) {			
+
 				FileInputStream fis = new FileInputStream(f);
 				ObjectInputStream ois = new ObjectInputStream(fis);
-				
+
 				customerMap = (HashMap<String, CustomerVO>)ois.readObject();
-				
+
 				fis.close();
 				ois.close();
-				
-			}
 
+			} else if(path.equals("titlelist.txt")) {
+				if(!f.exists()) {
+					inputTitle();
+					f.getParentFile().mkdirs();	
+				}
+				FileInputStream fis = new FileInputStream(f);
+				ObjectInputStream ois = new ObjectInputStream(fis);
+
+				titleMap = (HashMap<String, TitleVO>)ois.readObject();
+
+				fis.close();
+				ois.close();
+			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
-
 	}
 
 	@Override
