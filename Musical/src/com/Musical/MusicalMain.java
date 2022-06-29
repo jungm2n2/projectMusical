@@ -117,32 +117,6 @@ public class MusicalMain {
 					System.out.println("비밀번호가 다릅니다.다시입력해주세요.");
 				}
 			}while(true);
-
-
-			System.out.println("이름?");
-			String name = br.readLine();		
-
-			System.out.println("성별? [F/M]");
-			String gender = br.readLine(); 
-			exp.genderInputFormat(gender);
-
-			System.out.println("생년월일?[yyyy-mm-dd]");
-			String birth = br.readLine();
-			exp.birthInputFormat(birth);
-
-			System.out.println("이메일 주소?");
-			String mail = br.readLine();
-			exp.mailInputFormat(mail);
-
-			System.out.println("핸드폰 번호?[010-xxxx-xxxx]");
-			String phone = br.readLine();
-			exp.telInputFormat(phone);
-
-			CustomerVO vo = new CustomerVO(id, pw, name, birth, gender, mail, phone);
-
-			customerMap.put(vo.getId(), vo);
-
-
 		} catch (Exception e) {
 			System.out.println(e.toString());     
 		}
