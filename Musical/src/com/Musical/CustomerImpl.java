@@ -31,34 +31,35 @@ public class CustomerImpl implements Customer{
 	public void userUpdate() {
 
 		try {
-
-			System.out.print("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			System.out.print("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 			changepw = (br.readLine());
 
 			vo = customerMap.get(id);
 
 			if(!vo.getPw().equals(changepw)){
-				System.out.println("ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù");
+				System.out.println("ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤");
 				return;
+
 			}else {
-				System.out.println("ºñ¹Ğ¹øÈ£ ÀÎÁõ ¿Ï·á");
+				System.out.println("ë¹„ë°€ë²ˆí˜¸ ì¸ì¦ ì™„ë£Œ");
 			}
 
-			System.out.println("¼öÁ¤ÇÏ°í½ÍÀº È¸¿øÁ¤º¸¸¦ ¼±ÅÃÇÏ¼¼¿ä");
-			System.out.println("1.ºñ¹Ğ¹øÈ£ \n2.ÀÌ¸ŞÀÏ \n3.ÇÚµåÆù¹øÈ£");
+
+			System.out.println("ìˆ˜ì •í•˜ê³ ì‹¶ì€ íšŒì›ì •ë³´ë¥¼ ì„ íƒí•˜ì„¸ìš”");
+			System.out.println("1.ë¹„ë°€ë²ˆí˜¸ \n2.ì´ë©”ì¼ \n3.í•¸ë“œí°ë²ˆí˜¸");
 			int num2 = (Integer.parseInt(br.readLine()));
 
 			boolean flag = false;
 
 			switch (num2) {
 			case 1:
-				System.out.println("¼öÁ¤ÇÒ ºñ¹Ğ¹øÈ£?");
+				System.out.println("ìˆ˜ì •í•  ë¹„ë°€ë²ˆí˜¸?");
 				vo.setPw(br.readLine()); flag = true; break;
 			case 2:
-				System.out.println("¼öÁ¤ÇÒ ÀÌ¸ŞÀÏ?");
+				System.out.println("ìˆ˜ì •í•  ì´ë©”ì¼?");
 				vo.setMail(br.readLine()); flag = true; break;
 			case 3:
-				System.out.println("¼öÁ¤ÇÒ ÇÚµåÆù ¹øÈ£?");
+				System.out.println("ìˆ˜ì •í•  í•¸ë“œí° ë²ˆí˜¸?");
 				vo.setPhone(br.readLine()); flag = true; break;
 			default:
 				flag = false; break;
@@ -67,9 +68,9 @@ public class CustomerImpl implements Customer{
 
 			if(flag) {
 				customerMap.put(id, vo);
-				System.out.println("¼öÁ¤ ¿Ï·á!");
+				System.out.println("ìˆ˜ì • ì™„ë£Œ!");
 			}else {
-				System.out.println("¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä"); 
+				System.out.println("ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”"); 
 			}
 
 
@@ -107,16 +108,16 @@ public class CustomerImpl implements Customer{
 	public void logout() {
 
 		try {
-			System.out.println("·Î±×¾Æ¿ô ÇÏ½Ã°Ú½À´Ï±î?[Y/N]");
+			System.out.println("ë¡œê·¸ì•„ì›ƒ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?[Y/N]");
 			answer = br.readLine();
 
 			if(answer.equals("Y") || answer.equals("y")) {
-				System.out.println("·Î±×¾Æ¿ôÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù");
+				System.out.println("ë¡œê·¸ì•„ì›ƒì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤");
 				System.exit(0);
 			}else if(answer.equals("N") || answer.equals("n")) {
 				return;
 			}else {
-				System.out.println("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä");
+				System.out.println("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”");
 				return;
 			}
 
@@ -137,19 +138,17 @@ public class CustomerImpl implements Customer{
 
 		try {
 
-
-			System.out.print("Å»ÅğÇÏ°í ½ÍÀº È¸¿øÀÇ ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+			System.out.print("íƒˆí‡´í•˜ê³  ì‹¶ì€ íšŒì›ì˜ ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 			id = br.readLine();
 
 
 			if(!(searchId(id))){
-				System.out.println("ÀÔ·ÂÇÏ½Å ¾ÆÀÌµğ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+				System.out.println("ì…ë ¥í•˜ì‹  ì•„ì´ë””ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 				return;
 			}
 
 			customerMap.remove(id);
-			System.out.println("È¸¿øÅ»Åğ°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù");
-
+			System.out.println("íšŒì›íƒˆí‡´ê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤");
 
 		} catch (Exception e) {
 
@@ -180,7 +179,7 @@ public class CustomerImpl implements Customer{
 			id = id1;
 			while(true){   
 				do {
-					System.out.println("1.³»Á¤º¸¼öÁ¤ \n2.¿¹¸ÅÇÏ±â \n3.¿¹¸Å³»¿ª Á¶È¸ \n4.·Î±×¾Æ¿ô \n5.È¸¿øÅ»Åğ");
+					System.out.println("1.ë‚´ì •ë³´ìˆ˜ì • \n2.ì˜ˆë§¤í•˜ê¸° \n3.ì˜ˆë§¤ë‚´ì—­ ì¡°íšŒ \n4.ë¡œê·¸ì•„ì›ƒ \n5.íšŒì›íƒˆí‡´");
 					num = Integer.parseInt(br.readLine());
 				}while(num<1||num>5);
 
@@ -194,6 +193,7 @@ public class CustomerImpl implements Customer{
 				case(5):userDelete();break;
 
 				}
+
 			}
 
 		} catch (Exception e) {
