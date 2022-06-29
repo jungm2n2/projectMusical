@@ -201,7 +201,14 @@ public class CustomerImpl implements Customer{
 			id = id1;
 			while(true){   
 				do {
-					System.out.println("1.내정보수정 \n2.예매하기 \n3.예매내역 조회 \n4.로그아웃 \n5.회원탈퇴");
+					System.out.println(" ==================================================================");
+					System.out.println("ㅣ         ㅡㅡㅡㅡㅡㅡㅡ   ㅡㅡㅡㅡㅡㅡ   ㅡㅡㅡㅡㅡㅡㅡㅡ       ㅣ");                                                  
+					System.out.println("ㅣ        ㅣ1.내정보수정ㅣ ㅣ2.예매하기ㅣ ㅣ3.예매내역 조회ㅣ     ㅣ");
+					System.out.println("ㅣ        ㅡㅡㅡㅡㅡㅡㅡ   ㅡㅡㅡㅡㅡㅡ    ㅡㅡㅡㅡㅡㅡㅡㅡ       ㅣ");
+					System.out.println("ㅣ                 ㅡㅡㅡㅡㅡㅡ      ㅡㅡㅡㅡㅡㅡ                 ㅣ");
+					System.out.println("ㅣ                ㅣ4.로그아웃ㅣ    ㅣ5.회원탈퇴ㅣ                ㅣ");
+					System.out.println("ㅣ                 ㅡㅡㅡㅡㅡㅡ      ㅡㅡㅡㅡㅡㅡ                 ㅣ");
+					System.out.println(" ==================================================================");
 					num = Integer.parseInt(br.readLine());
 				}while(num<1||num>5);
 
