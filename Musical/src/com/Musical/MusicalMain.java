@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.HashMap;
 
 public class MusicalMain {
-	
+
 	static DataImpl di = new DataImpl();
 
 	static HashMap<String, CustomerVO> customerMap = di.getCustomerMap();
@@ -56,12 +56,12 @@ public class MusicalMain {
 
 
 		System.out.println("비밀번호를 입력하세요.");
-		
+
 		do{
-		pw = br.readLine();
-		CustomerVO vo = new CustomerVO();
-		vo = customerMap.get(id);
-		//do{
+			pw = br.readLine();
+			CustomerVO vo = new CustomerVO();
+			vo = customerMap.get(id);
+			//do{
 			if(!vo.getPw().equals(pw)) {
 				System.out.println("비밀번호를 확인 해주세요");
 				//pw = br.readLine();
@@ -71,7 +71,6 @@ public class MusicalMain {
 					break;
 				}
 				else {
-
 					System.out.println("로그인 성공!");
 					implC.start(id);
 					break;
@@ -87,18 +86,18 @@ public class MusicalMain {
 
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader(System.in));
-		
+
 		CustomerVO vo = new CustomerVO();
-		
+
 		while(true) {
 			try {
 				System.out.println("아이디를 입력하세요.");
 				String id = br.readLine();
 				exp.inputFormat(id);
+				vo.setId(id);
 				break;
 
 			} catch (Exception e) {
-
 				System.out.println(e.toString());     
 			}
 		}
@@ -111,32 +110,41 @@ public class MusicalMain {
 			do {
 				String pw2 = br.readLine();
 
-				if(pw.equals(pw2)) {break;
+				if(pw.equals(pw2)) {
+					vo.setPw(pw2); break;
 				}
 				else {
 					System.out.println("비밀번호가 다릅니다.다시입력해주세요.");
 				}
-
 			}while(true);
-
+		} catch (Exception e) {
+			System.out.println(e.toString());     
+		}
+		
+		try {
 			System.out.println("이름?");
-			String name = br.readLine();		
+			String name = br.readLine();
+			vo.setName(name);
 
 			System.out.println("성별? [F/M]");
 			String gender = br.readLine(); 
 			exp.genderInputFormat(gender);
+			vo.setGender(gender);
 
 			System.out.println("생년월일?[yyyy-mm-dd]");
 			String birth = br.readLine();
-			
+			exp.birthInputFormat(birth);
+			vo.setBirth(birth);
 
 			System.out.println("이메일 주소?");
 			String mail = br.readLine();
 			exp.mailInputFormat(mail);
+			vo.setMail(mail);
 
 			System.out.println("핸드폰 번호?[010-xxxx-xxxx]");
 			String phone = br.readLine();
 			exp.telInputFormat(phone);
+			vo.setPhone(phone);
 
 			customerMap.put(vo.getId(), vo);
 
