@@ -92,7 +92,7 @@ public class CustomerVO {
 		
 		return str;
 	}
-	public String printTicket() {
+	public String printTicket() { 
 		String str = String.format("%-12s %-10s %-8s %5s %7s","제목","배우","날짜","시간","결제금액");
 		int idx = 1;
 		

@@ -58,8 +58,6 @@ public class DataImpl implements Data {
 	//Á¤¹Î
 
 	public void inputTitle() {
-
-
 		for(int i=0;i<arrTitle.length;i++) {
 
 			TitleVO vo = new TitleVO();
@@ -73,7 +71,6 @@ public class DataImpl implements Data {
 			vo.setCost(arrCost[i]);
 
 			titleMap.put(arrTitle[i], vo);
-
 		}
 	}
 
