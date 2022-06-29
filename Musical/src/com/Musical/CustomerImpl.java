@@ -6,156 +6,159 @@ import java.util.HashMap;
 
 
 public class CustomerImpl implements Customer{
-	
+
 	HashMap<String, CustomerVO> customerMap = null;
 	HashMap<String, TitleVO> titleMap = null;
 	String id;
 	String answer;
 	BookticketImpl bt = null;
-	
+
 	CustomerVO vo = new CustomerVO(); 
 
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	
+
 	String changepw;
 	int num;
-	
+
 
 	public CustomerImpl(HashMap<String, CustomerVO> customerMap, HashMap<String, TitleVO> titleMap) {
 		this.customerMap = customerMap;
 		this.titleMap = titleMap;
-		
+
 	}
 
 	@Override
 	public void userUpdate() {
-		
+
 		try {
-			
-			System.out.print("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
+
+			System.out.print("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
 			changepw = (br.readLine());
-			
+
 			vo = customerMap.get(id);
-			
+
 			if(!vo.getPw().equals(changepw)){
-				System.out.println("ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤");
+				System.out.println("ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù");
 				return;
-		}else {
-			System.out.println("ë¹„ë°€ë²ˆí˜¸ ì¸ì¦ ì™„ë£Œ");
-		}
-			
-			System.out.println("ìˆ˜ì •í•˜ê³ ì‹¶ì€ íšŒì›ì •ë³´ë¥¼ ì„ íƒí•˜ì„¸ìš”");
-			System.out.println("1.ë¹„ë°€ë²ˆí˜¸ \n2.ì´ë©”ì¼ \n3.í•¸ë“œí°ë²ˆí˜¸");
+			}else {
+				System.out.println("ºñ¹Ğ¹øÈ£ ÀÎÁõ ¿Ï·á");
+			}
+
+			System.out.println("¼öÁ¤ÇÏ°í½ÍÀº È¸¿øÁ¤º¸¸¦ ¼±ÅÃÇÏ¼¼¿ä");
+			System.out.println("1.ºñ¹Ğ¹øÈ£ \n2.ÀÌ¸ŞÀÏ \n3.ÇÚµåÆù¹øÈ£");
 			int num2 = (Integer.parseInt(br.readLine()));
-			
+
 			boolean flag = false;
-			
+
 			switch (num2) {
 			case 1:
-				System.out.println("ìˆ˜ì •í•  ë¹„ë°€ë²ˆí˜¸?");
+				System.out.println("¼öÁ¤ÇÒ ºñ¹Ğ¹øÈ£?");
 				vo.setPw(br.readLine()); flag = true; break;
 			case 2:
-				System.out.println("ìˆ˜ì •í•  ì´ë©”ì¼?");
+				System.out.println("¼öÁ¤ÇÒ ÀÌ¸ŞÀÏ?");
 				vo.setMail(br.readLine()); flag = true; break;
 			case 3:
-				System.out.println("ìˆ˜ì •í•  í•¸ë“œí° ë²ˆí˜¸?");
+				System.out.println("¼öÁ¤ÇÒ ÇÚµåÆù ¹øÈ£?");
 				vo.setPhone(br.readLine()); flag = true; break;
 			default:
 				flag = false; break;
-			
+
 			}
-			
+
 			if(flag) {
 				customerMap.put(id, vo);
-				System.out.println("ìˆ˜ì • ì™„ë£Œ!");
+				System.out.println("¼öÁ¤ ¿Ï·á!");
 			}else {
-				System.out.println("ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”"); 
+				System.out.println("¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä"); 
 			}
-			
-			
-			
-			
-			
-			
-			
+
+
+
+
+
+
+
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
-		
+
 	}
-			
-	
+
+
 	@Override
 	public void reservation() {
-		
+
 		BookticketImpl bk = new BookticketImpl(id, titleMap);
 		customerMap.get(id).setPh(bk.ViewMenu());
 	}
-	
+
 	@Override
 	public void checkTicket() {
-		
+
 		System.out.println(customerMap.get(id).getPh().toString());
-		
+
+
+
+
 
 	}
 
 	@Override
 	public void logout() {
-		
+
 		try {
-			System.out.println("ë¡œê·¸ì•„ì›ƒ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?[Y/N]");
+			System.out.println("·Î±×¾Æ¿ô ÇÏ½Ã°Ú½À´Ï±î?[Y/N]");
 			answer = br.readLine();
-			
+
 			if(answer.equals("Y") || answer.equals("y")) {
-				System.out.println("ë¡œê·¸ì•„ì›ƒì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤");
+				System.out.println("·Î±×¾Æ¿ôÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù");
 				System.exit(0);
 			}else if(answer.equals("N") || answer.equals("n")) {
 				return;
 			}else {
-				System.out.println("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”");
+				System.out.println("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä");
 				return;
 			}
-			
-			
-			
-			
+
+
+
+
 		} catch (Exception e) {
-			
+
 		}
-		
+
 	}
-	
-	
-	
+
+
+
 
 	@Override
 	public void userDelete() {
-		
+
 		try {
-			
-			
-			System.out.print("íƒˆí‡´í•˜ê³  ì‹¶ì€ íšŒì›ì˜ ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+
+
+			System.out.print("Å»ÅğÇÏ°í ½ÍÀº È¸¿øÀÇ ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
 			id = br.readLine();
-			
+
 
 			if(!(searchId(id))){
-				System.out.println("ì…ë ¥í•˜ì‹  ì•„ì´ë””ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
+				System.out.println("ÀÔ·ÂÇÏ½Å ¾ÆÀÌµğ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
 				return;
 			}
-			
+
 			customerMap.remove(id);
-			System.out.println("íšŒì›íƒˆí‡´ê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤");
-			
-			
+			System.out.println("È¸¿øÅ»Åğ°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù");
+
+
 		} catch (Exception e) {
-			
+
 		}
-		
-	
-		
-		
-		
+
+
+
+
+
 	}
 
 
@@ -163,40 +166,40 @@ public class CustomerImpl implements Customer{
 
 	@Override
 	public boolean searchId(String id) {
-		
+
 		return customerMap.containsKey(id);
-		
-		
-		
+
+
+
 	}
-	
+
 	public void start(String id1) {
-		
+
 		try {
-			
+
 			id = id1;
-		while(true){	
-			do {
-			System.out.println("1.ë‚´ì •ë³´ìˆ˜ì • \n2.ì˜ˆë§¤í•˜ê¸° \n3.ì˜ˆë§¤ë‚´ì—­ ì¡°íšŒ \n4.ë¡œê·¸ì•„ì›ƒ \n5.íšŒì›íƒˆí‡´");
-			num = Integer.parseInt(br.readLine());
-			}while(num<1||num>5);
-			
-			
-			switch (num) {
-			
-			case(1):userUpdate();break;
-			case(2):reservation();break;
-			case(3):checkTicket();break;
-			case(4):logout();break;
-			case(5):userDelete();break;
-		
+			while(true){   
+				do {
+					System.out.println("1.³»Á¤º¸¼öÁ¤ \n2.¿¹¸ÅÇÏ±â \n3.¿¹¸Å³»¿ª Á¶È¸ \n4.·Î±×¾Æ¿ô \n5.È¸¿øÅ»Åğ");
+					num = Integer.parseInt(br.readLine());
+				}while(num<1||num>5);
+
+
+				switch (num) {
+
+				case(1):userUpdate();break;
+				case(2):reservation();break;
+				case(3):checkTicket();break;
+				case(4):logout();break;
+				case(5):userDelete();break;
+
+				}
 			}
-		}
-			
+
 		} catch (Exception e) {
-			
+
 		}
 	}
 
-	
+
 }
