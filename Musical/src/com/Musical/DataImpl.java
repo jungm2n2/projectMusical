@@ -6,15 +6,15 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
-
-
+import java.util.Random;
 
 public class DataImpl implements Data {
-
+	
 	private final String F_USER_LIST = "userData.txt";
 	private final String F_TITLE_LIST = "titleData.txt";
-	
+
 	String[] arrID = {"GANA11", "JOKER33", "STARBUCKS07","admin"};
 	String[] arrPW = {"11111", "22222", "33333","1111"};
 	String[] arrName = {"김영운", "이정민", "안시연","관리자"};
@@ -25,14 +25,13 @@ public class DataImpl implements Data {
 	String[] arrPoint = {"10000", "10000", "10000","0"};
 
 	//뮤지컬 데이터 입력.정민
-	String[] arrTitle = {"오페라의 유령", "레미제라블", "캣츠"};
-	String [] arrActorPairs1 = {"아이비,주원","김소현,김준현","김지연,정성화"};
-	String [] arrActorPairs2 = {"옥주현,조승우","정선아,박효신","최정원,남경주"};
-	String [] arrTime = {"11:00","15:00","19:30"};
-	String [] arrDate = {"7/1(금)","7/2(토)","7/3(일)"};
-	int [] arrCost = {10000,20000,30000};
-	
-	
+	String[] arrTitle = {"오페라의 유령", "레미제라블", "캣츠", "아이다", "지킬 앤 하이드", "로미오와 줄리엣"};
+	String [] arrActorPairs = {"아이비,주원","김소현,김준현","김지연,정성화","옥주현,조승우","정선아,박효신","최정원,남경주"};
+	String [] arrDate = {"7/1(금)","7/2(토)","7/3(일)", "7/8(금)","7/9(토)", "7/10(일)"};	
+	String [] arrTime = {"11:00", "13:30", "15:00", "17:00", "19:30", "21:00"};
+	int [] arrCost = {100000,120000,70000,50000,80000,150000};
+
+
 	HashMap<String, CustomerVO> customerDB = new HashMap<>();
 	HashMap<String, TitleVO> titleDB = new HashMap<>();
 
@@ -61,18 +60,19 @@ public class DataImpl implements Data {
 	//정민
 
 	public void inputTitle() {
+		Random rd = new Random();
 		for(int i=0;i<arrTitle.length;i++) {
-
-			TitleVO vo = new TitleVO();
-
-			vo.setTitle(arrTitle[i]);
-			vo.setActorPairs1(arrActorPairs1[i]);
-			vo.setActorPairs2(arrActorPairs2[i]);
-			vo.setTime(arrTime);
-			vo.setDate(arrDate);
-			vo.setCost(arrCost[i]);
-			
-			titleDB.put(arrTitle[i], vo);
+			ArrayList<DetailsInfo> arrInfo = new ArrayList<>();
+			for(int j = 0;  j < 3; j++) {
+				DetailsInfo temp = new DetailsInfo();
+				temp.setActorPairs(arrActorPairs[rd.nextInt(6)]);
+				temp.setDate(arrDate[rd.nextInt(6)]);
+				temp.setTime(arrTime[rd.nextInt(6)]);
+				temp.setCost(arrCost[rd.nextInt(6)]);
+				
+				arrInfo.add(temp);
+			}
+			titleDB.put(arrTitle[i], new TitleVO(arrTitle[i], arrInfo));
 		}
 	}
 
@@ -95,7 +95,7 @@ public class DataImpl implements Data {
 		} catch (Exception e) {
 			System.out.println(e.toString());}
 	}
-	
+
 	public void saveTitle() {
 		try {
 			File f = new File("c:\\Musical\\" + F_TITLE_LIST);
@@ -146,11 +146,11 @@ public class DataImpl implements Data {
 
 		try {
 			File f = new File("c:\\Musical\\" + path);
-			
+
 			if(!f.getParentFile().exists()) {
 				f.getParentFile().mkdirs();	
 			}
-			
+
 			if(path.equals(F_USER_LIST) && !f.exists()) {
 				inputCustomer();
 				return;
@@ -162,7 +162,7 @@ public class DataImpl implements Data {
 
 			FileInputStream fis = new FileInputStream(f);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			
+
 			if(path.equals(F_USER_LIST)) {
 				customerDB = (HashMap<String, CustomerVO>)ois.readObject();
 			}

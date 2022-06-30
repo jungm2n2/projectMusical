@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Random;
 
 public class ManagerImpl implements Manager{
 
@@ -97,42 +98,45 @@ public class ManagerImpl implements Manager{
 
 	@Override
 	public void addMusical() {
+		//다른 것들 작동 되는지 확인 후 수정
 		try {
 			
 			String musicalTitle = null;
-			String actorPairs1 = null;
-			String actorPairs2 = null;
-			
+			String actorPairs = null;
+			String date = null;
+			String time = null;
+			int cost = 0;
 			
 			System.out.println("추가할 뮤지컬의 이름을 입력하세요.");
 			musicalTitle = br.readLine();
 			
-			System.out.println("배우 조합1 을 입력하세요. [이정민,시연]");
-			actorPairs1 = br.readLine();
+			ArrayList<DetailsInfo> arrInfo = new ArrayList<>();
 			
-			System.out.println("배우 조합2 를 입력하세요. [정민,안시연]");
-			actorPairs2 = br.readLine();
+			for (int i = 0; i < 3; i++) {
+				DetailsInfo temp = new DetailsInfo();
+				System.out.println((i + 1) + "회차 정보를 입력합니다.");
+				
+				System.out.println((i + 1) + "회차 배우 조합을 입력하세요. [이정민,시연]");
+				actorPairs = br.readLine();
+				
+				System.out.println((i + 1) + "회차 날짜을 입력하세요. [7/9(토)]");
+				date = br.readLine();
+				
+				System.out.println((i + 1) + "회차 시간을 입력하세요. [11:00]");
+				time = br.readLine();
+				
+				System.out.println((i + 1) + "회차 티켓 금액을 입력하세요. [150000]");
+				cost = Integer.parseInt(br.readLine());
+				
+				temp.setActorPairs(actorPairs);
+				temp.setDate(date);
+				temp.setTime(time);
+				temp.setCost(cost);
+				
+				arrInfo.add(temp);
+			}
+			titleMap.put(musicalTitle, new TitleVO(musicalTitle, arrInfo));
 			
-			
-//			임시로 데이터 가져와서 넣어줘서 생선만 해줌
-			String [] arrTime = {"11:00","15:00","19:30"};
-			String [] arrDate = {"7/1(금)","7/2(토)","7/3(일)"};
-			int [] arrCost = {10000,20000,30000};
-			
-		
-			TitleVO vo = new TitleVO(musicalTitle, actorPairs1, actorPairs2, arrDate, arrTime, arrCost[2]);
-			
-			titleMap.put(vo.getTitle(), vo);
-			
-//			이 아래는 원래라면 추가해야하는데 구조를 바꿔야 할 것 같아서 일단 보류
-//			System.out.println("날짜1 을 입력하세요.");
-//			System.out.println("날짜2 을 입력하세요.");
-//			System.out.println("날짜3 을 입력하세요.");
-//			
-//			System.out.println("시간1 을 입력하세요.");
-//			System.out.println("시간2 을 입력하세요.");
-//			System.out.println("시간3 을 입력하세요.");
-//			System.out.println("티켓 가격을 입력하세요.");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

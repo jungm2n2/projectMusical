@@ -8,7 +8,7 @@ public class SignUpException {
 
 			throw new Exception("8자 이상 15자 이하로 작성해주세요");
 		}
-
+		
 		int num = 0,eng = 0;
 		for(int i=0;i<str.length();i++) {
 			if('0'<=str.charAt(i) && str.charAt(i)<='9') {

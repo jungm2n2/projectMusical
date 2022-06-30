@@ -91,6 +91,12 @@ public class CustomerVO implements Serializable{
 		return str;
 	}
 	public String printTicket() { 
+		
+		if(paymentHistoy.size() == 0) {
+			System.out.println(name + "님의 예매내역이 없습니다.");
+			return "";
+		}
+		
 		System.out.println(name + "님의 예매내역입니다.");
 		String str = String.format("%12s %23s %15s %15s %12s %9s","제목","배우","날짜","시간","좌석번호","결제금액");
 		System.out.println(str);

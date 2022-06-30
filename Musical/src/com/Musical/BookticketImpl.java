@@ -11,6 +11,7 @@ public class BookticketImpl implements Bookticket{
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 	String selectedTitle = null;
+	String selectRound = null;
 	BookticketVO paymentHistory = new BookticketVO();
 	HashMap<String, TitleVO> titleMap = null;
 
@@ -21,19 +22,19 @@ public class BookticketImpl implements Bookticket{
 	public BookticketVO enterBookticket(){
 		try {
 			selectMusical();
-			selectActor();
-			selectDate();
-			selectTime();
+			selectInfo();
 			selectSeat();
 			payment();
 		} catch (Exception e) {
 			//TODO: handle exception
 		}
 
-		System.out.println();
-		System.out.println("나의 예매 내역");
-		System.out.println(paymentHistory.toString());
-
+		if(paymentHistory != null) {
+			System.out.println();
+			System.out.println("나의 예매 내역");
+			System.out.println(paymentHistory.toString());
+		}
+		
 		return paymentHistory;
 	}
 
@@ -59,55 +60,44 @@ public class BookticketImpl implements Bookticket{
 	}
 
 	@Override
-	public void selectActor() {
+	public void selectInfo() {
 		System.out.println("===================================================================");
-		System.out.println("                     <배우 조합을 선택하세요>");
+		System.out.println("                     <원하는 회차를 선택하세요>");
 		System.out.println("===================================================================");
-
-		System.out.println("1. " + titleMap.get(selectedTitle).getActorPairs1());
-		System.out.println("2. " + titleMap.get(selectedTitle).getActorPairs2());
-
-		if(inputSelect().equals("1")) {
-			paymentHistory.setActor(titleMap.get(selectedTitle).getActorPairs1());
-		}
-		else {
-			paymentHistory.setActor(titleMap.get(selectedTitle).getActorPairs2());
-		}
-		System.out.println(paymentHistory.getActor() + "을 선택하셨습니다.");
+//
+		TitleVO tm = titleMap.get(selectedTitle);
+		ArrayList<DetailsInfo> arrDI = tm.getInfo();
+		
+		tm.printInfo();
+		
+		selectRound = inputSelect();
+		
+		DetailsInfo di = arrDI.get(Integer.parseInt(selectRound) - 1);
+		
+		paymentHistory.setActor(di.getActorPairs());
+		paymentHistory.setDate(di.getDate());
+		paymentHistory.setTime(di.getTime());
+		
+		System.out.println(selectRound + " 회차를 선택하셨습니다.");
 	}
 
-	public void selectDate() {
-		select("날짜", titleMap.get(selectedTitle).getDate());
-	}
-
-	@Override
-	public void selectTime() {
-		select("시간", titleMap.get(selectedTitle).getTime());
-	}
-
-	@Override
-	public void payment() {
-		paymentHistory.setCost(titleMap.get(selectedTitle).getCost());
-		System.out.println("가격은 " + paymentHistory.getCost() + " 원 입니다.");
-		System.out.println("결제 됐습니다.");
-		titleMap.get(selectedTitle).setTotalSales(paymentHistory.getCost());
-	}
-
-	//현재는 미구현 상태
 	@Override
 	public void selectSeat() {
-		String[] seatState = titleMap.get(selectedTitle).getStateOfSeat();
+	
+		String[] seatState = titleMap.get(selectedTitle).getInfo().get(Integer.parseInt(selectRound) - 1).getStateOfSeat();
+		
 		System.out.println("===================================================================");
 		System.out.println("                      <좌석을 선택하세요>");
 		System.out.println("===================================================================");
 		seatDraw(seatState);
+	
 		String selected;
+		
 		while(true) {
-			
 			selected = inputSelect();
 			
 			if(seatState[Integer.valueOf(selected) - 1] == "■") {
-				System.out.println("선택할 수 없는 좌석입니다.");
+				System.out.println("선택할 수 없는 좌석입니다. 다시 선택해주세요.");
 			}
 			else {
 				break;
@@ -119,32 +109,32 @@ public class BookticketImpl implements Bookticket{
 		System.out.println(selected + "번을 선택하셨습니다.");
 		paymentHistory.setSeat(selected);
 	}
-
-
-/////////아래로는 헬퍼메서드
 	
-	public void select(String pStr, String[] pArr){
-		System.out.println("===================================================================");
-		System.out.println("                     <"+pStr + "을(를) 선택하세요>");
-		System.out.println("===================================================================");
-
-		int titleIdx = 1;
-
-		for (String strKey : pArr) {
-			System.out.println(titleIdx++ + ". " + strKey);
+	@Override
+	public void payment() {
+		paymentHistory.setCost(titleMap.get(selectedTitle).getInfo().get(Integer.parseInt(selectRound) - 1).getCost());
+		System.out.println("가격은 " + paymentHistory.getCost() + " 원 입니다.");
+		
+		System.out.println("결제 하시겠습니까?[Y/N]");
+		
+		String agree = inputSelect();
+		
+		if(!agree.equals("y") && !agree.equals("Y")) {
+			System.out.println("결제가 취소되었습니다.");
+	
+			String[] seatState = titleMap.get(selectedTitle).getInfo().get(Integer.parseInt(selectRound) - 1).getStateOfSeat();
+			String selected = paymentHistory.getSeat();
+			seatState[Integer.valueOf(selected) - 1] = selected;
+			
+			paymentHistory = null;
+			return;
 		}
-
-		String selected = pArr[Integer.parseInt(inputSelect()) - 1];
-
-		System.out.println(selected + "을 선택하셨습니다.");
-
-		if(pStr.equals("날짜")){
-			paymentHistory.setDate(selected);
-		}
-		else {
-			paymentHistory.setTime(selected);
-		}
+		
+		System.out.println("결제가 완료되었습니다.");
+		titleMap.get(selectedTitle).setTotalSales(paymentHistory.getCost());
 	}
+	
+/////////아래로는 헬퍼메서드
 
 	void seatDraw(String[] pSeat){
 		System.out.println(" ㅡㅡㅡㅡㅡㅡ");
