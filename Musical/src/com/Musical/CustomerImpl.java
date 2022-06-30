@@ -20,19 +20,19 @@ public class CustomerImpl implements Customer{
 	}
 	
 	public void succesLogIn(String pLogInCustomer) {
-		try {
+		try {  
 			int selectMenu = 0;
 			curCustomer = pLogInCustomer;
 			while(true){   
 				do {
-					System.out.println(" ==================================================================");
-					System.out.println("ㅣ         ㅡㅡㅡㅡㅡㅡㅡ   ㅡㅡㅡㅡㅡㅡ   ㅡㅡㅡㅡㅡㅡㅡㅡ       ㅣ");                                                  
-					System.out.println("ㅣ        ㅣ1.내정보수정ㅣ ㅣ2.예매하기ㅣ ㅣ3.예매내역 조회ㅣ     ㅣ");
-					System.out.println("ㅣ         ㅡㅡㅡㅡㅡㅡㅡ   ㅡㅡㅡㅡㅡㅡ   ㅡㅡㅡㅡㅡㅡㅡㅡ       ㅣ");
-					System.out.println("ㅣ                 ㅡㅡㅡㅡㅡㅡ      ㅡㅡㅡㅡㅡㅡ                 ㅣ");
-					System.out.println("ㅣ                ㅣ4.로그아웃ㅣ    ㅣ5.회원탈퇴ㅣ                ㅣ");
-					System.out.println("ㅣ                 ㅡㅡㅡㅡㅡㅡ      ㅡㅡㅡㅡㅡㅡ                 ㅣ");
-					System.out.println(" ==================================================================");
+					System.out.println(" ===========================================================================");
+					System.out.println("ㅣ                ㅡㅡㅡㅡㅡㅡㅡ    ㅡㅡㅡㅡㅡㅡ     ㅡㅡㅡㅡㅡㅡㅡㅡ      ㅣ");                                                  
+					System.out.println("ㅣ               ㅣ1.내정보수정ㅣ  ㅣ2.예매하기ㅣ  ㅣ3.예매내역 조회ㅣ     ㅣ");
+					System.out.println("ㅣ                ㅡㅡㅡㅡㅡㅡㅡ    ㅡㅡㅡㅡㅡㅡ    ㅡㅡㅡㅡㅡㅡㅡㅡ       ㅣ");
+					System.out.println("ㅣ                        ㅡㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡㅡㅡ                 ㅣ");
+					System.out.println("ㅣ                       ㅣ4.로그아웃ㅣ      ㅣ5.회원탈퇴ㅣ                ㅣ");
+					System.out.println("ㅣ                        ㅡㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡㅡㅡ                 ㅣ");
+					System.out.println(" ===========================================================================");
 					selectMenu = Integer.parseInt(br.readLine());
 				}while(selectMenu<1||selectMenu>5);
 
