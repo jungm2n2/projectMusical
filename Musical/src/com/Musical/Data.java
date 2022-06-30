@@ -8,5 +8,4 @@ public interface Data {
 	
 	public void saveData();
 	public void loadData();
-	
 }
