@@ -24,16 +24,17 @@ public class Client implements Runnable{
 			
 			Thread th = new Thread(this);
 			th.start();
+			
 
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println("서버가 실행되어 있지 않습니다.");
+			return;
 		}
 	}
 	
 	@Override
 	public void run() {
 		try {
-			
 			ObjectInputStream ois = new ObjectInputStream(sc.getInputStream());
 			Object ob = null;
 			

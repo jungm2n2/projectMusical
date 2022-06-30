@@ -4,6 +4,15 @@ package com.Musical;
 import java.io.*;
 import java.util.HashMap;
 
+//실행 방법
+//MusicalMain.java 단독 실행 시 서버 접속시도로 5초 정도 늦게 실행 됨.
+
+
+//서버 실행 방법
+//Server.java 로 서버 실행 후
+//MusicalMain.java로 실행.
+//Server.java 미 실행시 현재 MusicalMain.java 실행 불가.
+
 
 public class MusicalMain {
 	static BufferedReader br = new BufferedReader(
@@ -200,6 +209,5 @@ public class MusicalMain {
 		System.out.println(" ===========================================================================");
 
 		customerMap.put(vo.getId(), vo);
-
 	}
 }
