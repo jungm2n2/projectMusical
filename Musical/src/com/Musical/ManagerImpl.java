@@ -26,14 +26,14 @@ public class ManagerImpl implements Manager{
 		while(true) {
 			try {
 				do {
-					System.out.println(" ==================================================================");
-					System.out.println("ㅣ           ㅡㅡㅡㅡㅡㅡ     ㅡㅡㅡㅡㅡㅡ     ㅡㅡㅡㅡㅡㅡ       ㅣ");                                                  
-					System.out.println("ㅣ          ㅣ1.회원조회ㅣ   ㅣ2.예매현황ㅣ   ㅣ3.매출 조회ㅣ     ㅣ");
-					System.out.println("ㅣ           ㅡㅡㅡㅡㅡㅡ     ㅡㅡㅡㅡㅡㅡ     ㅡㅡㅡㅡㅡㅡ       ㅣ");
-					System.out.println("ㅣ                 ㅡㅡㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡ                 ㅣ");
-					System.out.println("ㅣ                ㅣ4.뮤지컬 추가ㅣ     ㅣ5.메인ㅣ                ㅣ");
-					System.out.println("ㅣ                 ㅡㅡㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡ                 ㅣ");
-					System.out.println(" ==================================================================");
+					System.out.println(" ===========================================================================");
+					System.out.println("ㅣ                ㅡㅡㅡㅡㅡㅡ     ㅡㅡㅡㅡㅡㅡ     ㅡㅡㅡㅡㅡㅡ           ㅣ");                                                  
+					System.out.println("ㅣ               ㅣ1.회원조회ㅣ   ㅣ2.예매현황ㅣ   ㅣ3.매출 조회ㅣ         ㅣ");
+					System.out.println("ㅣ                ㅡㅡㅡㅡㅡㅡ     ㅡㅡㅡㅡㅡㅡ     ㅡㅡㅡㅡㅡㅡ           ㅣ");
+					System.out.println("ㅣ                      ㅡㅡㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡ                     ㅣ");
+					System.out.println("ㅣ                     ㅣ4.뮤지컬 추가ㅣ     ㅣ5.메인ㅣ                    ㅣ");
+					System.out.println("ㅣ                      ㅡㅡㅡㅡㅡㅡㅡ        ㅡㅡㅡㅡ                     ㅣ");
+					System.out.println(" ===========================================================================");
 					num =Integer.parseInt(br.readLine());
 				}while(num<1 || 5<num);
 
@@ -83,9 +83,9 @@ public class ManagerImpl implements Manager{
 	public void totalSale() {
 		
 		try {
-			System.out.println(" ==================================================================");
-			System.out.println("                  <매출을 볼 뮤지컬을 선택해주세요>");
-			System.out.println(" ==================================================================");
+			System.out.println(" ===========================================================================");
+			System.out.println("                       <매출을 볼 뮤지컬을 선택해주세요>");
+			System.out.println(" ===========================================================================");
 			
 			ArrayList<String> arrTitle = new ArrayList<>();
 			int idx = 1;
@@ -112,19 +112,19 @@ public class ManagerImpl implements Manager{
 			String actorPairs1 = null;
 			String actorPairs2 = null;
 			
-			System.out.println(" ==================================================================");
-			System.out.println("                <추가할 뮤지컬의 이름을 입력하세요>");
-			System.out.println(" ==================================================================");
+			System.out.println(" ===========================================================================");
+			System.out.println("                     <추가할 뮤지컬의 이름을 입력하세요>");
+			System.out.println(" ===========================================================================");
 			musicalTitle = br.readLine();
 			
-			System.out.println(" ==================================================================");
-			System.out.println("             <배우 조합1 을 입력하세요. [이정민,시연]>");
-			System.out.println(" ==================================================================");
+			System.out.println(" ===========================================================================");
+			System.out.println("                  <배우 조합1 을 입력하세요. [이정민,시연]>");
+			System.out.println(" ===========================================================================");
 			actorPairs1 = br.readLine();
 			
-			System.out.println(" ==================================================================");
-			System.out.println("             <배우 조합2 를 입력하세요. [정민,안시연]>");
-			System.out.println(" ==================================================================");
+			System.out.println(" ===========================================================================");
+			System.out.println("                  <배우 조합2 를 입력하세요. [정민,안시연]>");
+			System.out.println(" ===========================================================================");
 			actorPairs2 = br.readLine();
 			
 			
