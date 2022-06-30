@@ -100,7 +100,7 @@ public class CustomerVO implements Serializable{
 		System.out.println("\n___________________________________________________________________________");
 		System.out.println("<"+name + "님의 예매내역입니다.>");	
 		System.out.println("===========================================================================");
-		String str = String.format("%10s %13s %10s %8s %6s %6s","제목","배우","날짜","시간","좌석번호","결제금액");
+		String str = String.format("%10s %14s %11s %8s %6s %6s","제목","배우","날짜","시간","좌석번호","결제금액");
 		System.out.println(str);
 		System.out.println("===========================================================================");
 		int idx = 1;
