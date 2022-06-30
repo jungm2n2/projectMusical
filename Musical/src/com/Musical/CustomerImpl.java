@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
-
 public class CustomerImpl implements Customer{
 
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -60,8 +59,6 @@ public class CustomerImpl implements Customer{
 			System.out.println(e.toString());
 		}
 	}
-	
-	
 
 	@Override
 	public void updateCustomerInfo() {
@@ -203,17 +200,11 @@ public class CustomerImpl implements Customer{
 				System.out.println("다시 입력해주세요");
 				flag = false;
 			}
-		
-		
-	
 		} catch (Exception e) {
 
 		}
 		return flag;
 	}
-	
-	
-
 	
 	//구현할지 말지 선택
 	
