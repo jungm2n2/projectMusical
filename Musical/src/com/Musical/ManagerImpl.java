@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Random;
 
 public class ManagerImpl implements Manager{
 
@@ -27,12 +28,12 @@ public class ManagerImpl implements Manager{
 			try {
 				do {
 					System.out.println(" ===========================================================================");
-					System.out.println("¤Ó                ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ     ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ     ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ           ¤Ó");                                                  
-					System.out.println("¤Ó               ¤Ó1.È¸¿øÁ¶È¸¤Ó   ¤Ó2.¿¹¸ÅÇöÈ²¤Ó   ¤Ó3.¸ÅÃâ Á¶È¸¤Ó         ¤Ó");
-					System.out.println("¤Ó                ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ     ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ     ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ           ¤Ó");
-					System.out.println("¤Ó                      ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ        ¤Ñ¤Ñ¤Ñ¤Ñ                     ¤Ó");
-					System.out.println("¤Ó                     ¤Ó4.¹ÂÁöÄÃ Ãß°¡¤Ó     ¤Ó5.¸ŞÀÎ¤Ó                    ¤Ó");
-					System.out.println("¤Ó                      ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ        ¤Ñ¤Ñ¤Ñ¤Ñ                     ¤Ó");
+					System.out.println("ã…£                ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡     ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡     ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡           ã…£");                                                  
+					System.out.println("ã…£               ã…£1.íšŒì›ì¡°íšŒã…£   ã…£2.ì˜ˆë§¤í˜„í™©ã…£   ã…£3.ë§¤ì¶œ ì¡°íšŒã…£         ã…£");
+					System.out.println("ã…£                ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡     ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡     ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡           ã…£");
+					System.out.println("ã…£                      ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡        ã…¡ã…¡ã…¡ã…¡                     ã…£");
+					System.out.println("ã…£                     ã…£4.ë®¤ì§€ì»¬ ì¶”ê°€ã…£     ã…£5.ë©”ì¸ã…£                    ã…£");
+					System.out.println("ã…£                      ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡        ã…¡ã…¡ã…¡ã…¡                     ã…£");
 					System.out.println(" ===========================================================================");
 					num =Integer.parseInt(br.readLine());
 				}while(num<1 || 5<num);
@@ -47,8 +48,8 @@ public class ManagerImpl implements Manager{
 				case 4:
 					addMusical(); break;
 				default :
-//					System.out.println("Á¾·áµÇ¾ú½À´Ï´Ù.");
-//					¸ŞÀÎÀ¸·Î °¡±â·Î ¹Ù²ã¼­ ÁÖ¼®Ã³¸®
+//					System.out.println("ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+//					ë©”ì¸ìœ¼ë¡œ ê°€ê¸°ë¡œ ë°”ê¿”ì„œ ì£¼ì„ì²˜ë¦¬
 					return;
 				}
 			} catch (Exception e) {
@@ -84,7 +85,7 @@ public class ManagerImpl implements Manager{
 		
 		try {
 			System.out.println(" ===========================================================================");
-			System.out.println("                       <¸ÅÃâÀ» º¼ ¹ÂÁöÄÃÀ» ¼±ÅÃÇØÁÖ¼¼¿ä>");
+			System.out.println("                       <ë§¤ì¶œì„ ë³¼ ë®¤ì§€ì»¬ì„ ì„ íƒí•´ì£¼ì„¸ìš”>");
 			System.out.println(" ===========================================================================");
 			
 			ArrayList<String> arrTitle = new ArrayList<>();
@@ -97,7 +98,7 @@ public class ManagerImpl implements Manager{
 			
 			TitleVO tv = titleMap.get(arrTitle.get(Integer.parseInt(inputNumber) - 1));
 			
-			System.out.println(tv.getTitle() + "ÀÇ ÃÑ ¸ÅÃâÀº " + tv.getTotalSales() + "¿ø ÀÔ´Ï´Ù.");
+			System.out.println(tv.getTitle() + "ì˜ ì´ ë§¤ì¶œì€ " + tv.getTotalSales() + "ì› ì…ë‹ˆë‹¤.");
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -106,47 +107,45 @@ public class ManagerImpl implements Manager{
 
 	@Override
 	public void addMusical() {
+		//ë‹¤ë¥¸ ê²ƒë“¤ ì‘ë™ ë˜ëŠ”ì§€ í™•ì¸ í›„ ìˆ˜ì •
 		try {
 			
 			String musicalTitle = null;
-			String actorPairs1 = null;
-			String actorPairs2 = null;
+			String actorPairs = null;
+			String date = null;
+			String time = null;
+			int cost = 0;
 			
-			System.out.println(" ===========================================================================");
-			System.out.println("                     <Ãß°¡ÇÒ ¹ÂÁöÄÃÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä>");
-			System.out.println(" ===========================================================================");
+			System.out.println("ì¶”ê°€í•  ë®¤ì§€ì»¬ì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.");
 			musicalTitle = br.readLine();
 			
-			System.out.println(" ===========================================================================");
-			System.out.println("                  <¹è¿ì Á¶ÇÕ1 À» ÀÔ·ÂÇÏ¼¼¿ä. [ÀÌÁ¤¹Î,½Ã¿¬]>");
-			System.out.println(" ===========================================================================");
-			actorPairs1 = br.readLine();
+			ArrayList<DetailsInfo> arrInfo = new ArrayList<>();
 			
-			System.out.println(" ===========================================================================");
-			System.out.println("                  <¹è¿ì Á¶ÇÕ2 ¸¦ ÀÔ·ÂÇÏ¼¼¿ä. [Á¤¹Î,¾È½Ã¿¬]>");
-			System.out.println(" ===========================================================================");
-			actorPairs2 = br.readLine();
+			for (int i = 0; i < 3; i++) {
+				DetailsInfo temp = new DetailsInfo();
+				System.out.println((i + 1) + "íšŒì°¨ ì •ë³´ë¥¼ ì…ë ¥í•©ë‹ˆë‹¤.");
+				
+				System.out.println((i + 1) + "íšŒì°¨ ë°°ìš° ì¡°í•©ì„ ì…ë ¥í•˜ì„¸ìš”. [ì´ì •ë¯¼,ì‹œì—°]");
+				actorPairs = br.readLine();
+				
+				System.out.println((i + 1) + "íšŒì°¨ ë‚ ì§œì„ ì…ë ¥í•˜ì„¸ìš”. [7/9(í† )]");
+				date = br.readLine();
+				
+				System.out.println((i + 1) + "íšŒì°¨ ì‹œê°„ì„ ì…ë ¥í•˜ì„¸ìš”. [11:00]");
+				time = br.readLine();
+				
+				System.out.println((i + 1) + "íšŒì°¨ í‹°ì¼“ ê¸ˆì•¡ì„ ì…ë ¥í•˜ì„¸ìš”. [150000]");
+				cost = Integer.parseInt(br.readLine());
+				
+				temp.setActorPairs(actorPairs);
+				temp.setDate(date);
+				temp.setTime(time);
+				temp.setCost(cost);
+				
+				arrInfo.add(temp);
+			}
+			titleMap.put(musicalTitle, new TitleVO(musicalTitle, arrInfo));
 			
-			
-//			ÀÓ½Ã·Î µ¥ÀÌÅÍ °¡Á®¿Í¼­ ³Ö¾îÁà¼­ »ı¼±¸¸ ÇØÁÜ
-			String [] arrTime = {"11:00","15:00","19:30"};
-			String [] arrDate = {"7/1(±İ)","7/2(Åä)","7/3(ÀÏ)"};
-			int [] arrCost = {10000,20000,30000};
-			
-		
-			TitleVO vo = new TitleVO(musicalTitle, actorPairs1, actorPairs2, arrDate, arrTime, arrCost[2]);
-			
-			titleMap.put(vo.getTitle(), vo);
-			
-//			ÀÌ ¾Æ·¡´Â ¿ø·¡¶ó¸é Ãß°¡ÇØ¾ßÇÏ´Âµ¥ ±¸Á¶¸¦ ¹Ù²ã¾ß ÇÒ °Í °°¾Æ¼­ ÀÏ´Ü º¸·ù
-//			System.out.println("³¯Â¥1 À» ÀÔ·ÂÇÏ¼¼¿ä.");
-//			System.out.println("³¯Â¥2 À» ÀÔ·ÂÇÏ¼¼¿ä.");
-//			System.out.println("³¯Â¥3 À» ÀÔ·ÂÇÏ¼¼¿ä.");
-//			
-//			System.out.println("½Ã°£1 À» ÀÔ·ÂÇÏ¼¼¿ä.");
-//			System.out.println("½Ã°£2 À» ÀÔ·ÂÇÏ¼¼¿ä.");
-//			System.out.println("½Ã°£3 À» ÀÔ·ÂÇÏ¼¼¿ä.");
-//			System.out.println("Æ¼ÄÏ °¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

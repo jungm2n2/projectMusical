@@ -186,7 +186,6 @@ public class MusicalMain {
 			}
 		}
 
-
 		while(true) {
 			try {
 				System.out.println("이메일 주소?");
@@ -199,7 +198,6 @@ public class MusicalMain {
 				System.out.println(e.toString());     
 			}
 		}
-
 
 		while(true) {
 			try {

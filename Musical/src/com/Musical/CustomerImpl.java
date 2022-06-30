@@ -134,7 +134,18 @@ public class CustomerImpl implements Customer{
 	@Override
 	public void reserveMusical() {
 		BookticketImpl bk = new BookticketImpl(titleMap);
-		customerMap.get(curCustomer).getPh().add(bk.enterBookticket());
+		
+		BookticketVO vo = bk.enterBookticket();
+		if(vo == null) {
+			System.out.println("뮤지컬 예약을 실패했습니다.");
+			return;
+		}
+		customerMap.get(curCustomer).getPh().add(vo);
+	}
+	
+	@Override
+	public void reserveHistory() {
+		customerMap.get(curCustomer).printTicket();
 	}
 
 	@Override
@@ -183,10 +194,7 @@ public class CustomerImpl implements Customer{
 		}
 	}
 	
-	@Override
-	public void reserveHistory() {
-		customerMap.get(curCustomer).printTicket();
-	}
+	
 
 	
 	//구현할지 말지 선택
