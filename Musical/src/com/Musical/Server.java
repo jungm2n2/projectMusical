@@ -33,8 +33,6 @@ public class Server {
 				System.out.println(sc.getInetAddress().getAddress() + "접속...");
 				System.out.println("서버에서 뮤지컬 정보를 보낼 수 있습니다.");
 				sendTitle();
-				
-
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
