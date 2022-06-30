@@ -27,7 +27,14 @@ public class ManagerImpl implements Manager{
 		while(true) {
 			try {
 				do {
-					System.out.println("1.È¸¿øÁ¶È¸ \n2.¿¹¸ÅÇöÈ² \n3.¸ÅÃâÁ¶È¸ \n4.¹ÂÁöÄÃ Ãß°¡ \n5.¸ŞÀÎÀ¸·Î\n:");
+					System.out.println(" ===========================================================================");
+					System.out.println("ã…£                ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡     ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡     ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡           ã…£");                                                  
+					System.out.println("ã…£               ã…£1.íšŒì›ì¡°íšŒã…£   ã…£2.ì˜ˆë§¤í˜„í™©ã…£   ã…£3.ë§¤ì¶œ ì¡°íšŒã…£         ã…£");
+					System.out.println("ã…£                ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡     ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡     ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡           ã…£");
+					System.out.println("ã…£                      ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡        ã…¡ã…¡ã…¡ã…¡                     ã…£");
+					System.out.println("ã…£                     ã…£4.ë®¤ì§€ì»¬ ì¶”ê°€ã…£     ã…£5.ë©”ì¸ã…£                    ã…£");
+					System.out.println("ã…£                      ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡        ã…¡ã…¡ã…¡ã…¡                     ã…£");
+					System.out.println(" ===========================================================================");
 					num =Integer.parseInt(br.readLine());
 				}while(num<1 || 5<num);
 
@@ -41,8 +48,8 @@ public class ManagerImpl implements Manager{
 				case 4:
 					addMusical(); break;
 				default :
-//					System.out.println("Á¾·áµÇ¾ú½À´Ï´Ù.");
-//					¸ŞÀÎÀ¸·Î °¡±â·Î ¹Ù²ã¼­ ÁÖ¼®Ã³¸®
+//					System.out.println("ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+//					ë©”ì¸ìœ¼ë¡œ ê°€ê¸°ë¡œ ë°”ê¿”ì„œ ì£¼ì„ì²˜ë¦¬
 					return;
 				}
 			} catch (Exception e) {
@@ -77,7 +84,9 @@ public class ManagerImpl implements Manager{
 	public void totalSale() {
 		
 		try {
-			System.out.println("¸ÅÃâÀ» º¼ ¹ÂÁöÄÃÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.");
+			System.out.println(" ===========================================================================");
+			System.out.println("                       <ë§¤ì¶œì„ ë³¼ ë®¤ì§€ì»¬ì„ ì„ íƒí•´ì£¼ì„¸ìš”>");
+			System.out.println(" ===========================================================================");
 			
 			ArrayList<String> arrTitle = new ArrayList<>();
 			int idx = 1;
@@ -89,7 +98,7 @@ public class ManagerImpl implements Manager{
 			
 			TitleVO tv = titleMap.get(arrTitle.get(Integer.parseInt(inputNumber) - 1));
 			
-			System.out.println(tv.getTitle() + "ÀÇ ÃÑ ¸ÅÃâÀº " + tv.getTotalSales() + "¿ø ÀÔ´Ï´Ù.");
+			System.out.println(tv.getTitle() + "ì˜ ì´ ë§¤ì¶œì€ " + tv.getTotalSales() + "ì› ì…ë‹ˆë‹¤.");
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -98,7 +107,7 @@ public class ManagerImpl implements Manager{
 
 	@Override
 	public void addMusical() {
-		//´Ù¸¥ °Íµé ÀÛµ¿ µÇ´ÂÁö È®ÀÎ ÈÄ ¼öÁ¤
+		//ë‹¤ë¥¸ ê²ƒë“¤ ì‘ë™ ë˜ëŠ”ì§€ í™•ì¸ í›„ ìˆ˜ì •
 		try {
 			
 			String musicalTitle = null;
@@ -107,25 +116,25 @@ public class ManagerImpl implements Manager{
 			String time = null;
 			int cost = 0;
 			
-			System.out.println("Ãß°¡ÇÒ ¹ÂÁöÄÃÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.");
+			System.out.println("ì¶”ê°€í•  ë®¤ì§€ì»¬ì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.");
 			musicalTitle = br.readLine();
 			
 			ArrayList<DetailsInfo> arrInfo = new ArrayList<>();
 			
 			for (int i = 0; i < 3; i++) {
 				DetailsInfo temp = new DetailsInfo();
-				System.out.println((i + 1) + "È¸Â÷ Á¤º¸¸¦ ÀÔ·ÂÇÕ´Ï´Ù.");
+				System.out.println((i + 1) + "íšŒì°¨ ì •ë³´ë¥¼ ì…ë ¥í•©ë‹ˆë‹¤.");
 				
-				System.out.println((i + 1) + "È¸Â÷ ¹è¿ì Á¶ÇÕÀ» ÀÔ·ÂÇÏ¼¼¿ä. [ÀÌÁ¤¹Î,½Ã¿¬]");
+				System.out.println((i + 1) + "íšŒì°¨ ë°°ìš° ì¡°í•©ì„ ì…ë ¥í•˜ì„¸ìš”. [ì´ì •ë¯¼,ì‹œì—°]");
 				actorPairs = br.readLine();
 				
-				System.out.println((i + 1) + "È¸Â÷ ³¯Â¥À» ÀÔ·ÂÇÏ¼¼¿ä. [7/9(Åä)]");
+				System.out.println((i + 1) + "íšŒì°¨ ë‚ ì§œì„ ì…ë ¥í•˜ì„¸ìš”. [7/9(í† )]");
 				date = br.readLine();
 				
-				System.out.println((i + 1) + "È¸Â÷ ½Ã°£À» ÀÔ·ÂÇÏ¼¼¿ä. [11:00]");
+				System.out.println((i + 1) + "íšŒì°¨ ì‹œê°„ì„ ì…ë ¥í•˜ì„¸ìš”. [11:00]");
 				time = br.readLine();
 				
-				System.out.println((i + 1) + "È¸Â÷ Æ¼ÄÏ ±İ¾×À» ÀÔ·ÂÇÏ¼¼¿ä. [150000]");
+				System.out.println((i + 1) + "íšŒì°¨ í‹°ì¼“ ê¸ˆì•¡ì„ ì…ë ¥í•˜ì„¸ìš”. [150000]");
 				cost = Integer.parseInt(br.readLine());
 				
 				temp.setActorPairs(actorPairs);

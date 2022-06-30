@@ -93,13 +93,14 @@ public class CustomerVO implements Serializable{
 	public String printTicket() { 
 		
 		if(paymentHistoy.size() == 0) {
-			System.out.println(name + "´ÔÀÇ ¿¹¸Å³»¿ªÀÌ ¾ø½À´Ï´Ù.");
+			System.out.println(name + "ë‹˜ì˜ ì˜ˆë§¤ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.");
 			return "";
 		}
 		
-		System.out.println(name + "´ÔÀÇ ¿¹¸Å³»¿ªÀÔ´Ï´Ù.");
-		String str = String.format("%12s %23s %15s %15s %12s %9s","Á¦¸ñ","¹è¿ì","³¯Â¥","½Ã°£","ÁÂ¼®¹øÈ£","°áÁ¦±İ¾×");
+		System.out.println(name + "ë‹˜ì˜ ì˜ˆë§¤ë‚´ì—­ì…ë‹ˆë‹¤.");
+		String str = String.format("%12s %23s %15s %15s %12s %9s","ì œëª©","ë°°ìš°","ë‚ ì§œ","ì‹œê°„","ì¢Œì„ë²ˆí˜¸","ê²°ì œê¸ˆì•¡");
 		System.out.println(str);
+		System.out.println("===========================================================================");
 		int idx = 1;
 		
 		for (BookticketVO details : paymentHistoy) {

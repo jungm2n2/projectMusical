@@ -31,7 +31,7 @@ public class BookticketImpl implements Bookticket{
 
 		if(paymentHistory != null) {
 			System.out.println();
-			System.out.println("³ªÀÇ ¿¹¸Å ³»¿ª");
+			System.out.println("ë‚˜ì˜ ì˜ˆë§¤ ë‚´ì—­");
 			System.out.println(paymentHistory.toString());
 		}
 		
@@ -41,9 +41,9 @@ public class BookticketImpl implements Bookticket{
 	@Override
 	public void selectMusical() {
 		ArrayList<String> arrTitle = new ArrayList<>();
-		System.out.println("===================================================================");
-		System.out.println("                        <ÀÛÇ°À» ¼±ÅÃÇÏ¼¼¿ä>");
-		System.out.println("===================================================================");
+		System.out.println("===========================================================================");
+		System.out.println("                           <ì‘í’ˆì„ ì„ íƒí•˜ì„¸ìš”>");
+		System.out.println("===========================================================================");
 
 		int titleIdx = 1;
 
@@ -55,14 +55,14 @@ public class BookticketImpl implements Bookticket{
 		String selectedTitle = arrTitle.get(Integer.parseInt(inputSelect()) - 1);
 
 		paymentHistory.setTitle(selectedTitle);
-		System.out.println(selectedTitle + "À» ¼±ÅÃÇÏ¼Ì½À´Ï´Ù.");
+		System.out.println(selectedTitle + "ì„ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤.");
 		this.selectedTitle = selectedTitle;
 	}
 
 	@Override
 	public void selectInfo() {
 		System.out.println("===================================================================");
-		System.out.println("                     <¿øÇÏ´Â È¸Â÷¸¦ ¼±ÅÃÇÏ¼¼¿ä>");
+		System.out.println("                     <ì›í•˜ëŠ” íšŒì°¨ë¥¼ ì„ íƒí•˜ì„¸ìš”>");
 		System.out.println("===================================================================");
 //
 		TitleVO tm = titleMap.get(selectedTitle);
@@ -78,7 +78,7 @@ public class BookticketImpl implements Bookticket{
 		paymentHistory.setDate(di.getDate());
 		paymentHistory.setTime(di.getTime());
 		
-		System.out.println(selectRound + " È¸Â÷¸¦ ¼±ÅÃÇÏ¼Ì½À´Ï´Ù.");
+		System.out.println(selectRound + " íšŒì°¨ë¥¼ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤.");
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class BookticketImpl implements Bookticket{
 		String[] seatState = titleMap.get(selectedTitle).getInfo().get(Integer.parseInt(selectRound) - 1).getStateOfSeat();
 		
 		System.out.println("===================================================================");
-		System.out.println("                      <ÁÂ¼®À» ¼±ÅÃÇÏ¼¼¿ä>");
+		System.out.println("                      <ì¢Œì„ì„ ì„ íƒí•˜ì„¸ìš”>");
 		System.out.println("===================================================================");
 		seatDraw(seatState);
 	
@@ -96,31 +96,31 @@ public class BookticketImpl implements Bookticket{
 		while(true) {
 			selected = inputSelect();
 			
-			if(seatState[Integer.valueOf(selected) - 1] == "¡á") {
-				System.out.println("¼±ÅÃÇÒ ¼ö ¾ø´Â ÁÂ¼®ÀÔ´Ï´Ù. ´Ù½Ã ¼±ÅÃÇØÁÖ¼¼¿ä.");
+			if(seatState[Integer.valueOf(selected) - 1] == "â– ") {
+				System.out.println("ì„ íƒí•  ìˆ˜ ì—†ëŠ” ì¢Œì„ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì„ íƒí•´ì£¼ì„¸ìš”.");
 			}
 			else {
 				break;
 			}
 		}
 		
-		seatState[Integer.valueOf(selected) - 1] = "¡á";
+		seatState[Integer.valueOf(selected) - 1] = "â– ";
 
-		System.out.println(selected + "¹øÀ» ¼±ÅÃÇÏ¼Ì½À´Ï´Ù.");
+		System.out.println(selected + "ë²ˆì„ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤.");
 		paymentHistory.setSeat(selected);
 	}
-	
+
 	@Override
 	public void payment() {
 		paymentHistory.setCost(titleMap.get(selectedTitle).getInfo().get(Integer.parseInt(selectRound) - 1).getCost());
-		System.out.println("°¡°İÀº " + paymentHistory.getCost() + " ¿ø ÀÔ´Ï´Ù.");
+		System.out.println("ê°€ê²©ì€ " + paymentHistory.getCost() + " ì› ì…ë‹ˆë‹¤.");
 		
-		System.out.println("°áÁ¦ ÇÏ½Ã°Ú½À´Ï±î?[Y/N]");
+		System.out.println("ê²°ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?[Y/N]");
 		
 		String agree = inputSelect();
 		
 		if(!agree.equals("y") && !agree.equals("Y")) {
-			System.out.println("°áÁ¦°¡ Ãë¼ÒµÇ¾ú½À´Ï´Ù.");
+			System.out.println("ê²°ì œê°€ ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 	
 			String[] seatState = titleMap.get(selectedTitle).getInfo().get(Integer.parseInt(selectRound) - 1).getStateOfSeat();
 			String selected = paymentHistory.getSeat();
@@ -130,20 +130,20 @@ public class BookticketImpl implements Bookticket{
 			return;
 		}
 		
-		System.out.println("°áÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+		System.out.println("ê²°ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 		titleMap.get(selectedTitle).setTotalSales(paymentHistory.getCost());
 	}
 	
-/////////¾Æ·¡·Î´Â ÇïÆÛ¸Ş¼­µå
+/////////ì•„ë˜ë¡œëŠ” í—¬í¼ë©”ì„œë“œ
 
 	void seatDraw(String[] pSeat){
-		System.out.println(" ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ");
+		System.out.println(" ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡");
 		System.out.printf("| %s | %s | %s |\n", pSeat[0], pSeat[1], pSeat[2]);
-		System.out.println(" ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ");
+		System.out.println(" ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡");
 		System.out.printf("| %s | %s | %s |\n", pSeat[3], pSeat[4], pSeat[5]);
-		System.out.println(" ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ");
+		System.out.println(" ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡");
 		System.out.printf("| %s | %s | %s |\n", pSeat[6], pSeat[7], pSeat[8]);
-		System.out.println(" ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ");
+		System.out.println(" ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡");
 	}
 	
 	String inputSelect(){
