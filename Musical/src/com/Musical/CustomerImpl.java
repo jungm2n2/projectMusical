@@ -20,7 +20,7 @@ public class CustomerImpl implements Customer{
 	}
 	
 	public void succesLogIn(String pLogInCustomer) {
-		try {
+		try {  
 			int selectMenu = 0;
 			curCustomer = pLogInCustomer;
 			while(true){   
