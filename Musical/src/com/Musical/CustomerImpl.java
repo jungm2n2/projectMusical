@@ -42,9 +42,17 @@ public class CustomerImpl implements Customer{
 				case(1):updateCustomerInfo();break;
 				case(2):reserveMusical();break;
 				case(3):reserveHistory();break;
-				case(4):logout();return;
-				case(5):deleteCustomerInfo();return;
-            
+				case(4):
+					if(logout()) {
+						return;
+					}
+					break;
+				case(5):
+					if(deleteCustomerInfo()) {
+						return;
+					}
+					break;
+	            
 				}
 			}
 
@@ -149,29 +157,37 @@ public class CustomerImpl implements Customer{
 	}
 
 	@Override
-	public void logout() {
+	public boolean logout() {
+		boolean flag = false;
 		
 		try {
+			
 			System.out.println("로그아웃 하시겠습니까?[Y/N]");
 			String answer = br.readLine();
 
 			if(answer.equals("Y") || answer.equals("y")) {
+				flag = true;
 				System.out.println("로그아웃이 완료되었습니다");
 
 			}else if(answer.equals("N") || answer.equals("n")) {
-				return;
+				flag=false;
+				
 			}else {
+				flag = false;
 				System.out.println("다시 입력해주세요");
-				return;
+				
 			}
 
 		} catch (Exception e) {
 
 		}
+		return flag;
 	}
 
 	@Override
-	public void deleteCustomerInfo() {
+	public boolean deleteCustomerInfo() {
+		boolean flag = false;
+		
 		try {
 
 			System.out.print("탈퇴하시겠습니까?[Y/N]");
@@ -180,11 +196,12 @@ public class CustomerImpl implements Customer{
 			if(yn.equals("Y") || yn.equals("y")) {
 				customerMap.remove(curCustomer);
 				System.out.println("회원탈퇴가 완료되었습니다");
+				flag = true;
 			}else if(yn.equals("N") || yn.equals("n")) {
-				return;
+				flag = false;
 			}else {
 				System.out.println("다시 입력해주세요");
-				return;
+				flag = false;
 			}
 		
 		
@@ -192,6 +209,7 @@ public class CustomerImpl implements Customer{
 		} catch (Exception e) {
 
 		}
+		return flag;
 	}
 	
 	
