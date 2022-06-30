@@ -1,41 +1,97 @@
 package com.Musical;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-public class TitleVO implements Serializable{
+
+class DetailsInfo implements Serializable{
 	
-	private String title;
-	private String actorPairs1;
-	private String actorPairs2;
-	private String[] date;
-	private String[] time;
-	private int curReservationsNumber;
+	private String actorPairs;
+	private String date;
+	private String time;
 	private int maxReservationsNumber;
 	private String[] stateOfSeat;
 	private int cost;
-	private int totalSales;
 	
-	public TitleVO() {
+	
+	public DetailsInfo() {
 		defaultSetting();
 	}
 	
-	public TitleVO(String title, String actorPairs1, String actorPairs2, String[] date, String[] time, int cost) {
-		this.title = title;
-		this.actorPairs1 = actorPairs1;
-		this.actorPairs2 = actorPairs2;
+	public DetailsInfo(String actorPairs, String date, String time, int maxReservationsNumber, String[] stateOfSeat, int cost) {
+		this.actorPairs = actorPairs;
 		this.date = date;
 		this.time = time;
+		this.maxReservationsNumber = maxReservationsNumber;
+		this.stateOfSeat = stateOfSeat;
 		this.cost = cost;
 		defaultSetting();
 	}
+	public String getActorPairs() {
+		return actorPairs;
+	}
+	public void setActorPairs(String actorPairs) {
+		this.actorPairs = actorPairs;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public int getMaxReservationsNumber() {
+		return maxReservationsNumber;
+	}
+	public void setMaxReservationsNumber(int maxReservationsNumber) {
+		this.maxReservationsNumber = maxReservationsNumber;
+	}
+	public String[] getStateOfSeat() {
+		return stateOfSeat;
+	}
+	public void setStateOfSeat(String[] stateOfSeat) {
+		this.stateOfSeat = stateOfSeat;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
 	
 	public void defaultSetting(){
-		curReservationsNumber = 0;
 		maxReservationsNumber = 9;
 		stateOfSeat = new String[9];
 		for (int i = 0; i < maxReservationsNumber; i++) {
 			stateOfSeat[i] = String.valueOf(i + 1);
 		}
+	}
+	@Override
+	public String toString() {
+		String str = String.format("%-12s %-10s %-8s %d", actorPairs, date, time, cost);
+		return str;
+	}
+}
+
+public class TitleVO implements Serializable{
+	
+	private String title;
+	
+	ArrayList<DetailsInfo> info = null;
+	
+	private int totalSales;
+	
+	public TitleVO() {
+	}
+	
+	public TitleVO(String title, ArrayList<DetailsInfo> pInfo) {
+		this.title = title;
+		info = pInfo;
 	}
 
 	public String getTitle() {
@@ -44,71 +100,6 @@ public class TitleVO implements Serializable{
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-
-	public String getActorPairs1() {
-		return actorPairs1;
-	}
-
-	public void setActorPairs1(String actorPairs1) {
-		this.actorPairs1 = actorPairs1;
-	}
-
-	public String getActorPairs2() {
-		return actorPairs2;
-	}
-
-	public void setActorPairs2(String actorPairs2) {
-		this.actorPairs2 = actorPairs2;
-	}
-
-	public String[] getTime() {
-		return time;
-	}
-
-	public void setTime(String[] time) {
-		this.time = time;
-	}
-
-	public String[] getDate() {
-		return date;
-	}
-	
-	public void setDate(String[] date) {
-		this.date = date;
-	}
-
-	public int getCost() {
-		return cost;
-	}
-
-	public void setCost(int cost) {
-		this.cost = cost;
-	}
-
-	public int getCurReservationsNumber() {
-		return curReservationsNumber;
-	}
-
-	public void setCurReservationsNumber(int curReservationNumber) {
-		this.curReservationsNumber = curReservationNumber;
-	}
-
-	public int getMaxReservationsNumber() {
-		return maxReservationsNumber;
-	}
-
-	public void setMaxReservationsNumber(int maxReservationNumber) {
-		this.maxReservationsNumber = maxReservationNumber;
-	}
-
-	public String[] getStateOfSeat() {
-		return stateOfSeat;
-	}
-
-	public void setStateOfSeat(String[] stateSeat) {
-		this.stateOfSeat = stateSeat;
 	}
 	
 	public int getTotalSales() {
@@ -119,12 +110,20 @@ public class TitleVO implements Serializable{
 		this.totalSales += totalSales;
 	}
 
-	@Override
-	public String toString() {
-		String str = String.format("%-12s %-4s %-5s %2s %5s %5s %5s %5s %5s %d %d",title,actorPairs1,actorPairs2,
-				time[0],time[1],time[2],date[0],date[1],date[2],cost, totalSales);
-		
-		return null;
+	public ArrayList<DetailsInfo> getInfo() {
+		return info;
 	}
 
+	public void setInfo(ArrayList<DetailsInfo> info) {
+		this.info = info;
+	}
+
+	public void printInfo() {
+		System.out.println(title + "의 공연 정보입니다.");
+		
+		int idx = 1;
+		for (DetailsInfo detailsInfo : info) {
+			System.out.println((idx++) + " " + detailsInfo.toString());
+		}
+	}
 }
