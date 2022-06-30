@@ -48,8 +48,8 @@ public class ManagerImpl implements Manager{
 				case 4:
 					addMusical(); break;
 				default :
-//					System.out.println("종료되었습니다.");
-//					메인으로 가기로 바꿔서 주석처리
+					//					System.out.println("종료되었습니다.");
+					//					메인으로 가기로 바꿔서 주석처리
 					return;
 				}
 			} catch (Exception e) {
@@ -71,23 +71,31 @@ public class ManagerImpl implements Manager{
 
 	@Override
 	public void reserveTicket() {
-		
+
+		int sum = 0;
 		for (String strKey : customerMap.keySet()) {
-			
+
 			if(customerMap.get(strKey).getPh().size() > 0) {
 				customerMap.get(strKey).printTicket();
+				sum += 1;
 			}
+		}
+		
+		if(sum == 0 ) {
+			System.out.println(" ===========================================================================");
+			System.out.println("                       <예매내역이 없습니다>");
+			System.out.println(" ===========================================================================");
 		}
 	}
 
 	@Override
 	public void totalSale() {
-		
+
 		try {
 			System.out.println(" ===========================================================================");
 			System.out.println("                       <매출을 볼 뮤지컬을 선택해주세요>");
 			System.out.println(" ===========================================================================");
-			
+
 			ArrayList<String> arrTitle = new ArrayList<>();
 			int idx = 1;
 			for (String strKey : titleMap.keySet()) {
@@ -95,11 +103,11 @@ public class ManagerImpl implements Manager{
 				arrTitle.add(strKey);
 			}
 			String inputNumber = br.readLine();
-			
+
 			TitleVO tv = titleMap.get(arrTitle.get(Integer.parseInt(inputNumber) - 1));
-			
+
 			System.out.println(tv.getTitle() + "의 총 매출은 " + tv.getTotalSales() + "원 입니다.");
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -109,43 +117,43 @@ public class ManagerImpl implements Manager{
 	public void addMusical() {
 		//다른 것들 작동 되는지 확인 후 수정
 		try {
-			
+
 			String musicalTitle = null;
 			String actorPairs = null;
 			String date = null;
 			String time = null;
 			int cost = 0;
-			
+
 			System.out.println("추가할 뮤지컬의 이름을 입력하세요.");
 			musicalTitle = br.readLine();
-			
+
 			ArrayList<DetailsInfo> arrInfo = new ArrayList<>();
-			
+
 			for (int i = 0; i < 3; i++) {
 				DetailsInfo temp = new DetailsInfo();
 				System.out.println((i + 1) + "회차 정보를 입력합니다.");
-				
+
 				System.out.println((i + 1) + "회차 배우 조합을 입력하세요. [이정민,시연]");
 				actorPairs = br.readLine();
-				
+
 				System.out.println((i + 1) + "회차 날짜을 입력하세요. [7/9(토)]");
 				date = br.readLine();
-				
+
 				System.out.println((i + 1) + "회차 시간을 입력하세요. [11:00]");
 				time = br.readLine();
-				
+
 				System.out.println((i + 1) + "회차 티켓 금액을 입력하세요. [150000]");
 				cost = Integer.parseInt(br.readLine());
-				
+
 				temp.setActorPairs(actorPairs);
 				temp.setDate(date);
 				temp.setTime(time);
 				temp.setCost(cost);
-				
+
 				arrInfo.add(temp);
 			}
 			titleMap.put(musicalTitle, new TitleVO(musicalTitle, arrInfo));
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
