@@ -40,9 +40,9 @@ public class BookticketImpl implements Bookticket{
 	@Override
 	public void selectMusical() {
 		ArrayList<String> arrTitle = new ArrayList<>();
-		System.out.println("===================================================================");
-		System.out.println("                        <작품을 선택하세요>");
-		System.out.println("===================================================================");
+		System.out.println("===========================================================================");
+		System.out.println("                           <작품을 선택하세요>");
+		System.out.println("===========================================================================");
 
 		int titleIdx = 1;
 
@@ -60,9 +60,9 @@ public class BookticketImpl implements Bookticket{
 
 	@Override
 	public void selectActor() {
-		System.out.println("===================================================================");
-		System.out.println("                     <배우 조합을 선택하세요>");
-		System.out.println("===================================================================");
+		System.out.println("===========================================================================");
+		System.out.println("                         <배우 조합을 선택하세요>");
+		System.out.println("===========================================================================");
 
 		System.out.println("1. " + titleMap.get(selectedTitle).getActorPairs1());
 		System.out.println("2. " + titleMap.get(selectedTitle).getActorPairs2());
@@ -97,9 +97,9 @@ public class BookticketImpl implements Bookticket{
 	@Override
 	public void selectSeat() {
 		String[] seatState = titleMap.get(selectedTitle).getStateOfSeat();
-		System.out.println("===================================================================");
-		System.out.println("                      <좌석을 선택하세요>");
-		System.out.println("===================================================================");
+		System.out.println("===========================================================================");
+		System.out.println("                           <좌석을 선택하세요>");
+		System.out.println("===========================================================================");
 		seatDraw(seatState);
 		String selected;
 		while(true) {
@@ -124,9 +124,9 @@ public class BookticketImpl implements Bookticket{
 /////////아래로는 헬퍼메서드
 	
 	public void select(String pStr, String[] pArr){
-		System.out.println("===================================================================");
-		System.out.println("                     <"+pStr + "을(를) 선택하세요>");
-		System.out.println("===================================================================");
+		System.out.println("===========================================================================");
+		System.out.println("                        <"+pStr + "을(를) 선택하세요>");
+		System.out.println("===========================================================================");
 
 		int titleIdx = 1;
 
