@@ -139,12 +139,12 @@ public class SignUpException {
 	//[010-xxxx-xxxx] 이형태로 입력할 수 있게 예외처리하기 : 정민 (완료)
 	public void telInputFormat(String str) throws Exception {
 		
-		if(str.length()!=13)	{
+/*		if(str.length()!=13)	{
 			
 			throw new Exception("잘못된 번호입니다.");
 		
 		}
-		
+*/		
 		boolean flag = false;
 	
 			if(str.charAt(3)=='-' && str.charAt(8)=='-') {
