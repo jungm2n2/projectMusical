@@ -169,10 +169,15 @@ public class CustomerImpl implements Customer{
 			if(yn.equals("Y") || yn.equals("y")) {
 				customerMap.remove(curCustomer);
 				System.out.println("회원탈퇴가 완료되었습니다");
+			}else if(yn.equals("N") || yn.equals("n")) {
+				return;
 			}else {
 				System.out.println("다시 입력해주세요");
+				return;
 			}
-
+		
+		
+	
 		} catch (Exception e) {
 
 		}
